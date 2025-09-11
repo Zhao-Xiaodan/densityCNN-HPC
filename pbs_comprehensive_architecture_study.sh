@@ -127,6 +127,7 @@ echo "📁 Output directory: $OUTPUT_DIR"
 echo ""
 
 # Execute the comprehensive study with enhanced parameters
+cd /home/svu/phyzxi/scratch/densityCNN-HPC
 singularity exec --nv "$image" python3 train_comprehensive_architecture_study.py \
     --input_dir ./dataset_preprocessed \
     --output_dir ./$OUTPUT_DIR \
