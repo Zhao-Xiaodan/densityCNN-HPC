@@ -68,10 +68,11 @@ echo "Dilution Factors: 80x 160x 320x 640x 1280x 2560x 5120x 10240x"
 echo "=============================================="
 echo ""
 
-# Memory optimization settings
-export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512,expandable_segments:True
-export CUDA_LAUNCH_BLOCKING=1
+# Memory optimization settings - Fixed for HPC CUDA allocator compatibility
+export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:1024
+export CUDA_LAUNCH_BLOCKING=0
 export PYTHONUNBUFFERED=1
+export PYTORCH_NO_CUDA_MEMORY_CACHING=0
 
 # Load required modules
 module load singularity

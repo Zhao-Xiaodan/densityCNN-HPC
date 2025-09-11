@@ -205,7 +205,7 @@ def fix_json_serialization(obj):
         return obj
 
 def enhanced_memory_cleanup(aggressive=False):
-    """Enhanced memory cleanup with multiple strategies"""
+    """Enhanced memory cleanup with multiple strategies - HPC compatible"""
     if aggressive:
         print("🧹 Performing aggressive memory cleanup...")
     
@@ -213,7 +213,7 @@ def enhanced_memory_cleanup(aggressive=False):
     for _ in range(3 if aggressive else 1):
         gc.collect()
     
-    # PyTorch cleanup
+    # PyTorch cleanup with HPC-compatible settings
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
         torch.cuda.synchronize()
