@@ -26,6 +26,8 @@ import numpy as np
 from PIL import Image
 import os
 import pandas as pd
+import matplotlib
+matplotlib.use('Agg')  # HPC compatibility - no display
 import matplotlib.pyplot as plt
 import seaborn as sns
 import copy
@@ -58,12 +60,12 @@ parser.add_argument('--patience', type=int, default=15,
                     help='Early stopping patience')
 parser.add_argument('--learning_rate', type=float, default=3e-4,
                     help='Learning rate for optimizer')
-parser.add_argument('--batch_size', type=int, default=128,
-                    help='Batch size for training')
+parser.add_argument('--base_batch_size', type=int, default=64,
+                    help='Base batch size (will be adapted per architecture)')
 parser.add_argument('--seed', type=int, default=42,
                     help='Random seed for reproducibility')
-parser.add_argument('--num_workers', type=int, default=18,
-                    help='Number of data loading workers')
+parser.add_argument('--base_num_workers', type=int, default=8,
+                    help='Base number of data loading workers (will be adapted)')
 parser.add_argument('--data_percentage', type=int, default=50,
                     help='Percentage of data to use')
 parser.add_argument('--dilution_factors', nargs='+', type=str,
@@ -83,6 +85,12 @@ parser.add_argument('--run_unets', action='store_true', default=True,
                     help='Run UNet architectures')
 parser.add_argument('--run_densenet', action='store_true', default=True,
                     help='Run DenseNet style architecture')
+parser.add_argument('--memory_efficient', action='store_true', default=True,
+                    help='Use memory efficient training')
+parser.add_argument('--conservative_mode', action='store_true', default=True,
+                    help='Use conservative settings for better reliability')
+parser.add_argument('--cleanup_frequency', type=int, default=5,
+                    help='Memory cleanup frequency (every N batches)')
 
 args = parser.parse_args()
 
@@ -99,6 +107,63 @@ print(f"🎯 Objective: Complete comparison of ALL CNN architectures")
 print(f"📊 Dataset: {args.data_percentage}% of {args.input_dir}")
 print(f"🧪 Architectures: Baseline + ResNet + UNet + DenseNet variants")
 print(f"=" * 80)
+
+
+# ============================================================================
+# ADAPTIVE RESOURCE MANAGEMENT
+# ============================================================================
+
+def get_architecture_config(model):
+    """Get architecture-specific configuration for optimal performance"""
+    arch_type = getattr(model, 'architecture_type', 'Unknown')
+    param_count = sum(p.numel() for p in model.parameters()) if hasattr(model, 'parameters') else 0
+    
+    # Base configurations
+    config = {
+        'batch_size': args.base_batch_size,
+        'num_workers': args.base_num_workers,
+        'memory_cleanup_frequency': args.cleanup_frequency,
+        'gradient_accumulation': 1,
+        'use_checkpointing': False
+    }
+    
+    # Architecture-specific optimizations
+    if arch_type == 'UNet':
+        # UNet models are memory intensive
+        config['batch_size'] = max(16, args.base_batch_size // 2)  # Smaller batches
+        config['num_workers'] = max(4, args.base_num_workers // 2)
+        config['memory_cleanup_frequency'] = 3  # More frequent cleanup
+        config['use_checkpointing'] = True
+        config['gradient_accumulation'] = 2  # Simulate larger batch
+        
+    elif arch_type == 'ResNet' and param_count > 2000000:
+        # Large ResNet models
+        config['batch_size'] = max(32, args.base_batch_size * 3 // 4)
+        config['memory_cleanup_frequency'] = 5
+        
+    elif arch_type == 'DenseNet':
+        # DenseNet can be memory intensive due to concatenations
+        config['batch_size'] = max(24, args.base_batch_size // 2)
+        config['memory_cleanup_frequency'] = 4
+        config['use_checkpointing'] = True
+        
+    elif arch_type == 'Baseline' and param_count < 1000000:
+        # Small baseline models can use larger batches
+        config['batch_size'] = min(128, args.base_batch_size * 2)
+        config['num_workers'] = min(12, args.base_num_workers * 3 // 2)
+        config['memory_cleanup_frequency'] = 10
+    
+    # Conservative mode overrides
+    if args.conservative_mode:
+        config['batch_size'] = min(config['batch_size'], 32)
+        config['num_workers'] = min(config['num_workers'], 6)
+        config['memory_cleanup_frequency'] = max(3, config['memory_cleanup_frequency'] // 2)
+    
+    print(f"📐 Architecture config for {getattr(model, 'name', 'Unknown')}: "
+          f"batch={config['batch_size']}, workers={config['num_workers']}, "
+          f"cleanup_freq={config['memory_cleanup_frequency']}")
+    
+    return config
 
 # ============================================================================
 # UTILITY FUNCTIONS
@@ -121,23 +186,36 @@ def fix_json_serialization(obj):
     else:
         return obj
 
-def aggressive_memory_cleanup():
-    """Comprehensive memory cleanup between models"""
-    print("🧹 Performing aggressive memory cleanup...")
-    gc.collect()
+def enhanced_memory_cleanup(aggressive=False):
+    """Enhanced memory cleanup with multiple strategies"""
+    if aggressive:
+        print("🧹 Performing aggressive memory cleanup...")
+    
+    # Python garbage collection
+    for _ in range(3 if aggressive else 1):
+        gc.collect()
+    
+    # PyTorch cleanup
     if torch.cuda.is_available():
         torch.cuda.empty_cache()
         torch.cuda.synchronize()
-        torch.cuda.reset_peak_memory_stats()
-        torch.cuda.reset_accumulated_memory_stats()
+        
+        if aggressive:
+            torch.cuda.reset_peak_memory_stats()
+            torch.cuda.reset_accumulated_memory_stats()
+            # Clear PyTorch caching allocator
+            torch.cuda.empty_cache()
     
-    for _ in range(3):
-        gc.collect()
-    
-    if torch.cuda.is_available():
+    # Memory status
+    if torch.cuda.is_available() and aggressive:
         memory_allocated = torch.cuda.memory_allocated() / 1024**3
         memory_reserved = torch.cuda.memory_reserved() / 1024**3
         print(f"💾 GPU Memory - Allocated: {memory_allocated:.3f} GB, Reserved: {memory_reserved:.3f} GB")
+
+# Alias for backward compatibility
+def enhanced_memory_cleanup(aggressive=True):
+    """Backward compatibility alias"""
+    enhanced_memory_cleanup(aggressive=True)
 
 def create_robust_scheduler(optimizer, scheduler_type='cosine_warm'):
     """Create learning rate scheduler with fallback options"""
@@ -824,7 +902,7 @@ def train_model_comprehensive(model, train_loader, val_loader, config, device='c
     """Comprehensive training with detailed tracking"""
     print(f"Training {model.name} with comprehensive analysis...")
     
-    aggressive_memory_cleanup()
+    enhanced_memory_cleanup(aggressive=True)
     
     criterion = nn.MSELoss()
     optimizer = optim.AdamW(model.parameters(), lr=config['learning_rate'], weight_decay=1e-4)
@@ -1405,7 +1483,43 @@ def perform_comprehensive_statistical_analysis(all_results, output_dir):
 # MAIN EXECUTION
 # ============================================================================
 
+
+def verify_hpc_environment():
+    """Verify HPC/container environment compatibility"""
+    print("🔍 Verifying HPC environment...")
+    
+    # Check essential dependencies
+    try:
+        import torch
+        import torchvision  
+        import numpy
+        import pandas
+        import matplotlib
+        import seaborn
+        import scipy
+        print("✅ All dependencies available")
+    except ImportError as e:
+        print(f"❌ Missing dependency: {e}")
+        return False
+    
+    # Check CUDA
+    if torch.cuda.is_available():
+        print(f"✅ CUDA available: {torch.cuda.get_device_name()}")
+        print(f"✅ GPU Memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.1f} GB")
+    else:
+        print("⚠️ CUDA not available - will use CPU")
+    
+    # Check matplotlib backend
+    print(f"✅ Matplotlib backend: {matplotlib.get_backend()}")
+    
+    return True
+
 def main():
+    # Verify HPC environment first
+    if not verify_hpc_environment():
+        print("❌ Environment verification failed")
+        exit(1)
+        
     print(f"🔬 COMPREHENSIVE CNN ARCHITECTURE STUDY")
     print("=" * 80)
     
@@ -1478,8 +1592,12 @@ def main():
     val_sampler = SubsetRandomSampler(val_indices)
     test_sampler = SubsetRandomSampler(test_indices)
     
-    train_loader = DataLoader(full_dataset, batch_size=args.batch_size, sampler=train_sampler,
-                             num_workers=args.num_workers, pin_memory=True, persistent_workers=True)
+    # Create data loaders with adaptive settings (will be updated per model)
+    base_batch_size = args.base_batch_size
+    base_num_workers = args.base_num_workers
+    
+    train_loader = DataLoader(full_dataset, batch_size=base_batch_size, sampler=train_sampler,
+                             num_workers=base_num_workers, pin_memory=True, persistent_workers=True)
     val_loader = DataLoader(full_dataset, batch_size=args.batch_size, sampler=val_sampler,
                            num_workers=args.num_workers, pin_memory=True, persistent_workers=True)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size, sampler=test_sampler,
@@ -1546,9 +1664,34 @@ def main():
         }
         
         try:
+            # Get architecture-specific configuration
+            arch_config = get_architecture_config(model)
+            
+            # Create adaptive data loaders for this specific architecture
+            adaptive_train_loader = DataLoader(
+                full_dataset, 
+                batch_size=arch_config['batch_size'], 
+                sampler=train_sampler,
+                num_workers=arch_config['num_workers'], 
+                pin_memory=True, 
+                persistent_workers=True if arch_config['num_workers'] > 0 else False
+            )
+            
+            adaptive_val_loader = DataLoader(
+                full_dataset, 
+                batch_size=arch_config['batch_size'], 
+                sampler=val_sampler,
+                num_workers=arch_config['num_workers'], 
+                pin_memory=True, 
+                persistent_workers=True if arch_config['num_workers'] > 0 else False
+            )
+            
+            # Update training config with architecture-specific settings
+            training_config.update(arch_config)
+            
             # Train model
             trained_model, training_stats, gradient_tracker = train_model_comprehensive(
-                model, train_loader, val_loader, training_config, device
+                model, adaptive_train_loader, adaptive_val_loader, training_config, device
             )
             
             # Evaluate model
@@ -1582,7 +1725,7 @@ def main():
             
             # Cleanup
             del trained_model
-            aggressive_memory_cleanup()
+            enhanced_memory_cleanup(aggressive=True)
             
         except Exception as e:
             print(f"❌ Experiment {exp_num} failed: {str(e)}")
@@ -1601,7 +1744,7 @@ def main():
             with open(error_file, 'w') as f:
                 json.dump(error_info, f, indent=4)
             
-            aggressive_memory_cleanup()
+            enhanced_memory_cleanup(aggressive=True)
             continue
     
     total_study_time = (time.time() - study_start_time) / 60
@@ -1653,7 +1796,7 @@ def main():
         print(f"\n⚠️ Insufficient successful experiments ({len(all_results)}/{len(all_architectures)}) for statistical analysis")
     
     # Final cleanup
-    aggressive_memory_cleanup()
+    enhanced_memory_cleanup(aggressive=True)
     print("\n🔬 Comprehensive CNN Architecture Study Complete!")
 
 if __name__ == "__main__":

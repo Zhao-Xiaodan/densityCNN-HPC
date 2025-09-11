@@ -1,10 +1,9 @@
 #!/bin/bash
-#PBS -l select=1:ncpus=36:mem=240gb:ngpus=1:gpu_model=a40
-#PBS -l walltime=06:00:00
-#PBS -q gpu
-#PBS -P PJ01-13-2024
-#PBS -N Comprehensive_CNN_Architecture_Study
+#PBS -l walltime=48:00:00
 #PBS -j oe
+#PBS -k oed
+#PBS -N Comprehensive_CNN_Architecture_Study
+#PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
 #PBS -M phyzxi@nus.edu.sg
 #PBS -m abe
 
@@ -72,27 +71,26 @@ export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512,expandable_segments:True
 export CUDA_LAUNCH_BLOCKING=1
 export PYTHONUNBUFFERED=1
 
-# Load Singularity container with PyTorch
-echo "🔧 Loading Singularity container..."
+# Load required modules
 module load singularity
 
-# Container path - update this to match your environment
-CONTAINER_PATH="/home/svu/phyzxi/containers/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif"
+# Define singularity container
+image=/app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
 
-if [ ! -f "$CONTAINER_PATH" ]; then
-    echo "❌ ERROR: Container not found at $CONTAINER_PATH"
-    echo "Please update CONTAINER_PATH variable with correct path"
+if [ ! -f "$image" ]; then
+    echo "❌ ERROR: Container not found at $image"
+    echo "Please check container path"
     exit 1
 fi
 
-echo "✅ Container found: $CONTAINER_PATH"
+echo "✅ Container found: $image"
 
 # =======================================================================
 # ENHANCED EXECUTION MONITORING
 # =======================================================================
 
 echo "=== GPU MEMORY STATUS BEFORE COMPREHENSIVE STUDY ==="
-singularity exec --nv "$CONTAINER_PATH" python3 -c "
+singularity exec --nv "$image" python3 -c "
 import torch
 print('CUDA available:', torch.cuda.is_available())
 if torch.cuda.is_available():
@@ -100,8 +98,11 @@ if torch.cuda.is_available():
     print('GPU Memory: {:.1f} GB'.format(torch.cuda.get_device_properties(0).total_memory / 1024**3))
     print('GPU Memory - Total, Used, Free (MB):')
     import subprocess
-    result = subprocess.run(['nvidia-smi', '--query-gpu=memory.total,memory.used,memory.free', '--format=csv,nounits,noheader'], capture_output=True, text=True)
-    print(result.stdout)
+    try:
+        result = subprocess.run(['nvidia-smi', '--query-gpu=memory.total,memory.used,memory.free', '--format=csv,nounits,noheader'], capture_output=True, text=True)
+        print(result.stdout)
+    except:
+        print('nvidia-smi not available')
 else:
     print('CUDA not available')
 "
@@ -126,7 +127,7 @@ echo "📁 Output directory: $OUTPUT_DIR"
 echo ""
 
 # Execute the comprehensive study with enhanced parameters
-singularity exec --nv "$CONTAINER_PATH" python3 train_comprehensive_architecture_study.py \
+singularity exec --nv "$image" python3 train_comprehensive_architecture_study.py \
     --input_dir ./dataset_preprocessed \
     --output_dir ./$OUTPUT_DIR \
     --epochs 50 \
@@ -172,7 +173,7 @@ if [ $EXIT_CODE -eq 0 ]; then
     if [ -f "./$OUTPUT_DIR/comprehensive_architecture_comparison.csv" ]; then
         echo "✅ comprehensive_architecture_comparison.csv - Complete performance comparison"
         echo "   Top 3 performers by R² score:"
-        singularity exec --nv "$CONTAINER_PATH" python3 -c "
+        singularity exec --nv "$image" python3 -c "
 import pandas as pd
 import sys
 try:
@@ -191,7 +192,7 @@ except Exception as e:
     if [ -f "./$OUTPUT_DIR/complete_comprehensive_study.json" ]; then
         echo "✅ complete_comprehensive_study.json - Full experimental results"
         echo "   Study summary:"
-        singularity exec --nv "$CONTAINER_PATH" python3 -c "
+        singularity exec --nv "$image" python3 -c "
 import json
 import sys
 try:
@@ -272,7 +273,7 @@ if [ -f "./$OUTPUT_DIR/comprehensive_architecture_comparison.csv" ] && [ $EXIT_C
     echo "🏆 PERFORMANCE RESULTS BY ARCHITECTURE TYPE:"
     echo "============================================"
     
-    singularity exec --nv "$CONTAINER_PATH" python3 -c "
+    singularity exec --nv "$image" python3 -c "
 import pandas as pd
 import numpy as np
 try:
@@ -319,7 +320,7 @@ except Exception as e:
     echo ""
     echo "🎯 KEY INSIGHTS FROM COMPREHENSIVE STUDY:"
     echo "========================================"
-    singularity exec --nv "$CONTAINER_PATH" python3 -c "
+    singularity exec --nv "$image" python3 -c "
 import pandas as pd
 import numpy as np
 try:
