@@ -43,7 +43,17 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Set conservative memory optimization settings
-os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:512,expandable_segments:True'
+# HPC/Container optimizations
+os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:256,expandable_segments:True'
+os.environ['CUDA_LAUNCH_BLOCKING'] = '0'  # Async for performance
+torch.backends.cudnn.benchmark = True
+
+# Verify critical HPC setup
+print("🔍 HPC Environment Check:")
+print(f"   Python: {os.sys.version}")
+print(f"   PyTorch: {torch.__version__}")
+print(f"   Matplotlib backend: {matplotlib.get_backend()}")
+print(f"   CUDA available: {torch.cuda.is_available()}")
 
 # ============================================================================
 # ARGUMENT PARSER
@@ -93,6 +103,14 @@ parser.add_argument('--cleanup_frequency', type=int, default=5,
                     help='Memory cleanup frequency (every N batches)')
 
 args = parser.parse_args()
+
+# Verify all required arguments are available
+required_args = ['base_batch_size', 'base_num_workers', 'cleanup_frequency', 'conservative_mode', 'memory_efficient']
+for arg in required_args:
+    if not hasattr(args, arg):
+        print(f"❌ Missing required argument: {arg}")
+        print("   This indicates the patch script didn't apply correctly.")
+        exit(1)
 
 # Set seeds for reproducibility
 torch.manual_seed(args.seed)
@@ -212,10 +230,11 @@ def enhanced_memory_cleanup(aggressive=False):
         memory_reserved = torch.cuda.memory_reserved() / 1024**3
         print(f"💾 GPU Memory - Allocated: {memory_allocated:.3f} GB, Reserved: {memory_reserved:.3f} GB")
 
-# Alias for backward compatibility
-def enhanced_memory_cleanup(aggressive=True):
-    """Backward compatibility alias"""
+def aggressive_memory_cleanup():
+    """Backward compatibility alias for enhanced_memory_cleanup"""
     enhanced_memory_cleanup(aggressive=True)
+
+# Backward compatibility alias removed - using single enhanced_memory_cleanup function
 
 def create_robust_scheduler(optimizer, scheduler_type='cosine_warm'):
     """Create learning rate scheduler with fallback options"""
