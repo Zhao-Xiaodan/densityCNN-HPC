@@ -1642,11 +1642,11 @@ def main():
     # UNet architectures (multiple configurations)
     if args.run_unets:
         unet_configs = [
-            {'base_filters': 32, 'skip_type': 'channel_reduced', 'max_filters': 128},
-            {'base_filters': 36, 'skip_type': 'channel_reduced', 'max_filters': 128},
-            {'base_filters': 32, 'skip_type': 'full_concat', 'max_filters': 96},
-            {'base_filters': 36, 'skip_type': 'full_concat', 'max_filters': 128},
-            {'base_filters': 40, 'skip_type': 'channel_reduced', 'max_filters': 144},
+            {'base_filters': 32, 'skip_connection_type': 'channel_reduced', 'max_filters': 128},
+            {'base_filters': 36, 'skip_connection_type': 'channel_reduced', 'max_filters': 128},
+            {'base_filters': 32, 'skip_connection_type': 'full_concat', 'max_filters': 96},
+            {'base_filters': 36, 'skip_connection_type': 'full_concat', 'max_filters': 128},
+            {'base_filters': 40, 'skip_connection_type': 'channel_reduced', 'max_filters': 144},
         ]
         for config in unet_configs:
             all_architectures.append(UNetCNN(**config))
