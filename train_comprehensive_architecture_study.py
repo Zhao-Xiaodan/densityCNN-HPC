@@ -1617,10 +1617,10 @@ def main():
     
     train_loader = DataLoader(full_dataset, batch_size=base_batch_size, sampler=train_sampler,
                              num_workers=base_num_workers, pin_memory=True, persistent_workers=True)
-    val_loader = DataLoader(full_dataset, batch_size=args.batch_size, sampler=val_sampler,
-                           num_workers=args.num_workers, pin_memory=True, persistent_workers=True)
-    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, sampler=test_sampler,
-                            num_workers=args.num_workers, pin_memory=True)
+    val_loader = DataLoader(full_dataset, batch_size=base_batch_size, sampler=val_sampler,
+                           num_workers=base_num_workers, pin_memory=True, persistent_workers=True)
+    test_loader = DataLoader(test_dataset, batch_size=base_batch_size, sampler=test_sampler,
+                            num_workers=base_num_workers, pin_memory=True)
     
     # Define all architectures to test
     all_architectures = []
