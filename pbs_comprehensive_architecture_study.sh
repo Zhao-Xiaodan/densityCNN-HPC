@@ -57,11 +57,13 @@ echo "Data Percentage: 50%"
 echo "Learning Rate: 3e-4"
 echo "Max Epochs: 50 (with early stopping)"
 echo "Patience: 15"
-echo "Workers: 18"
-echo "Batch Size: 128 (adaptive for memory)"
+echo "Base Workers: 8 (adaptive per architecture)"
+echo "Base Batch Size: 64 (adaptive per architecture)"
 echo "Mixed Precision: Enabled"
 echo "Gradient Tracking: Enabled with detailed analysis"
-echo "Memory Management: Aggressive cleanup between models"
+echo "Memory Management: Enhanced with architecture-specific optimization"
+echo "Conservative Mode: Enabled for HPC stability"
+echo "Cleanup Frequency: Every 5 batches"
 echo "Dilution Factors: 80x 160x 320x 640x 1280x 2560x 5120x 10240x"
 echo "=============================================="
 echo ""
@@ -134,8 +136,8 @@ singularity exec --nv "$image" python3 train_comprehensive_architecture_study.py
     --epochs 50 \
     --patience 15 \
     --learning_rate 3e-4 \
-    --batch_size 128 \
-    --num_workers 18 \
+    --base_batch_size 64 \
+    --base_num_workers 8 \
     --data_percentage 50 \
     --mixed_precision \
     --track_gradients \
@@ -143,6 +145,9 @@ singularity exec --nv "$image" python3 train_comprehensive_architecture_study.py
     --run_resnets \
     --run_unets \
     --run_densenet \
+    --memory_efficient \
+    --conservative_mode \
+    --cleanup_frequency 5 \
     --seed 42 2>&1 | tee comprehensive_study_console_${TIMESTAMP}.log
 
 # Capture exit code
