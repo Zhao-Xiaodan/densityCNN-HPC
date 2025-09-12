@@ -1,0 +1,891 @@
+=======================================================================
+COMPREHENSIVE CNN ARCHITECTURE STUDY - ENHANCED EXECUTION
+=======================================================================
+Study: Complete comparison of ALL CNN architectures for density estimation
+Enhanced: Memory optimization, comprehensive analysis, detailed visualization
+
+🚨 KEY ENHANCEMENTS FROM PREVIOUS STUDIES:
+✅ Fixed JSON serialization issues (int64 -> int conversion)
+✅ Optimized memory management with aggressive cleanup
+✅ Added comprehensive plotting (Q-Q plots, density range analysis)
+✅ Enhanced gradient flow tracking and visualization
+✅ Statistical hypothesis testing framework
+✅ Cross-architecture performance comparison
+=======================================================================
+Job started on Fri Sep 12 10:46:06 AM +08 2025
+Running on node: GN-A40-033
+Job ID: 209167.stdct-mgmt-02
+Available GPUs: GPU-4a8cc118-f139-3344-a1da-7b2a3da6d96f
+Memory: 503Gi, CPUs: 36
+
+=== COMPREHENSIVE STUDY CONFIGURATION ===
+Dataset: ./dataset_preprocessed
+Data Percentage: 50%
+Learning Rate: 3e-4
+Max Epochs: 50 (with early stopping)
+Patience: 15
+Base Workers: 8 (adaptive per architecture)
+Base Batch Size: 64 (adaptive per architecture)
+Mixed Precision: Enabled
+Gradient Tracking: Enabled with detailed analysis
+Memory Management: Enhanced with architecture-specific optimization
+Conservative Mode: Enabled for HPC stability
+Cleanup Frequency: Every 5 batches
+Dilution Factors: 80x 160x 320x 640x 1280x 2560x 5120x 10240x
+==============================================
+
+✅ Container found: /app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
+=== GPU MEMORY STATUS BEFORE COMPREHENSIVE STUDY ===
+CUDA available: True
+GPU: NVIDIA A40
+GPU Memory: 44.4 GB
+GPU Memory - Total, Used, Free (MB):
+46068, 3, 45486
+
+=================================================
+
+🚀 Starting Comprehensive CNN Architecture Study...
+Testing ALL architectures: Baseline + ResNet + UNet + DenseNet variants
+Enhanced with detailed analysis and visualization
+==================================================
+
+📁 Output directory: comprehensive_architecture_study_20250912_104621
+
+🔍 HPC Environment Check:
+   Python: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+   PyTorch: 2.4.0a0+f70bd71a48.nv24.06
+   Matplotlib backend: Agg
+   CUDA available: True
+🔬 COMPREHENSIVE CNN ARCHITECTURE STUDY
+================================================================================
+🎯 Objective: Complete comparison of ALL CNN architectures
+📊 Dataset: 50% of ./dataset_preprocessed
+🧪 Architectures: Baseline + ResNet + UNet + DenseNet variants
+================================================================================
+🔍 Verifying HPC environment...
+✅ All dependencies available
+✅ CUDA available: NVIDIA A40
+✅ GPU Memory: 44.4 GB
+✅ Matplotlib backend: Agg
+🔬 COMPREHENSIVE CNN ARCHITECTURE STUDY
+================================================================================
+📁 Output directory: ./comprehensive_architecture_study_20250912_104621/comprehensive_architecture_study_20250912_104647
+🔧 Using device: cuda
+🎮 GPU: NVIDIA A40
+💾 GPU Memory: 44.4 GB
+
+📂 Creating datasets...
+Dataset size: 974 samples
+Dataset size: 974 samples
+📊 Dataset splits: 681 train, 146 val, 147 test
+
+🧪 Testing 10 architectural configurations
+
+================================================================================
+🔬 EXPERIMENT 1/10: Baseline_Shallow
+   Architecture Type: Baseline
+   Depth: 4 layers
+   Skip Connections: False
+   Parameters: 2,025,793
+================================================================================
+📐 Architecture config for Baseline_Shallow: batch=32, workers=6, cleanup_freq=3
+Training Baseline_Shallow with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3827318.73 | Val: 3850365.25 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 21.2s
+Epoch   2/ 50 | Train: 3716965.30 | Val: 4065819.60 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 9.8s
+Epoch   3/ 50 | Train: 3526685.94 | Val: 3756714.45 | LR: 0.000271 | Stability: 129416.2290 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch   4/ 50 | Train: 2903984.36 | Val: 2247422.83 | LR: 0.000238 | Stability: 720446.4545 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch   5/ 50 | Train: 1688440.02 | Val: 1291865.88 | LR: 0.000196 | Stability: 1086903.7750 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch   6/ 50 | Train: 663582.54 | Val: 509600.19 | LR: 0.000150 | Stability: 1373839.5183 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch   7/ 50 | Train: 346888.50 | Val: 420448.29 | LR: 0.000104 | Stability: 1243833.9351 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch   8/ 50 | Train: 192409.49 | Val: 147435.69 | LR: 0.000062 | Stability: 763559.4080 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch   9/ 50 | Train: 189126.19 | Val: 99438.83 | LR: 0.000029 | Stability: 428492.2907 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  10/ 50 | Train: 127386.73 | Val: 48390.87 | LR: 0.000007 | Stability: 184476.1991 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  11/ 50 | Train: 171573.24 | Val: 114662.18 | LR: 0.000300 | Stability: 131138.4050 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  12/ 50 | Train: 175163.17 | Val: 34828.79 | LR: 0.000298 | Stability: 41870.8874 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  13/ 50 | Train: 174956.19 | Val: 55677.15 | LR: 0.000293 | Stability: 30882.5849 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  14/ 50 | Train: 155308.65 | Val: 67349.11 | LR: 0.000284 | Stability: 27355.3732 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  15/ 50 | Train: 180414.16 | Val: 48521.76 | LR: 0.000271 | Stability: 27340.3078 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  16/ 50 | Train: 132556.76 | Val: 36545.49 | LR: 0.000256 | Stability: 12137.3577 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  17/ 50 | Train: 133030.12 | Val: 26128.76 | LR: 0.000238 | Stability: 14397.7714 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  18/ 50 | Train: 131515.58 | Val: 33047.49 | LR: 0.000218 | Stability: 14466.5036 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  19/ 50 | Train: 172748.34 | Val: 46001.39 | LR: 0.000196 | Stability: 8273.8976 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  20/ 50 | Train: 148575.78 | Val: 30307.58 | LR: 0.000173 | Stability: 6725.8550 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  21/ 50 | Train: 136825.85 | Val: 26020.65 | LR: 0.000150 | Stability: 7345.3504 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  22/ 50 | Train: 87946.06 | Val: 28486.68 | LR: 0.000127 | Stability: 7001.5803 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  23/ 50 | Train: 180729.09 | Val: 29605.51 | LR: 0.000104 | Stability: 7109.1091 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  24/ 50 | Train: 148577.18 | Val: 29559.71 | LR: 0.000082 | Stability: 1504.7737 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  25/ 50 | Train: 98295.33 | Val: 22426.76 | LR: 0.000062 | Stability: 2727.0142 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  26/ 50 | Train: 103180.95 | Val: 28824.93 | LR: 0.000044 | Stability: 2711.0283 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  27/ 50 | Train: 97985.68 | Val: 28634.88 | LR: 0.000029 | Stability: 2719.3821 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  28/ 50 | Train: 90711.94 | Val: 38093.28 | LR: 0.000016 | Stability: 5001.6514 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  29/ 50 | Train: 81908.91 | Val: 29740.75 | LR: 0.000007 | Stability: 5002.5505 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  30/ 50 | Train: 123047.06 | Val: 19508.56 | LR: 0.000002 | Stability: 5890.3292 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  31/ 50 | Train: 167153.48 | Val: 35161.19 | LR: 0.000300 | Stability: 6385.6198 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  32/ 50 | Train: 183042.78 | Val: 31864.27 | LR: 0.000300 | Stability: 6355.0924 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  33/ 50 | Train: 100467.00 | Val: 33321.21 | LR: 0.000298 | Stability: 5499.9750 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  34/ 50 | Train: 120908.29 | Val: 59967.89 | LR: 0.000296 | Stability: 13201.5494 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  35/ 50 | Train: 102468.87 | Val: 18862.99 | LR: 0.000293 | Stability: 13364.0207 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  36/ 50 | Train: 93337.51 | Val: 35633.16 | LR: 0.000289 | Stability: 13360.5908 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  37/ 50 | Train: 92684.22 | Val: 33138.45 | LR: 0.000284 | Stability: 13292.5925 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  38/ 50 | Train: 114892.77 | Val: 23092.57 | LR: 0.000278 | Stability: 14323.0250 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  39/ 50 | Train: 83700.04 | Val: 30204.87 | LR: 0.000271 | Stability: 6275.7382 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  40/ 50 | Train: 75782.86 | Val: 21152.18 | LR: 0.000264 | Stability: 5629.0408 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  41/ 50 | Train: 120727.90 | Val: 24889.41 | LR: 0.000256 | Stability: 4485.5024 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  42/ 50 | Train: 93422.57 | Val: 46752.26 | LR: 0.000247 | Stability: 9270.8062 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Epoch  43/ 50 | Train: 111667.69 | Val: 25788.76 | LR: 0.000238 | Stability: 8972.4321 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  44/ 50 | Train: 116252.60 | Val: 88418.59 | LR: 0.000228 | Stability: 25162.1902 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  45/ 50 | Train: 86504.56 | Val: 20599.51 | LR: 0.000218 | Stability: 25251.9492 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  46/ 50 | Train: 107702.41 | Val: 29825.88 | LR: 0.000207 | Stability: 24681.4926 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  47/ 50 | Train: 82467.35 | Val: 19762.90 | LR: 0.000196 | Stability: 26027.1094 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  48/ 50 | Train: 95457.32 | Val: 16100.02 | LR: 0.000185 | Stability: 27118.4551 | Mem: 0.000GB Peak: 0.000GB | Time: 10.1s
+Epoch  49/ 50 | Train: 74144.78 | Val: 21966.61 | LR: 0.000173 | Stability: 4525.7549 | Mem: 0.000GB Peak: 0.000GB | Time: 9.9s
+Epoch  50/ 50 | Train: 79692.19 | Val: 32464.40 | LR: 0.000162 | Stability: 6165.7380 | Mem: 0.000GB Peak: 0.000GB | Time: 10.0s
+Evaluating Baseline_Shallow with comprehensive analysis...
+Evaluation Results for Baseline_Shallow:
+  R² Score: 0.994749
+  RMSE: 100.5321
+  MAE: 73.3190
+  MAPE: 151.24%
+  Avg Inference: 435.19ms/batch
+  Residuals Normality p-value: 0.0005
+✅ Experiment 1 completed in 8.77 minutes
+📈 Performance: R² = 0.994749
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 2/10: Baseline_Deep
+   Architecture Type: Baseline
+   Depth: 12 layers
+   Skip Connections: False
+   Parameters: 2,551,585
+================================================================================
+📐 Architecture config for Baseline_Deep: batch=32, workers=6, cleanup_freq=3
+Training Baseline_Deep with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3819993.34 | Val: 3910509.90 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 20.3s
+Epoch   2/ 50 | Train: 3948038.59 | Val: 4029897.90 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Epoch   3/ 50 | Train: 3648219.08 | Val: 3558609.60 | LR: 0.000271 | Stability: 200055.5416 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch   4/ 50 | Train: 3268608.61 | Val: 3138596.02 | LR: 0.000238 | Stability: 347030.3880 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Epoch   5/ 50 | Train: 2251454.99 | Val: 1814143.20 | LR: 0.000196 | Stability: 800713.2316 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch   6/ 50 | Train: 858434.01 | Val: 187387.82 | LR: 0.000150 | Stability: 1391198.5220 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Epoch   7/ 50 | Train: 250647.89 | Val: 369125.72 | LR: 0.000104 | Stability: 1380705.9983 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Epoch   8/ 50 | Train: 173102.37 | Val: 112950.49 | LR: 0.000062 | Stability: 1183570.2331 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch   9/ 50 | Train: 165364.31 | Val: 87956.33 | LR: 0.000029 | Stability: 657326.3799 | Mem: 0.000GB Peak: 0.000GB | Time: 17.3s
+Epoch  10/ 50 | Train: 171327.45 | Val: 53991.72 | LR: 0.000007 | Stability: 112338.1628 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  11/ 50 | Train: 191929.24 | Val: 201507.22 | LR: 0.000300 | Stability: 113108.5728 | Mem: 0.000GB Peak: 0.000GB | Time: 17.3s
+Epoch  12/ 50 | Train: 165031.33 | Val: 77069.54 | LR: 0.000298 | Stability: 51058.6505 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  13/ 50 | Train: 278158.67 | Val: 293803.34 | LR: 0.000293 | Stability: 91064.5464 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  14/ 50 | Train: 164117.89 | Val: 1270365.77 | LR: 0.000284 | Stability: 453891.3713 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  15/ 50 | Train: 283242.22 | Val: 93598.83 | LR: 0.000271 | Stability: 448457.1452 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  16/ 50 | Train: 213603.04 | Val: 32556.50 | LR: 0.000256 | Stability: 467156.0093 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  17/ 50 | Train: 178041.94 | Val: 30142.44 | LR: 0.000238 | Stability: 473049.1680 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Epoch  18/ 50 | Train: 177868.83 | Val: 32017.97 | LR: 0.000218 | Stability: 489904.7324 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  19/ 50 | Train: 173202.78 | Val: 22428.28 | LR: 0.000196 | Stability: 25980.0039 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  20/ 50 | Train: 202092.55 | Val: 37460.96 | LR: 0.000173 | Stability: 4886.3422 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  21/ 50 | Train: 159976.08 | Val: 143410.98 | LR: 0.000150 | Stability: 45415.6532 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  22/ 50 | Train: 151451.92 | Val: 69287.26 | LR: 0.000127 | Stability: 44140.7720 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  23/ 50 | Train: 167678.38 | Val: 23766.63 | LR: 0.000104 | Stability: 45328.7659 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  24/ 50 | Train: 146396.66 | Val: 59888.27 | LR: 0.000082 | Stability: 41559.2188 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  25/ 50 | Train: 132142.57 | Val: 22157.14 | LR: 0.000062 | Stability: 44090.9744 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  26/ 50 | Train: 114368.67 | Val: 20619.10 | LR: 0.000044 | Stability: 21010.1408 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  27/ 50 | Train: 135887.92 | Val: 67252.16 | LR: 0.000029 | Stability: 20434.0545 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Epoch  28/ 50 | Train: 114786.12 | Val: 34040.76 | LR: 0.000016 | Stability: 19311.0909 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  29/ 50 | Train: 126352.12 | Val: 25997.69 | LR: 0.000007 | Stability: 17257.1493 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  30/ 50 | Train: 125434.72 | Val: 31844.82 | LR: 0.000002 | Stability: 16336.5123 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  31/ 50 | Train: 184933.83 | Val: 1856895.94 | LR: 0.000300 | Stability: 726987.9818 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  32/ 50 | Train: 253785.53 | Val: 167190.67 | LR: 0.000300 | Stability: 718804.3254 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  33/ 50 | Train: 162519.78 | Val: 31646.00 | LR: 0.000298 | Stability: 719064.2164 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  34/ 50 | Train: 175098.99 | Val: 29639.05 | LR: 0.000296 | Stability: 718663.7821 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  35/ 50 | Train: 148411.73 | Val: 20821.88 | LR: 0.000293 | Stability: 719877.5578 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  36/ 50 | Train: 162951.06 | Val: 104471.77 | LR: 0.000289 | Stability: 56833.1052 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  37/ 50 | Train: 138882.55 | Val: 58475.04 | LR: 0.000284 | Stability: 30452.9361 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  38/ 50 | Train: 142661.38 | Val: 51134.42 | LR: 0.000278 | Stability: 29202.4734 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  39/ 50 | Train: 106497.99 | Val: 64734.88 | LR: 0.000271 | Stability: 26892.3027 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  40/ 50 | Train: 110943.00 | Val: 20573.11 | LR: 0.000264 | Stability: 26964.7413 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  41/ 50 | Train: 119067.58 | Val: 30073.55 | LR: 0.000256 | Stability: 16900.5636 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  42/ 50 | Train: 121724.98 | Val: 19656.90 | LR: 0.000247 | Stability: 17817.5879 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  43/ 50 | Train: 107830.98 | Val: 39626.26 | LR: 0.000238 | Stability: 16573.2250 | Mem: 0.000GB Peak: 0.000GB | Time: 17.2s
+Epoch  44/ 50 | Train: 98867.83 | Val: 53352.45 | LR: 0.000228 | Stability: 12637.7983 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  45/ 50 | Train: 160739.68 | Val: 22780.81 | LR: 0.000218 | Stability: 12240.2295 | Mem: 0.000GB Peak: 0.000GB | Time: 17.8s
+Epoch  46/ 50 | Train: 147172.91 | Val: 24931.39 | LR: 0.000207 | Stability: 12659.9673 | Mem: 0.000GB Peak: 0.000GB | Time: 17.5s
+Epoch  47/ 50 | Train: 130017.91 | Val: 43361.95 | LR: 0.000196 | Stability: 11510.2708 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  48/ 50 | Train: 111580.71 | Val: 41303.22 | LR: 0.000185 | Stability: 11611.4168 | Mem: 0.000GB Peak: 0.000GB | Time: 17.6s
+Epoch  49/ 50 | Train: 157150.57 | Val: 28159.71 | LR: 0.000173 | Stability: 8547.4281 | Mem: 0.000GB Peak: 0.000GB | Time: 17.7s
+Epoch  50/ 50 | Train: 108112.61 | Val: 47907.52 | LR: 0.000162 | Stability: 8963.0360 | Mem: 0.000GB Peak: 0.000GB | Time: 17.4s
+Evaluating Baseline_Deep with comprehensive analysis...
+Evaluation Results for Baseline_Deep:
+  R² Score: 0.994576
+  RMSE: 102.1705
+  MAE: 68.7524
+  MAPE: 96.17%
+  Avg Inference: 632.39ms/batch
+  Residuals Normality p-value: 0.0000
+✅ Experiment 2 completed in 14.91 minutes
+📈 Performance: R² = 0.994576
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 3/10: ResNet_Shallow
+   Architecture Type: ResNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,263,489
+================================================================================
+📐 Architecture config for ResNet_Shallow: batch=32, workers=6, cleanup_freq=3
+Training ResNet_Shallow with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3843786.95 | Val: 3860950.15 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 5.9s
+Epoch   2/ 50 | Train: 3803400.86 | Val: 3855373.92 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   3/ 50 | Train: 3707653.48 | Val: 4271829.95 | LR: 0.000271 | Stability: 195018.2114 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   4/ 50 | Train: 3797453.82 | Val: 4039322.80 | LR: 0.000238 | Stability: 169926.9127 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   5/ 50 | Train: 3665376.60 | Val: 4193931.75 | LR: 0.000196 | Stability: 169407.5199 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   6/ 50 | Train: 3654752.16 | Val: 3783394.90 | LR: 0.000150 | Stability: 188012.2566 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   7/ 50 | Train: 3610232.01 | Val: 3709543.10 | LR: 0.000104 | Stability: 221056.3394 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   8/ 50 | Train: 3677753.28 | Val: 3890305.45 | LR: 0.000062 | Stability: 174961.0950 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch   9/ 50 | Train: 3579669.54 | Val: 3917948.98 | LR: 0.000029 | Stability: 165334.7205 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  10/ 50 | Train: 3562167.42 | Val: 3803598.27 | LR: 0.000007 | Stability: 75288.7037 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  11/ 50 | Train: 3597443.85 | Val: 3759462.45 | LR: 0.000300 | Stability: 78228.0193 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  12/ 50 | Train: 3280588.14 | Val: 3205185.98 | LR: 0.000298 | Stability: 261402.6551 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  13/ 50 | Train: 2756149.54 | Val: 2240866.83 | LR: 0.000293 | Stability: 623033.5797 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  14/ 50 | Train: 2268219.89 | Val: 2207394.25 | LR: 0.000284 | Stability: 701396.6943 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  15/ 50 | Train: 1595544.02 | Val: 1789870.12 | LR: 0.000271 | Stability: 726884.5367 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  16/ 50 | Train: 999860.15 | Val: 799436.49 | LR: 0.000256 | Stability: 778103.3197 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  17/ 50 | Train: 567622.50 | Val: 464238.48 | LR: 0.000238 | Stability: 734425.6903 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  18/ 50 | Train: 372998.71 | Val: 315513.44 | LR: 0.000218 | Stability: 749803.1887 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  19/ 50 | Train: 378374.39 | Val: 427109.85 | LR: 0.000196 | Stability: 540008.1123 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  20/ 50 | Train: 310291.83 | Val: 55690.30 | LR: 0.000173 | Stability: 240553.3893 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  21/ 50 | Train: 222957.00 | Val: 155582.28 | LR: 0.000150 | Stability: 156572.7754 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  22/ 50 | Train: 163305.10 | Val: 233946.22 | LR: 0.000127 | Stability: 127918.6284 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  23/ 50 | Train: 191463.00 | Val: 283315.91 | LR: 0.000104 | Stability: 124600.1192 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  24/ 50 | Train: 186900.32 | Val: 167612.42 | LR: 0.000082 | Stability: 77180.2850 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  25/ 50 | Train: 243455.07 | Val: 60182.37 | LR: 0.000062 | Stability: 75749.8948 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  26/ 50 | Train: 205068.63 | Val: 34040.04 | LR: 0.000044 | Stability: 96410.4679 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  27/ 50 | Train: 269587.82 | Val: 90746.90 | LR: 0.000029 | Stability: 90004.7890 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  28/ 50 | Train: 165088.21 | Val: 53379.38 | LR: 0.000016 | Stability: 46899.9780 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  29/ 50 | Train: 162714.78 | Val: 32692.92 | LR: 0.000007 | Stability: 21171.2838 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  30/ 50 | Train: 203249.95 | Val: 23338.93 | LR: 0.000002 | Stability: 24028.5611 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  31/ 50 | Train: 215608.14 | Val: 58079.43 | LR: 0.000300 | Stability: 23382.8294 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  32/ 50 | Train: 252924.13 | Val: 76764.65 | LR: 0.000300 | Stability: 18956.7477 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  33/ 50 | Train: 210764.61 | Val: 69374.85 | LR: 0.000298 | Stability: 20718.7866 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  34/ 50 | Train: 229987.68 | Val: 69222.71 | LR: 0.000296 | Stability: 18971.8191 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  35/ 50 | Train: 182405.03 | Val: 42823.67 | LR: 0.000293 | Stability: 11830.4899 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  36/ 50 | Train: 146088.36 | Val: 62451.45 | LR: 0.000289 | Stability: 11574.5901 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  37/ 50 | Train: 158998.99 | Val: 21888.46 | LR: 0.000284 | Stability: 18395.7140 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  38/ 50 | Train: 147386.94 | Val: 46128.58 | LR: 0.000278 | Stability: 16553.4998 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  39/ 50 | Train: 135753.69 | Val: 52033.58 | LR: 0.000271 | Stability: 13372.7809 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  40/ 50 | Train: 140834.29 | Val: 35826.27 | LR: 0.000264 | Stability: 13890.2580 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  41/ 50 | Train: 146062.79 | Val: 30038.51 | LR: 0.000256 | Stability: 10838.5474 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  42/ 50 | Train: 147979.73 | Val: 16064.46 | LR: 0.000247 | Stability: 12590.9299 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  43/ 50 | Train: 228826.40 | Val: 171164.17 | LR: 0.000238 | Stability: 56263.7927 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  44/ 50 | Train: 142354.89 | Val: 85368.71 | LR: 0.000228 | Stability: 56775.9979 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  45/ 50 | Train: 183050.16 | Val: 191924.62 | LR: 0.000218 | Stability: 71641.3550 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  46/ 50 | Train: 298806.91 | Val: 140407.57 | LR: 0.000207 | Stability: 63568.0050 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  47/ 50 | Train: 147758.55 | Val: 40304.53 | LR: 0.000196 | Stability: 55835.3205 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  48/ 50 | Train: 127562.79 | Val: 39611.75 | LR: 0.000185 | Stability: 59171.1714 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  49/ 50 | Train: 131569.41 | Val: 29267.26 | LR: 0.000173 | Stability: 65745.3218 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Epoch  50/ 50 | Train: 157576.53 | Val: 74432.24 | LR: 0.000162 | Stability: 40758.6461 | Mem: 0.000GB Peak: 0.000GB | Time: 4.2s
+Evaluating ResNet_Shallow with comprehensive analysis...
+Evaluation Results for ResNet_Shallow:
+  R² Score: 0.995295
+  RMSE: 95.1584
+  MAE: 72.7062
+  MAPE: 207.39%
+  Avg Inference: 238.11ms/batch
+  Residuals Normality p-value: 0.0000
+✅ Experiment 3 completed in 3.69 minutes
+📈 Performance: R² = 0.995295
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 4/10: ResNet_Deep
+   Architecture Type: ResNet
+   Depth: 12 layers
+   Skip Connections: True
+   Parameters: 2,997,153
+================================================================================
+📐 Architecture config for ResNet_Deep: batch=32, workers=6, cleanup_freq=3
+Training ResNet_Deep with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3863041.16 | Val: 4091018.45 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 5.3s
+Epoch   2/ 50 | Train: 3803389.75 | Val: 3799241.55 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   3/ 50 | Train: 3684061.30 | Val: 3714714.85 | LR: 0.000271 | Stability: 161204.8117 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   4/ 50 | Train: 3638890.10 | Val: 3642245.50 | LR: 0.000238 | Stability: 170510.1993 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   5/ 50 | Train: 3102050.31 | Val: 2552373.83 | LR: 0.000196 | Stability: 526351.3268 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   6/ 50 | Train: 2501576.82 | Val: 1903637.25 | LR: 0.000150 | Stability: 760197.7613 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   7/ 50 | Train: 1511895.84 | Val: 755403.74 | LR: 0.000104 | Stability: 1111874.9554 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   8/ 50 | Train: 1013138.82 | Val: 847135.59 | LR: 0.000062 | Stability: 1083659.0315 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch   9/ 50 | Train: 699382.66 | Val: 608520.65 | LR: 0.000029 | Stability: 762502.5286 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  10/ 50 | Train: 672945.66 | Val: 719996.00 | LR: 0.000007 | Stability: 474541.5037 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  11/ 50 | Train: 414586.02 | Val: 507927.90 | LR: 0.000300 | Stability: 118011.7510 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  12/ 50 | Train: 337435.72 | Val: 151336.27 | LR: 0.000298 | Stability: 236589.7474 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  13/ 50 | Train: 192831.95 | Val: 417038.50 | LR: 0.000293 | Stability: 193326.1290 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  14/ 50 | Train: 242282.24 | Val: 90226.95 | LR: 0.000284 | Stability: 232186.9471 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  15/ 50 | Train: 163394.37 | Val: 246540.71 | LR: 0.000271 | Stability: 157723.9386 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  16/ 50 | Train: 244395.30 | Val: 115494.48 | LR: 0.000256 | Stability: 118950.4405 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  17/ 50 | Train: 164448.49 | Val: 38995.64 | LR: 0.000238 | Stability: 136164.2712 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  18/ 50 | Train: 164037.34 | Val: 527242.73 | LR: 0.000218 | Stability: 175669.6329 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  19/ 50 | Train: 233469.50 | Val: 22775.92 | LR: 0.000196 | Stability: 186143.2633 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  20/ 50 | Train: 207910.96 | Val: 40469.24 | LR: 0.000173 | Stability: 191834.6090 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  21/ 50 | Train: 166902.16 | Val: 110257.40 | LR: 0.000150 | Stability: 192028.8645 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  22/ 50 | Train: 195434.45 | Val: 79598.32 | LR: 0.000127 | Stability: 188067.4108 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  23/ 50 | Train: 138560.42 | Val: 21653.53 | LR: 0.000104 | Stability: 34698.6052 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  24/ 50 | Train: 151739.74 | Val: 19021.52 | LR: 0.000082 | Stability: 35419.8760 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  25/ 50 | Train: 154998.05 | Val: 29740.29 | LR: 0.000062 | Stability: 36495.3687 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  26/ 50 | Train: 176690.11 | Val: 27636.91 | LR: 0.000044 | Stability: 22373.7538 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  27/ 50 | Train: 152138.12 | Val: 85774.44 | LR: 0.000029 | Stability: 24810.4069 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  28/ 50 | Train: 132204.88 | Val: 34916.19 | LR: 0.000016 | Stability: 23738.8056 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  29/ 50 | Train: 123223.90 | Val: 51646.71 | LR: 0.000007 | Stability: 21625.4812 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  30/ 50 | Train: 136293.64 | Val: 41508.34 | LR: 0.000002 | Stability: 20335.9307 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  31/ 50 | Train: 126585.91 | Val: 34876.77 | LR: 0.000300 | Stability: 19029.1234 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  32/ 50 | Train: 230464.56 | Val: 156571.66 | LR: 0.000300 | Stability: 46737.5126 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  33/ 50 | Train: 139879.75 | Val: 37842.53 | LR: 0.000298 | Stability: 46387.8659 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  34/ 50 | Train: 181104.39 | Val: 117103.35 | LR: 0.000296 | Stability: 50011.1495 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  35/ 50 | Train: 194890.60 | Val: 303796.68 | LR: 0.000293 | Stability: 98609.4153 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  36/ 50 | Train: 197347.42 | Val: 141553.26 | LR: 0.000289 | Stability: 86510.1249 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch  37/ 50 | Train: 169601.81 | Val: 363689.34 | LR: 0.000284 | Stability: 121565.9982 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  38/ 50 | Train: 151819.08 | Val: 49082.53 | LR: 0.000278 | Stability: 118751.1268 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Epoch  39/ 50 | Train: 144351.33 | Val: 51616.63 | LR: 0.000271 | Stability: 129729.1408 | Mem: 0.000GB Peak: 0.000GB | Time: 4.1s
+Early stopping at epoch 39
+Evaluating ResNet_Deep with comprehensive analysis...
+Evaluation Results for ResNet_Deep:
+  R² Score: 0.989840
+  RMSE: 139.8342
+  MAE: 99.2722
+  MAPE: 153.27%
+  Avg Inference: 172.63ms/batch
+  Residuals Normality p-value: 0.0000
+✅ Experiment 4 completed in 2.85 minutes
+📈 Performance: R² = 0.989840
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 5/10: UNet_channel_reduced_32filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 883,297
+================================================================================
+📐 Architecture config for UNet_channel_reduced_32filters: batch=32, workers=4, cleanup_freq=3
+Training UNet_channel_reduced_32filters with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3936133.14 | Val: 4262715.40 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 47.7s
+Epoch   2/ 50 | Train: 3731923.53 | Val: 4111070.95 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 43.5s
+Epoch   3/ 50 | Train: 3796837.18 | Val: 3927582.55 | LR: 0.000271 | Stability: 137023.1364 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch   4/ 50 | Train: 3823814.91 | Val: 4121805.75 | LR: 0.000238 | Stability: 119025.0699 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch   5/ 50 | Train: 3816686.39 | Val: 4059615.15 | LR: 0.000196 | Stability: 108049.8339 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch   6/ 50 | Train: 3822609.50 | Val: 3828034.75 | LR: 0.000150 | Stability: 114088.3859 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch   7/ 50 | Train: 3630110.84 | Val: 3822431.15 | LR: 0.000104 | Stability: 120968.2924 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch   8/ 50 | Train: 3664264.98 | Val: 3929775.05 | LR: 0.000062 | Stability: 120883.3151 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch   9/ 50 | Train: 3609276.87 | Val: 4101959.65 | LR: 0.000029 | Stability: 115457.5266 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  10/ 50 | Train: 3691832.67 | Val: 4086800.45 | LR: 0.000007 | Stability: 121072.1047 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  11/ 50 | Train: 3615694.52 | Val: 3661059.95 | LR: 0.000300 | Stability: 165889.1587 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  12/ 50 | Train: 3472502.68 | Val: 3667789.10 | LR: 0.000298 | Stability: 193405.9084 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  13/ 50 | Train: 3261145.91 | Val: 3394491.60 | LR: 0.000293 | Stability: 273170.2746 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  14/ 50 | Train: 2869281.09 | Val: 2334513.40 | LR: 0.000284 | Stability: 590366.8707 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  15/ 50 | Train: 2428528.07 | Val: 2062922.27 | LR: 0.000271 | Stability: 686532.7167 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  16/ 50 | Train: 1862164.46 | Val: 1424885.51 | LR: 0.000256 | Stability: 837682.1349 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  17/ 50 | Train: 1353433.83 | Val: 1077841.65 | LR: 0.000238 | Stability: 803023.4989 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  18/ 50 | Train: 903839.86 | Val: 370393.74 | LR: 0.000218 | Stability: 701802.7376 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  19/ 50 | Train: 631519.20 | Val: 312833.98 | LR: 0.000196 | Stability: 659181.9171 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  20/ 50 | Train: 437186.44 | Val: 308006.10 | LR: 0.000173 | Stability: 464846.8692 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  21/ 50 | Train: 316471.94 | Val: 167579.52 | LR: 0.000150 | Stability: 322249.8384 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  22/ 50 | Train: 348407.90 | Val: 128411.15 | LR: 0.000127 | Stability: 92851.8385 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  23/ 50 | Train: 240890.96 | Val: 169748.39 | LR: 0.000104 | Stability: 77445.2649 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  24/ 50 | Train: 249088.00 | Val: 207349.55 | LR: 0.000082 | Stability: 61219.3782 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  25/ 50 | Train: 273791.71 | Val: 195509.79 | LR: 0.000062 | Stability: 27247.4316 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  26/ 50 | Train: 206440.20 | Val: 122725.08 | LR: 0.000044 | Stability: 34270.9092 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  27/ 50 | Train: 203420.42 | Val: 34568.66 | LR: 0.000029 | Stability: 62829.3493 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  28/ 50 | Train: 322101.61 | Val: 30468.61 | LR: 0.000016 | Stability: 75678.1241 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  29/ 50 | Train: 207615.44 | Val: 46652.59 | LR: 0.000007 | Stability: 64215.6714 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  30/ 50 | Train: 241649.84 | Val: 20527.43 | LR: 0.000002 | Stability: 36833.3847 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  31/ 50 | Train: 210180.28 | Val: 55700.04 | LR: 0.000300 | Stability: 12337.5676 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  32/ 50 | Train: 170351.62 | Val: 27161.86 | LR: 0.000300 | Stability: 13035.5403 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  33/ 50 | Train: 163963.38 | Val: 30570.32 | LR: 0.000298 | Stability: 13026.8093 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  34/ 50 | Train: 195571.27 | Val: 41911.63 | LR: 0.000296 | Stability: 12382.4413 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  35/ 50 | Train: 211830.92 | Val: 66430.58 | LR: 0.000293 | Stability: 14883.7660 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Epoch  36/ 50 | Train: 193037.34 | Val: 50606.98 | LR: 0.000289 | Stability: 14232.5030 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  37/ 50 | Train: 260462.17 | Val: 109917.29 | LR: 0.000284 | Stability: 27620.8212 | Mem: 0.000GB Peak: 0.000GB | Time: 44.0s
+Epoch  38/ 50 | Train: 208166.07 | Val: 55500.34 | LR: 0.000278 | Stability: 23874.6929 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  39/ 50 | Train: 229934.40 | Val: 24066.88 | LR: 0.000271 | Stability: 28015.1579 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  40/ 50 | Train: 186415.81 | Val: 35461.79 | LR: 0.000264 | Stability: 29577.0043 | Mem: 0.000GB Peak: 0.000GB | Time: 44.0s
+Epoch  41/ 50 | Train: 258455.56 | Val: 27902.53 | LR: 0.000256 | Stability: 31593.9766 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  42/ 50 | Train: 210875.70 | Val: 42853.75 | LR: 0.000247 | Stability: 11214.2886 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  43/ 50 | Train: 240678.11 | Val: 25419.26 | LR: 0.000238 | Stability: 7058.7089 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  44/ 50 | Train: 258189.94 | Val: 40624.24 | LR: 0.000228 | Stability: 6843.8530 | Mem: 0.000GB Peak: 0.000GB | Time: 43.9s
+Epoch  45/ 50 | Train: 214478.98 | Val: 35504.00 | LR: 0.000218 | Stability: 6845.1189 | Mem: 0.000GB Peak: 0.000GB | Time: 43.8s
+Early stopping at epoch 45
+Evaluating UNet_channel_reduced_32filters with comprehensive analysis...
+Evaluation Results for UNet_channel_reduced_32filters:
+  R² Score: 0.992142
+  RMSE: 122.9786
+  MAE: 94.1425
+  MAPE: 65.65%
+  Avg Inference: 1302.82ms/batch
+  Residuals Normality p-value: 0.0002
+✅ Experiment 5 completed in 33.22 minutes
+📈 Performance: R² = 0.992142
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 6/10: UNet_channel_reduced_36filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,046,917
+================================================================================
+📐 Architecture config for UNet_channel_reduced_36filters: batch=32, workers=4, cleanup_freq=3
+Training UNet_channel_reduced_36filters with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3938582.27 | Val: 3913706.95 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 60.1s
+Epoch   2/ 50 | Train: 3797559.51 | Val: 3910832.45 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 49.4s
+Epoch   3/ 50 | Train: 3766176.31 | Val: 3994409.05 | LR: 0.000271 | Stability: 38738.6396 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch   4/ 50 | Train: 3946216.73 | Val: 3976118.65 | LR: 0.000238 | Stability: 37079.4642 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch   5/ 50 | Train: 3836693.24 | Val: 4241026.20 | LR: 0.000196 | Stability: 121517.0802 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch   6/ 50 | Train: 3807301.09 | Val: 4042042.15 | LR: 0.000150 | Stability: 112255.2936 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch   7/ 50 | Train: 3698760.76 | Val: 3797237.50 | LR: 0.000104 | Stability: 142167.9081 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch   8/ 50 | Train: 3742960.44 | Val: 3854315.40 | LR: 0.000062 | Stability: 155675.7215 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch   9/ 50 | Train: 3642229.41 | Val: 3703615.55 | LR: 0.000029 | Stability: 191763.9305 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  10/ 50 | Train: 3577702.43 | Val: 3898445.40 | LR: 0.000007 | Stability: 112286.3851 | Mem: 0.000GB Peak: 0.000GB | Time: 49.7s
+Epoch  11/ 50 | Train: 3563802.86 | Val: 3561287.95 | LR: 0.000300 | Stability: 120058.6749 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  12/ 50 | Train: 3399940.96 | Val: 3397826.45 | LR: 0.000298 | Stability: 185649.3556 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  13/ 50 | Train: 3143565.67 | Val: 2928655.52 | LR: 0.000293 | Stability: 328885.2393 | Mem: 0.000GB Peak: 0.000GB | Time: 49.7s
+Epoch  14/ 50 | Train: 2557396.26 | Val: 2140057.83 | LR: 0.000284 | Stability: 608852.7528 | Mem: 0.000GB Peak: 0.000GB | Time: 49.7s
+Epoch  15/ 50 | Train: 2001948.91 | Val: 1664548.38 | LR: 0.000271 | Stability: 729294.9511 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  16/ 50 | Train: 1391037.44 | Val: 1268757.35 | LR: 0.000256 | Stability: 786290.8075 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  17/ 50 | Train: 965233.91 | Val: 1142835.88 | LR: 0.000238 | Stability: 650805.1337 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  18/ 50 | Train: 605930.85 | Val: 324459.66 | LR: 0.000218 | Stability: 602597.3220 | Mem: 0.000GB Peak: 0.000GB | Time: 49.7s
+Epoch  19/ 50 | Train: 390796.90 | Val: 662911.05 | LR: 0.000196 | Stability: 469773.1573 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  20/ 50 | Train: 319379.94 | Val: 110150.31 | LR: 0.000173 | Stability: 449422.0110 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  21/ 50 | Train: 271176.79 | Val: 148471.71 | LR: 0.000150 | Stability: 385661.8953 | Mem: 0.000GB Peak: 0.000GB | Time: 49.7s
+Epoch  22/ 50 | Train: 309309.55 | Val: 246396.13 | LR: 0.000127 | Stability: 197062.5388 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  23/ 50 | Train: 222075.48 | Val: 154384.44 | LR: 0.000104 | Stability: 204191.5446 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  24/ 50 | Train: 236888.86 | Val: 163593.86 | LR: 0.000082 | Stability: 44767.9965 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  25/ 50 | Train: 196895.69 | Val: 40651.37 | LR: 0.000062 | Stability: 65503.0427 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  26/ 50 | Train: 256428.77 | Val: 68747.80 | LR: 0.000044 | Stability: 73339.1869 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  27/ 50 | Train: 172540.30 | Val: 26613.77 | LR: 0.000029 | Stability: 57381.1539 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  28/ 50 | Train: 156317.52 | Val: 48209.17 | LR: 0.000016 | Stability: 48946.8512 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  29/ 50 | Train: 251416.56 | Val: 23654.71 | LR: 0.000007 | Stability: 16298.4738 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  30/ 50 | Train: 164591.51 | Val: 24352.47 | LR: 0.000002 | Stability: 17724.8112 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  31/ 50 | Train: 289456.95 | Val: 33122.19 | LR: 0.000300 | Stability: 9141.7704 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  32/ 50 | Train: 282462.11 | Val: 51529.33 | LR: 0.000300 | Stability: 11716.8782 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  33/ 50 | Train: 222707.60 | Val: 154741.59 | LR: 0.000298 | Stability: 49659.0624 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  34/ 50 | Train: 182714.59 | Val: 51713.24 | LR: 0.000296 | Stability: 47035.6424 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  35/ 50 | Train: 239814.68 | Val: 27200.67 | LR: 0.000293 | Stability: 46578.0501 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  36/ 50 | Train: 268841.61 | Val: 36337.10 | LR: 0.000289 | Stability: 46172.4608 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  37/ 50 | Train: 165690.16 | Val: 51393.11 | LR: 0.000284 | Stability: 46180.0304 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  38/ 50 | Train: 176430.94 | Val: 188718.11 | LR: 0.000278 | Stability: 59554.7381 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  39/ 50 | Train: 146582.55 | Val: 53399.40 | LR: 0.000271 | Stability: 59448.8409 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  40/ 50 | Train: 246168.81 | Val: 133413.36 | LR: 0.000264 | Stability: 58829.6124 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  41/ 50 | Train: 207624.91 | Val: 156117.14 | LR: 0.000256 | Stability: 55302.0246 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  42/ 50 | Train: 284078.13 | Val: 88663.99 | LR: 0.000247 | Stability: 48045.0099 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Epoch  43/ 50 | Train: 212963.82 | Val: 61809.30 | LR: 0.000238 | Stability: 40038.8143 | Mem: 0.000GB Peak: 0.000GB | Time: 49.8s
+Epoch  44/ 50 | Train: 170092.07 | Val: 37120.02 | LR: 0.000228 | Stability: 44049.6280 | Mem: 0.000GB Peak: 0.000GB | Time: 49.9s
+Early stopping at epoch 44
+Evaluating UNet_channel_reduced_36filters with comprehensive analysis...
+Evaluation Results for UNet_channel_reduced_36filters:
+  R² Score: 0.986882
+  RMSE: 158.8931
+  MAE: 107.2261
+  MAPE: 45.91%
+  Avg Inference: 2934.68ms/batch
+  Residuals Normality p-value: 0.0000
+✅ Experiment 6 completed in 37.04 minutes
+📈 Performance: R² = 0.986882
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 7/10: UNet_full_concat_32filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 820,513
+================================================================================
+📐 Architecture config for UNet_full_concat_32filters: batch=32, workers=4, cleanup_freq=3
+Training UNet_full_concat_32filters with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3873862.42 | Val: 4016391.45 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 48.0s
+Epoch   2/ 50 | Train: 3751019.46 | Val: 3963677.70 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 44.9s
+Epoch   3/ 50 | Train: 3847560.97 | Val: 4198472.45 | LR: 0.000271 | Stability: 100587.6095 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch   4/ 50 | Train: 3683192.61 | Val: 3985238.40 | LR: 0.000238 | Stability: 92859.0804 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch   5/ 50 | Train: 3806591.47 | Val: 4030631.20 | LR: 0.000196 | Stability: 83158.0842 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch   6/ 50 | Train: 3821727.99 | Val: 3734773.10 | LR: 0.000150 | Stability: 148789.1725 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch   7/ 50 | Train: 3760764.28 | Val: 3850993.35 | LR: 0.000104 | Stability: 158179.9333 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch   8/ 50 | Train: 3712408.99 | Val: 3789323.65 | LR: 0.000062 | Stability: 113051.2915 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch   9/ 50 | Train: 3688690.24 | Val: 3826727.00 | LR: 0.000029 | Stability: 100067.4724 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  10/ 50 | Train: 3606362.56 | Val: 3867083.65 | LR: 0.000007 | Stability: 47400.2967 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  11/ 50 | Train: 3744975.44 | Val: 3955298.80 | LR: 0.000300 | Stability: 55304.6799 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  12/ 50 | Train: 3482739.65 | Val: 3354083.85 | LR: 0.000298 | Stability: 209608.0246 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  13/ 50 | Train: 3205680.84 | Val: 3029626.92 | LR: 0.000293 | Stability: 356247.3326 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  14/ 50 | Train: 2718405.72 | Val: 3007366.55 | LR: 0.000284 | Stability: 402704.9570 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  15/ 50 | Train: 2105120.44 | Val: 2226306.40 | LR: 0.000271 | Stability: 560698.1225 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  16/ 50 | Train: 1732740.52 | Val: 1538442.93 | LR: 0.000256 | Stability: 660433.6749 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  17/ 50 | Train: 1068810.10 | Val: 1045857.55 | LR: 0.000238 | Stability: 788146.0569 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  18/ 50 | Train: 831220.04 | Val: 449955.53 | LR: 0.000218 | Stability: 893537.7481 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  19/ 50 | Train: 492910.56 | Val: 208554.61 | LR: 0.000196 | Stability: 732225.6018 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  20/ 50 | Train: 324828.96 | Val: 407277.07 | LR: 0.000173 | Stability: 491492.8782 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  21/ 50 | Train: 290149.97 | Val: 94888.83 | LR: 0.000150 | Stability: 328905.2835 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  22/ 50 | Train: 216020.35 | Val: 283471.93 | LR: 0.000127 | Stability: 129674.3388 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  23/ 50 | Train: 278537.74 | Val: 100568.74 | LR: 0.000104 | Stability: 117595.5158 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  24/ 50 | Train: 218802.43 | Val: 89906.27 | LR: 0.000082 | Stability: 128742.2160 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  25/ 50 | Train: 213398.45 | Val: 53521.98 | LR: 0.000062 | Stability: 81186.4574 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  26/ 50 | Train: 180086.67 | Val: 68343.90 | LR: 0.000044 | Stability: 83774.0454 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  27/ 50 | Train: 233927.87 | Val: 28772.85 | LR: 0.000029 | Stability: 25647.0667 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  28/ 50 | Train: 208295.68 | Val: 62238.20 | LR: 0.000016 | Stability: 19922.6799 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  29/ 50 | Train: 233687.12 | Val: 19911.96 | LR: 0.000007 | Stability: 18948.9525 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  30/ 50 | Train: 303070.15 | Val: 18600.62 | LR: 0.000002 | Stability: 21375.2964 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  31/ 50 | Train: 283593.08 | Val: 417698.20 | LR: 0.000300 | Stability: 154935.7166 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  32/ 50 | Train: 223046.99 | Val: 160531.83 | LR: 0.000300 | Stability: 150103.5182 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  33/ 50 | Train: 230340.47 | Val: 132010.22 | LR: 0.000298 | Stability: 145797.9860 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  34/ 50 | Train: 262446.57 | Val: 114619.64 | LR: 0.000296 | Stability: 133317.2713 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  35/ 50 | Train: 222391.50 | Val: 48317.37 | LR: 0.000293 | Stability: 127006.6762 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  36/ 50 | Train: 182517.77 | Val: 78355.49 | LR: 0.000289 | Stability: 39530.0254 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  37/ 50 | Train: 188370.13 | Val: 28012.45 | LR: 0.000284 | Stability: 39019.0593 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  38/ 50 | Train: 272107.63 | Val: 72263.91 | LR: 0.000278 | Stability: 29273.6236 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  39/ 50 | Train: 267292.99 | Val: 81423.27 | LR: 0.000271 | Stability: 20454.5907 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  40/ 50 | Train: 186292.93 | Val: 16296.13 | LR: 0.000264 | Stability: 27450.5480 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  41/ 50 | Train: 174268.08 | Val: 27859.35 | LR: 0.000256 | Stability: 26367.1008 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  42/ 50 | Train: 208418.17 | Val: 108244.03 | LR: 0.000247 | Stability: 34270.9392 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  43/ 50 | Train: 230004.25 | Val: 111408.32 | LR: 0.000238 | Stability: 39907.7380 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  44/ 50 | Train: 217117.28 | Val: 88137.74 | LR: 0.000228 | Stability: 40411.4227 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  45/ 50 | Train: 136503.18 | Val: 51696.22 | LR: 0.000218 | Stability: 32674.6239 | Mem: 0.000GB Peak: 0.000GB | Time: 45.1s
+Epoch  46/ 50 | Train: 220702.73 | Val: 87952.98 | LR: 0.000207 | Stability: 21282.3273 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  47/ 50 | Train: 210433.15 | Val: 57617.38 | LR: 0.000196 | Stability: 21981.8537 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  48/ 50 | Train: 162399.41 | Val: 26936.91 | LR: 0.000185 | Stability: 23282.7742 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Epoch  49/ 50 | Train: 214647.11 | Val: 45546.89 | LR: 0.000173 | Stability: 19874.8654 | Mem: 0.000GB Peak: 0.000GB | Time: 45.3s
+Epoch  50/ 50 | Train: 246862.81 | Val: 40464.26 | LR: 0.000162 | Stability: 20623.3232 | Mem: 0.000GB Peak: 0.000GB | Time: 45.2s
+Evaluating UNet_full_concat_32filters with comprehensive analysis...
+Evaluation Results for UNet_full_concat_32filters:
+  R² Score: 0.992230
+  RMSE: 122.2852
+  MAE: 90.6024
+  MAPE: 162.98%
+  Avg Inference: 1334.96ms/batch
+  Residuals Normality p-value: 0.0359
+✅ Experiment 7 completed in 37.98 minutes
+📈 Performance: R² = 0.992230
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 8/10: UNet_full_concat_36filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,119,277
+================================================================================
+📐 Architecture config for UNet_full_concat_36filters: batch=32, workers=4, cleanup_freq=3
+Training UNet_full_concat_36filters with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3941682.81 | Val: 3910923.40 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 57.3s
+Epoch   2/ 50 | Train: 3847186.61 | Val: 3909046.10 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 51.4s
+Epoch   3/ 50 | Train: 3841431.75 | Val: 3998421.70 | LR: 0.000271 | Stability: 41696.6221 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch   4/ 50 | Train: 3802738.85 | Val: 4020105.70 | LR: 0.000238 | Stability: 50232.3849 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch   5/ 50 | Train: 3684498.86 | Val: 3933662.70 | LR: 0.000196 | Stability: 46113.7086 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch   6/ 50 | Train: 3658549.53 | Val: 3793525.15 | LR: 0.000150 | Stability: 79842.2170 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch   7/ 50 | Train: 3647085.56 | Val: 3910086.80 | LR: 0.000104 | Stability: 79786.1755 | Mem: 0.000GB Peak: 0.000GB | Time: 51.6s
+Epoch   8/ 50 | Train: 3757409.90 | Val: 3914687.20 | LR: 0.000062 | Stability: 72352.1406 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch   9/ 50 | Train: 3621377.01 | Val: 3707503.30 | LR: 0.000029 | Stability: 87488.4051 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  10/ 50 | Train: 3701682.74 | Val: 3987956.90 | LR: 0.000007 | Stability: 99507.4177 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  11/ 50 | Train: 3563556.99 | Val: 3503575.85 | LR: 0.000300 | Stability: 177149.4206 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  12/ 50 | Train: 3501055.67 | Val: 3749701.05 | LR: 0.000298 | Stability: 169530.6853 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  13/ 50 | Train: 3155712.13 | Val: 2714410.85 | LR: 0.000293 | Stability: 437115.5039 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  14/ 50 | Train: 2771264.66 | Val: 2620904.15 | LR: 0.000284 | Stability: 551338.8685 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  15/ 50 | Train: 2122979.46 | Val: 1593289.98 | LR: 0.000271 | Stability: 759721.6291 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  16/ 50 | Train: 1597424.08 | Val: 1073044.57 | LR: 0.000256 | Stability: 934726.9345 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  17/ 50 | Train: 1159352.23 | Val: 890225.68 | LR: 0.000238 | Stability: 762440.1851 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  18/ 50 | Train: 632356.86 | Val: 510843.92 | LR: 0.000218 | Stability: 730192.5586 | Mem: 0.000GB Peak: 0.000GB | Time: 51.6s
+Epoch  19/ 50 | Train: 455622.80 | Val: 74730.36 | LR: 0.000196 | Stability: 513340.0114 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  20/ 50 | Train: 387594.06 | Val: 264590.69 | LR: 0.000173 | Stability: 373469.4720 | Mem: 0.000GB Peak: 0.000GB | Time: 51.6s
+Epoch  21/ 50 | Train: 337350.78 | Val: 52444.98 | LR: 0.000150 | Stability: 312715.4244 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  22/ 50 | Train: 275498.41 | Val: 112950.48 | LR: 0.000127 | Stability: 170757.1723 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  23/ 50 | Train: 269444.31 | Val: 101253.35 | LR: 0.000104 | Stability: 74717.4584 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  24/ 50 | Train: 276716.10 | Val: 137772.50 | LR: 0.000082 | Stability: 71041.6944 | Mem: 0.000GB Peak: 0.000GB | Time: 51.6s
+Epoch  25/ 50 | Train: 212035.79 | Val: 27820.51 | LR: 0.000062 | Stability: 40371.2097 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  26/ 50 | Train: 182460.85 | Val: 87716.18 | LR: 0.000044 | Stability: 36730.7456 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  27/ 50 | Train: 207837.02 | Val: 130705.95 | LR: 0.000029 | Stability: 39213.6618 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  28/ 50 | Train: 182983.33 | Val: 100242.91 | LR: 0.000016 | Stability: 39194.0969 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  29/ 50 | Train: 196834.60 | Val: 78545.58 | LR: 0.000007 | Stability: 33585.4491 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  30/ 50 | Train: 156031.19 | Val: 95680.61 | LR: 0.000002 | Stability: 17678.5125 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  31/ 50 | Train: 232965.54 | Val: 41126.85 | LR: 0.000300 | Stability: 29363.9720 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  32/ 50 | Train: 266276.34 | Val: 123733.01 | LR: 0.000300 | Stability: 27466.7664 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  33/ 50 | Train: 143500.45 | Val: 165606.16 | LR: 0.000298 | Stability: 41971.4613 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  34/ 50 | Train: 198197.33 | Val: 84404.45 | LR: 0.000296 | Stability: 41407.9346 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  35/ 50 | Train: 150768.84 | Val: 44344.57 | LR: 0.000293 | Stability: 47626.7510 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  36/ 50 | Train: 159481.58 | Val: 49506.15 | LR: 0.000289 | Stability: 45929.8940 | Mem: 0.000GB Peak: 0.000GB | Time: 51.9s
+Epoch  37/ 50 | Train: 176485.01 | Val: 18041.80 | LR: 0.000284 | Stability: 51181.1349 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  38/ 50 | Train: 198922.58 | Val: 126044.16 | LR: 0.000278 | Stability: 37345.1111 | Mem: 0.000GB Peak: 0.000GB | Time: 51.6s
+Epoch  39/ 50 | Train: 194526.41 | Val: 41534.46 | LR: 0.000271 | Stability: 36699.3843 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  40/ 50 | Train: 194262.63 | Val: 32168.00 | LR: 0.000264 | Stability: 37773.2971 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  41/ 50 | Train: 178123.76 | Val: 47006.61 | LR: 0.000256 | Stability: 37838.7849 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  42/ 50 | Train: 272938.01 | Val: 148036.68 | LR: 0.000247 | Stability: 48165.7309 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  43/ 50 | Train: 229212.21 | Val: 24448.39 | LR: 0.000238 | Stability: 45364.1609 | Mem: 0.000GB Peak: 0.000GB | Time: 51.7s
+Epoch  44/ 50 | Train: 185641.24 | Val: 17995.96 | LR: 0.000228 | Stability: 48037.4996 | Mem: 0.000GB Peak: 0.000GB | Time: 51.9s
+Epoch  45/ 50 | Train: 163366.40 | Val: 70094.12 | LR: 0.000218 | Stability: 46984.9703 | Mem: 0.000GB Peak: 0.000GB | Time: 51.6s
+Epoch  46/ 50 | Train: 180522.53 | Val: 27330.77 | LR: 0.000207 | Stability: 48823.4176 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  47/ 50 | Train: 219016.29 | Val: 18417.28 | LR: 0.000196 | Stability: 19544.8553 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  48/ 50 | Train: 164854.77 | Val: 21672.72 | LR: 0.000185 | Stability: 19779.7342 | Mem: 0.000GB Peak: 0.000GB | Time: 51.9s
+Epoch  49/ 50 | Train: 177181.48 | Val: 33150.25 | LR: 0.000173 | Stability: 18669.1226 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Epoch  50/ 50 | Train: 158386.83 | Val: 29322.69 | LR: 0.000162 | Stability: 5294.4899 | Mem: 0.000GB Peak: 0.000GB | Time: 51.8s
+Evaluating UNet_full_concat_36filters with comprehensive analysis...
+Evaluation Results for UNet_full_concat_36filters:
+  R² Score: 0.991464
+  RMSE: 128.1789
+  MAE: 89.7470
+  MAPE: 55.34%
+  Avg Inference: 2740.21ms/batch
+  Residuals Normality p-value: 0.0000
+✅ Experiment 8 completed in 43.56 minutes
+📈 Performance: R² = 0.991464
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 9/10: UNet_channel_reduced_40filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,300,265
+================================================================================
+📐 Architecture config for UNet_channel_reduced_40filters: batch=32, workers=4, cleanup_freq=3
+Training UNet_channel_reduced_40filters with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3850277.61 | Val: 3978233.00 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 65.3s
+Epoch   2/ 50 | Train: 3793200.93 | Val: 3772909.55 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 54.0s
+Epoch   3/ 50 | Train: 3782664.83 | Val: 3927803.95 | LR: 0.000271 | Stability: 87364.5513 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch   4/ 50 | Train: 3806898.02 | Val: 3942384.55 | LR: 0.000238 | Stability: 78625.9198 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch   5/ 50 | Train: 3839340.97 | Val: 3936222.75 | LR: 0.000196 | Stability: 71402.3727 | Mem: 0.000GB Peak: 0.000GB | Time: 54.6s
+Epoch   6/ 50 | Train: 3704458.81 | Val: 3750450.45 | LR: 0.000150 | Stability: 85560.6010 | Mem: 0.000GB Peak: 0.000GB | Time: 54.3s
+Epoch   7/ 50 | Train: 3617876.61 | Val: 3876329.20 | LR: 0.000104 | Stability: 71992.0563 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch   8/ 50 | Train: 3689271.45 | Val: 3951862.90 | LR: 0.000062 | Stability: 75310.2353 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch   9/ 50 | Train: 3566332.87 | Val: 3916123.05 | LR: 0.000029 | Stability: 72435.7010 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  10/ 50 | Train: 3608663.72 | Val: 3898466.20 | LR: 0.000007 | Stability: 68698.6909 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  11/ 50 | Train: 3546230.66 | Val: 3602074.45 | LR: 0.000300 | Stability: 125898.6046 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  12/ 50 | Train: 3267485.17 | Val: 3263119.92 | LR: 0.000298 | Stability: 263256.6723 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  13/ 50 | Train: 2838980.96 | Val: 2822851.62 | LR: 0.000293 | Stability: 414003.2854 | Mem: 0.000GB Peak: 0.000GB | Time: 54.3s
+Epoch  14/ 50 | Train: 2430639.97 | Val: 1461859.15 | LR: 0.000284 | Stability: 852731.8587 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  15/ 50 | Train: 1719573.13 | Val: 1212730.93 | LR: 0.000271 | Stability: 962515.2063 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  16/ 50 | Train: 1029414.26 | Val: 605000.21 | LR: 0.000256 | Stability: 1004735.4855 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  17/ 50 | Train: 560449.92 | Val: 494304.82 | LR: 0.000238 | Stability: 834648.2852 | Mem: 0.000GB Peak: 0.000GB | Time: 54.3s
+Epoch  18/ 50 | Train: 628443.13 | Val: 154641.40 | LR: 0.000218 | Stability: 480696.3970 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  19/ 50 | Train: 251295.77 | Val: 143523.58 | LR: 0.000196 | Stability: 390630.7721 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  20/ 50 | Train: 358143.24 | Val: 62397.53 | LR: 0.000173 | Stability: 215650.7796 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  21/ 50 | Train: 137518.45 | Val: 32974.38 | LR: 0.000150 | Stability: 165032.3715 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  22/ 50 | Train: 180178.12 | Val: 79322.02 | LR: 0.000127 | Stability: 47045.9690 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  23/ 50 | Train: 203628.67 | Val: 66781.18 | LR: 0.000104 | Stability: 36569.6345 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  24/ 50 | Train: 210557.92 | Val: 30626.64 | LR: 0.000082 | Stability: 19300.7201 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  25/ 50 | Train: 181934.92 | Val: 22209.68 | LR: 0.000062 | Stability: 22420.8314 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  26/ 50 | Train: 208704.15 | Val: 73444.93 | LR: 0.000044 | Stability: 23402.8630 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  27/ 50 | Train: 337125.38 | Val: 52541.34 | LR: 0.000029 | Stability: 19907.2581 | Mem: 0.000GB Peak: 0.000GB | Time: 54.7s
+Epoch  28/ 50 | Train: 209042.20 | Val: 101992.69 | LR: 0.000016 | Stability: 29041.6108 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  29/ 50 | Train: 249511.51 | Val: 54270.75 | LR: 0.000007 | Stability: 26293.4954 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  30/ 50 | Train: 181419.61 | Val: 62622.71 | LR: 0.000002 | Stability: 18092.9824 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  31/ 50 | Train: 218853.15 | Val: 200658.45 | LR: 0.000300 | Stability: 56072.8206 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  32/ 50 | Train: 256401.23 | Val: 141101.47 | LR: 0.000300 | Stability: 53996.4116 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  33/ 50 | Train: 254279.92 | Val: 42097.16 | LR: 0.000298 | Stability: 61093.8739 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  34/ 50 | Train: 178229.13 | Val: 34888.98 | LR: 0.000296 | Stability: 64406.9499 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  35/ 50 | Train: 237810.41 | Val: 70116.13 | LR: 0.000293 | Stability: 63689.6765 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  36/ 50 | Train: 212783.11 | Val: 100730.19 | LR: 0.000289 | Stability: 39263.1127 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  37/ 50 | Train: 229358.90 | Val: 119656.20 | LR: 0.000284 | Stability: 32742.2597 | Mem: 0.000GB Peak: 0.000GB | Time: 54.4s
+Epoch  38/ 50 | Train: 248950.53 | Val: 54259.59 | LR: 0.000278 | Stability: 30707.6629 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  39/ 50 | Train: 161049.17 | Val: 44179.10 | LR: 0.000271 | Stability: 28359.4483 | Mem: 0.000GB Peak: 0.000GB | Time: 54.5s
+Epoch  40/ 50 | Train: 189780.40 | Val: 33762.81 | LR: 0.000264 | Stability: 33574.8610 | Mem: 0.000GB Peak: 0.000GB | Time: 54.6s
+Early stopping at epoch 40
+Evaluating UNet_channel_reduced_40filters with comprehensive analysis...
+Evaluation Results for UNet_channel_reduced_40filters:
+  R² Score: 0.990190
+  RMSE: 137.4057
+  MAE: 102.4902
+  MAPE: 47.00%
+  Avg Inference: 3506.77ms/batch
+  Residuals Normality p-value: 0.0000
+✅ Experiment 9 completed in 36.84 minutes
+📈 Performance: R² = 0.990190
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 10/10: DenseNet_Style
+   Architecture Type: DenseNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 177,889
+================================================================================
+📐 Architecture config for DenseNet_Style: batch=32, workers=6, cleanup_freq=3
+Training DenseNet_Style with comprehensive analysis...
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+✅ Created CosineAnnealingWarmRestarts scheduler (T_0=10, T_mult=2)
+Epoch   1/ 50 | Train: 3862036.89 | Val: 4120322.40 | LR: 0.000300 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 5.1s
+Epoch   2/ 50 | Train: 3843707.74 | Val: 4014713.25 | LR: 0.000293 | Stability: 0.0000 | Mem: 0.000GB Peak: 0.000GB | Time: 4.0s
+Epoch   3/ 50 | Train: 3760823.24 | Val: 3910058.10 | LR: 0.000271 | Stability: 85840.3355 | Mem: 0.000GB Peak: 0.000GB | Time: 3.9s
+Epoch   4/ 50 | Train: 3776070.17 | Val: 3884593.65 | LR: 0.000238 | Stability: 93362.4191 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch   5/ 50 | Train: 3723346.45 | Val: 4061709.80 | LR: 0.000196 | Stability: 89325.7280 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch   6/ 50 | Train: 3763048.64 | Val: 3889774.10 | LR: 0.000150 | Stability: 72310.2336 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch   7/ 50 | Train: 3739271.34 | Val: 3906564.45 | LR: 0.000104 | Stability: 66291.4434 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch   8/ 50 | Train: 3658308.58 | Val: 3997652.40 | LR: 0.000062 | Stability: 70032.5461 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch   9/ 50 | Train: 3792387.63 | Val: 3673894.98 | LR: 0.000029 | Stability: 131743.7001 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  10/ 50 | Train: 3623891.24 | Val: 3875628.20 | LR: 0.000007 | Stability: 106304.8008 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  11/ 50 | Train: 3563056.06 | Val: 3633522.00 | LR: 0.000300 | Stability: 140168.8606 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  12/ 50 | Train: 3478523.22 | Val: 3410201.05 | LR: 0.000298 | Stability: 203407.9311 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  13/ 50 | Train: 3239423.60 | Val: 2646323.10 | LR: 0.000293 | Stability: 427183.1938 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  14/ 50 | Train: 2714689.70 | Val: 2567877.42 | LR: 0.000284 | Stability: 527478.7417 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  15/ 50 | Train: 2268925.52 | Val: 2004397.40 | LR: 0.000271 | Stability: 593939.8562 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  16/ 50 | Train: 1725487.38 | Val: 1629331.77 | LR: 0.000256 | Stability: 607695.4326 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  17/ 50 | Train: 1131799.78 | Val: 696600.85 | LR: 0.000238 | Stability: 712038.1240 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  18/ 50 | Train: 802330.70 | Val: 605387.92 | LR: 0.000218 | Stability: 755947.6205 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  19/ 50 | Train: 645854.48 | Val: 354815.56 | LR: 0.000196 | Stability: 640628.3437 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  20/ 50 | Train: 347261.51 | Val: 361729.83 | LR: 0.000173 | Stability: 469430.8643 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  21/ 50 | Train: 315423.96 | Val: 54970.47 | LR: 0.000150 | Stability: 224333.3630 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  22/ 50 | Train: 327767.37 | Val: 153282.65 | LR: 0.000127 | Stability: 190504.7530 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  23/ 50 | Train: 188319.65 | Val: 95843.41 | LR: 0.000104 | Stability: 129694.9110 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  24/ 50 | Train: 220620.47 | Val: 177648.08 | LR: 0.000082 | Stability: 105660.5582 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  25/ 50 | Train: 186559.94 | Val: 80292.85 | LR: 0.000062 | Stability: 45895.1921 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  26/ 50 | Train: 231801.19 | Val: 119628.10 | LR: 0.000044 | Stability: 35913.3615 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  27/ 50 | Train: 181121.95 | Val: 93669.16 | LR: 0.000029 | Stability: 34526.0104 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  28/ 50 | Train: 196331.65 | Val: 55401.26 | LR: 0.000016 | Stability: 41689.4552 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  29/ 50 | Train: 140362.60 | Val: 75612.02 | LR: 0.000007 | Stability: 21263.1363 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  30/ 50 | Train: 245748.70 | Val: 116270.42 | LR: 0.000002 | Stability: 24343.8579 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  31/ 50 | Train: 228488.68 | Val: 67811.14 | LR: 0.000300 | Stability: 21260.0485 | Mem: 0.000GB Peak: 0.000GB | Time: 3.7s
+Epoch  32/ 50 | Train: 134358.69 | Val: 54071.46 | LR: 0.000300 | Stability: 22674.2562 | Mem: 0.000GB Peak: 0.000GB | Time: 3.9s
+Epoch  33/ 50 | Train: 151469.67 | Val: 205285.08 | LR: 0.000298 | Stability: 54804.0510 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  34/ 50 | Train: 138525.65 | Val: 267224.29 | LR: 0.000296 | Stability: 81955.4308 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  35/ 50 | Train: 191896.05 | Val: 55424.79 | LR: 0.000293 | Stability: 89098.1499 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  36/ 50 | Train: 192992.03 | Val: 62145.40 | LR: 0.000289 | Stability: 89913.6893 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  37/ 50 | Train: 213812.45 | Val: 531682.68 | LR: 0.000284 | Stability: 174069.5894 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  38/ 50 | Train: 245125.93 | Val: 48385.26 | LR: 0.000278 | Stability: 188243.7177 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  39/ 50 | Train: 175384.60 | Val: 66559.96 | LR: 0.000271 | Stability: 189521.5276 | Mem: 0.000GB Peak: 0.000GB | Time: 3.9s
+Epoch  40/ 50 | Train: 198660.50 | Val: 51108.16 | LR: 0.000264 | Stability: 189972.6094 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  41/ 50 | Train: 142191.24 | Val: 52241.41 | LR: 0.000256 | Stability: 190948.0567 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  42/ 50 | Train: 193319.08 | Val: 203869.94 | LR: 0.000247 | Stability: 60051.4976 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  43/ 50 | Train: 161499.58 | Val: 18033.27 | LR: 0.000238 | Stability: 64739.7013 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  44/ 50 | Train: 146417.63 | Val: 89705.87 | LR: 0.000228 | Stability: 64557.5214 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  45/ 50 | Train: 122095.49 | Val: 49045.36 | LR: 0.000218 | Stability: 64766.2118 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  46/ 50 | Train: 123438.78 | Val: 46539.73 | LR: 0.000207 | Stability: 65337.9994 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  47/ 50 | Train: 124995.13 | Val: 48624.82 | LR: 0.000196 | Stability: 22858.0134 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  48/ 50 | Train: 127302.03 | Val: 40840.66 | LR: 0.000185 | Stability: 17621.8557 | Mem: 0.000GB Peak: 0.000GB | Time: 3.8s
+Epoch  49/ 50 | Train: 122750.85 | Val: 84429.94 | LR: 0.000173 | Stability: 15544.7247 | Mem: 0.000GB Peak: 0.000GB | Time: 3.9s
+Epoch  50/ 50 | Train: 127352.57 | Val: 31730.73 | LR: 0.000162 | Stability: 17977.8031 | Mem: 0.000GB Peak: 0.000GB | Time: 3.9s
+Evaluating DenseNet_Style with comprehensive analysis...
+Evaluation Results for DenseNet_Style:
+  R² Score: 0.994700
+  RMSE: 100.9998
+  MAE: 74.9693
+  MAPE: 99.12%
+  Avg Inference: 140.34ms/batch
+  Residuals Normality p-value: 0.0065
+✅ Experiment 10 completed in 3.37 minutes
+📈 Performance: R² = 0.994700
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+🎉 COMPREHENSIVE ARCHITECTURE STUDY COMPLETED!
+⏱️  Total execution time: 222.27 minutes
+✅ Successful experiments: 10/10
+
+📊 Performing comprehensive statistical analysis...
+📊 Performing comprehensive statistical analysis...
+
+================================================================================
+📋 STUDY SUMMARY
+================================================================================
+🏆 Best Architecture: ResNet_Shallow
+   Architecture Type: ResNet
+   R² Score: 0.995295
+   Skip Connections: True
+   Parameters: 1,263,489
+   Training Time: 3.60 minutes
+
+📁 Complete results saved to: ./comprehensive_architecture_study_20250912_104621/comprehensive_architecture_study_20250912_104647
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+🔬 Comprehensive CNN Architecture Study Complete!
+
+=======================================================================
+COMPREHENSIVE CNN ARCHITECTURE STUDY COMPLETED
+=======================================================================
+Job finished on Fri Sep 12 02:29:07 PM +08 2025
+Exit code: 0 ✅ SUCCESS
+Study output directory: ./comprehensive_architecture_study_20250912_104621
+
+✅ Comprehensive Architecture Study completed successfully!
+
+📊 Generated Analysis Files:
+📈 Performance Overview:
+❌ comprehensive_architecture_comparison.csv not found
+
+🔬 Complete Study Results:
+❌ complete_comprehensive_study.json not found
+
+📂 Individual Experiment Results:
+❌ No individual experiment results found
+
+🏆 Best Model Checkpoints:
+❌ No model checkpoints found
+
+📈 Visualization Files:
+❌ No visualization files found
+
+
+=== COMPREHENSIVE STUDY RESULTS SUMMARY ===
+==============================================
+❌ Unable to generate performance summary - results file not available
+
+=== FINAL STUDY STATUS ===
+✅ COMPREHENSIVE CNN ARCHITECTURE STUDY SUCCESSFUL!
+📁 All results saved in: ./comprehensive_architecture_study_20250912_104621
+📊 Comprehensive comparison of ALL CNN architectures completed
+🎯 Enhanced with detailed analysis, Q-Q plots, and statistical testing
+
+🔍 Next Steps:
+1. Review comprehensive_architecture_comparison.csv for performance rankings
+2. Examine individual evaluation plots for detailed model analysis
+3. Check statistical_analysis.json for hypothesis testing results
+4. Use best performing models for production deployment
+
+=======================================================================
+COMPREHENSIVE CNN ARCHITECTURE STUDY - EXECUTION COMPLETE
+Study: Complete comparison of Baseline + ResNet + UNet + DenseNet
+Enhanced: Memory optimization, comprehensive analysis, detailed plots
+=======================================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2025-09-12 14:29:07.953143:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 209167.stdct-mgmt-02
+	Project: personal-phyzxi
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(36), Used(36)
+	CPU Time Used: 03:18:46
+	Memory: Requested(240gb), Used(5307236kb)
+	Vmem Used: 415866860kb
+	Walltime: Requested(48:00:00), Used(03:43:04)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (GN-A40-033[0]:ncpus=36:ngpus=1:mem=251658240kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.

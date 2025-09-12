@@ -7,20 +7,29 @@
 #PBS -M phyzxi@nus.edu.sg
 #PBS -m abe
 
-# Set up environment variables for optimal PyTorch performance
-export PYTHONPATH="/home/xiaodan/densityCNN:$PYTHONPATH"
-export CUDA_VISIBLE_DEVICES=0
-export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:512,expandable_segments:True
-export OMP_NUM_THREADS=36
+# Memory optimization settings - Fixed for HPC CUDA allocator compatibility
+export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:1024
 export CUDA_LAUNCH_BLOCKING=0
-export CUBLAS_WORKSPACE_CONFIG=:16:8
+export PYTHONUNBUFFERED=1
+export PYTORCH_NO_CUDA_MEMORY_CACHING=0
+export OMP_NUM_THREADS=36
 
-# Navigate to the project directory
-cd /home/xiaodan/densityCNN/Claude/skip_connections_study
-
-# Load Singularity container with PyTorch 2.4.0
+# Load required modules
 module load singularity
-export SINGULARITY_IMAGE="/home/xiaodan/containers/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif"
+
+# Define singularity container - CORRECT HPC PATH
+image=/app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
+
+if [ ! -f "$image" ]; then
+    echo "❌ ERROR: Container not found at $image"
+    echo "Please check container path"
+    exit 1
+fi
+
+echo "✅ Container found: $image"
+
+# Navigate to the correct HPC project directory
+cd /home/svu/phyzxi/scratch/densityCNN-HPC
 
 echo "🔬 STARTING REDUCED-LAYER CNN ARCHITECTURE STUDY"
 echo "================================================="
@@ -32,15 +41,15 @@ echo "CUDA device: $CUDA_VISIBLE_DEVICES"
 echo ""
 
 # Check GPU availability
-singularity exec --nv $SINGULARITY_IMAGE python3 -c "import torch; print(f'🎮 GPU Available: {torch.cuda.is_available()}'); print(f'🎮 GPU Device: {torch.cuda.get_device_name()}' if torch.cuda.is_available() else '❌ No GPU detected')"
+singularity exec --nv "$image" python3 -c "import torch; print(f'🎮 GPU Available: {torch.cuda.is_available()}'); print(f'🎮 GPU Device: {torch.cuda.get_device_name()}' if torch.cuda.is_available() else '❌ No GPU detected')"
 
 echo ""
 echo "🚀 Launching reduced-layer architecture training..."
 echo ""
 
 # Run the reduced-layer study with optimized parameters for HPC
-singularity exec --nv $SINGULARITY_IMAGE python3 train_reduced_layer_study.py \
-  --input_dir /home/xiaodan/densityCNN/dataset/dataset_preprocessed \
+singularity exec --nv "$image" python3 train_reduced_layer_study.py \
+  --input_dir ./dataset_preprocessed \
   --output_dir reduced_layer_study \
   --epochs 40 \
   --patience 12 \

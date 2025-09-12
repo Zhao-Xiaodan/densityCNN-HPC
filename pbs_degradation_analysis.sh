@@ -8,15 +8,25 @@
 #PBS -m abe
 
 # Set up environment variables
-export PYTHONPATH="/home/xiaodan/densityCNN:$PYTHONPATH"
+export PYTHONUNBUFFERED=1
 export OMP_NUM_THREADS=18
 
-# Navigate to the project directory
-cd /home/xiaodan/densityCNN/Claude/skip_connections_study
-
-# Load Singularity container
+# Load required modules
 module load singularity
-export SINGULARITY_IMAGE="/home/xiaodan/containers/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif"
+
+# Define singularity container - CORRECT HPC PATH
+image=/app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
+
+if [ ! -f "$image" ]; then
+    echo "❌ ERROR: Container not found at $image"
+    echo "Please check container path"
+    exit 1
+fi
+
+echo "✅ Container found: $image"
+
+# Navigate to the correct HPC project directory
+cd /home/svu/phyzxi/scratch/densityCNN-HPC
 
 echo "🔍 STARTING DEGRADATION PATTERN ANALYSIS"
 echo "======================================="
@@ -48,7 +58,7 @@ echo "🚀 Running degradation analysis..."
 echo ""
 
 # Run degradation analysis
-singularity exec $SINGULARITY_IMAGE python3 -c "
+singularity exec "$image" python3 -c "
 from degradation_analysis import DegradationAnalyzer
 
 print('🔧 Initializing degradation analyzer...')
