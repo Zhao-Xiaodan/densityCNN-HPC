@@ -1,6 +1,5 @@
 #!/bin/bash
 #PBS -N Microbead_CNN_Degradation_Analysis
-#PBS -q cpu_q
 #PBS -l select=1:ncpus=18:mem=64GB
 #PBS -l walltime=4:00:00
 #PBS -M xiaodan.liang@unimelb.edu.au

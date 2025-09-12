@@ -1,6 +1,5 @@
 #!/bin/bash
 #PBS -N Microbead_CNN_Reduced_Layer_Study
-#PBS -q gpu_q
 #PBS -l select=1:ncpus=36:mem=240GB:ngpus=1:gpu_model=a40
 #PBS -l walltime=24:00:00
 #PBS -M xiaodan.liang@unimelb.edu.au
