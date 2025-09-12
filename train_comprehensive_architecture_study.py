@@ -1367,8 +1367,22 @@ def create_evaluation_plots(model, predictions, actual_values, residuals, normal
     axes[0,2].set_title(f'Q-Q Plot (Normality Check)\np-value: {normality_p:.4f}')
     axes[0,2].grid(True, alpha=0.3)
 
-    # Performance by density range
-    density_ranges = [(0, 50), (50, 150), (150, 300), (300, 1000)]
+    # Performance by density range - Dynamic range detection
+    max_density = int(np.max(actual_values))
+    min_density = int(np.min(actual_values))
+    
+    # Create dynamic ranges that cover the full data spectrum
+    if max_density <= 1000:
+        density_ranges = [(0, 50), (50, 150), (150, 300), (300, max_density)]
+    else:
+        # For high-density data, create more comprehensive ranges
+        density_ranges = [
+            (0, 50), (50, 150), (150, 300), (300, 600),
+            (600, 1000), (1000, 2000), (2000, 3000), (3000, max_density)
+        ]
+        # Filter out empty ranges
+        density_ranges = [(low, high) for low, high in density_ranges if high > low]
+    
     range_performance = []
 
     for min_d, max_d in density_ranges:
