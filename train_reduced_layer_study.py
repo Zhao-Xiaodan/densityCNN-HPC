@@ -4,6 +4,10 @@ Reduced-Layer Study Training Script
 Tests architectural robustness by comparing original vs reduced-layer architectures
 """
 
+print("🔧 STARTING REDUCED-LAYER STUDY SCRIPT")
+print(f"   Script: {__file__}")
+print("   This is the REDUCED-LAYER study script, not comprehensive study")
+
 import os
 import sys
 import torch
@@ -22,41 +26,55 @@ warnings.filterwarnings('ignore')
 # Import the reduced architectures
 from reduced_layer_study_architectures import get_reduced_layer_architectures
 
-# Import your existing components (assuming they're available)
+def setup_reduced_layer_arguments():
+    """Setup argument parser specifically for reduced-layer study"""
+    print("🔧 Setting up argument parser for REDUCED-LAYER study...")
+    local_parser = argparse.ArgumentParser(description='Reduced-Layer CNN Architecture Study')
+    
+    local_parser.add_argument('--input_dir', type=str, default='../../dataset/dataset_preprocessed',
+                             help='Path to preprocessed dataset')
+    local_parser.add_argument('--output_dir', type=str, default='reduced_layer_study',
+                             help='Output directory name')
+    local_parser.add_argument('--epochs', type=int, default=40,
+                             help='Number of training epochs (reduced for faster comparison)')
+    local_parser.add_argument('--patience', type=int, default=12,
+                             help='Early stopping patience')
+    local_parser.add_argument('--learning_rate', type=float, default=3e-4,
+                             help='Learning rate')
+    local_parser.add_argument('--batch_size', type=int, default=128,
+                             help='Batch size')
+    local_parser.add_argument('--seed', type=int, default=42,
+                             help='Random seed')
+    local_parser.add_argument('--num_workers', type=int, default=8,
+                             help='Number of data loader workers')
+    local_parser.add_argument('--data_percentage', type=int, default=50,
+                             help='Percentage of dataset to use')
+    local_parser.add_argument('--mixed_precision', action='store_true', default=True,
+                             help='Use mixed precision training')
+    local_parser.add_argument('--track_gradients', action='store_true', default=False,
+                             help='Track gradient norms (disabled by default for speed)')
+    
+    return local_parser.parse_args()
+
+# Parse arguments using isolated function
+args = setup_reduced_layer_arguments()
+
+# Debug: Print available arguments
+print(f"✅ Arguments parsed successfully:")
+print(f"   batch_size: {args.batch_size}")
+print(f"   num_workers: {args.num_workers}")
+print(f"   input_dir: {args.input_dir}")
+print(f"   epochs: {args.epochs}")
+
+# Import your existing components AFTER argument parsing
 try:
     from train_comprehensive_architecture_study import (
         MicrobeadDataset, get_transforms, evaluate_model_comprehensive,
         create_evaluation_plots, verify_hpc_environment
     )
+    print("✅ Successfully imported from comprehensive training script")
 except ImportError:
     print("Warning: Could not import from main training script. Some functions may need to be redefined.")
-
-# Setup argument parser
-parser = argparse.ArgumentParser(description='Reduced-Layer CNN Architecture Study')
-parser.add_argument('--input_dir', type=str, default='../../dataset/dataset_preprocessed',
-                   help='Path to preprocessed dataset')
-parser.add_argument('--output_dir', type=str, default='reduced_layer_study',
-                   help='Output directory name')
-parser.add_argument('--epochs', type=int, default=40,
-                   help='Number of training epochs (reduced for faster comparison)')
-parser.add_argument('--patience', type=int, default=12,
-                   help='Early stopping patience')
-parser.add_argument('--learning_rate', type=float, default=3e-4,
-                   help='Learning rate')
-parser.add_argument('--batch_size', type=int, default=128,
-                   help='Batch size')
-parser.add_argument('--seed', type=int, default=42,
-                   help='Random seed')
-parser.add_argument('--num_workers', type=int, default=8,
-                   help='Number of data loader workers')
-parser.add_argument('--data_percentage', type=int, default=50,
-                   help='Percentage of dataset to use')
-parser.add_argument('--mixed_precision', action='store_true', default=True,
-                   help='Use mixed precision training')
-parser.add_argument('--track_gradients', action='store_true', default=False,
-                   help='Track gradient norms (disabled by default for speed)')
-
-args = parser.parse_args()
 
 class ReducedLayerExperiment:
     """Manages individual reduced-layer architecture experiments"""
