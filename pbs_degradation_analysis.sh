@@ -1,11 +1,11 @@
 #!/bin/bash
-#PBS -N Microbead_CNN_Degradation_Analysis
-#PBS -l select=1:ncpus=18:mem=64GB
 #PBS -l walltime=4:00:00
-#PBS -M xiaodan.liang@unimelb.edu.au
-#PBS -m abe
 #PBS -j oe
-#PBS -o /home/xiaodan/densityCNN/degradation_analysis.o${PBS_JOBID}
+#PBS -k oed
+#PBS -N Degradation_Analysis
+#PBS -l select=1:ncpus=18:mpiprocs=1:ompthreads=18:mem=64gb
+#PBS -M phyzxi@nus.edu.sg
+#PBS -m abe
 
 # Set up environment variables
 export PYTHONPATH="/home/xiaodan/densityCNN:$PYTHONPATH"

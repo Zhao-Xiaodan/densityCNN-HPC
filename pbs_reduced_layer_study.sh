@@ -1,11 +1,11 @@
 #!/bin/bash
-#PBS -N Microbead_CNN_Reduced_Layer_Study
-#PBS -l select=1:ncpus=36:mem=240GB:ngpus=1:gpu_model=a40
 #PBS -l walltime=24:00:00
-#PBS -M xiaodan.liang@unimelb.edu.au
-#PBS -m abe
 #PBS -j oe
-#PBS -o /home/xiaodan/densityCNN/reduced_layer_study.o${PBS_JOBID}
+#PBS -k oed
+#PBS -N Reduced_Layer_Study
+#PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
+#PBS -M phyzxi@nus.edu.sg
+#PBS -m abe
 
 # Set up environment variables for optimal PyTorch performance
 export PYTHONPATH="/home/xiaodan/densityCNN:$PYTHONPATH"
