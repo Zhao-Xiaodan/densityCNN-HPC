@@ -104,7 +104,7 @@ def get_transforms():
     return train_transform, eval_transform
 
 class MicrobeadDataset(torch.utils.data.Dataset):
-    """Minimal microbead dataset implementation"""
+    """Microbead dataset implementation compatible with comprehensive training script"""
     def __init__(self, image_dir, density_file, transform=None, data_percentage=100):
         import pandas as pd
         from PIL import Image
@@ -113,36 +113,61 @@ class MicrobeadDataset(torch.utils.data.Dataset):
         self.image_dir = image_dir
         self.transform = transform
         
-        # Load density data
-        self.density_df = pd.read_csv(density_file)
+        # Load density data - SAME LOGIC AS COMPREHENSIVE SCRIPT
+        self.df = pd.read_csv(density_file)
+        
+        # Handle different CSV formats (from comprehensive script)
+        print(f"   CSV columns found: {list(self.df.columns)} (count: {len(self.df.columns)})")
+        
+        if len(self.df.columns) == 1:
+            self.df = self.df.iloc[:, 0].str.split(expand=True)
+            self.df.columns = ['filename', 'density']
+            print("   Applied single-column split format")
+        elif len(self.df.columns) == 2:
+            self.df.columns = ['filename', 'density']
+            print("   Applied two-column format")
+        else:
+            print(f"   Using existing columns: {list(self.df.columns)}")
+        
+        self.df['density'] = self.df['density'].astype(float)
+        print(f"   Final columns: {list(self.df.columns)}")
         
         # Filter by data percentage
         if data_percentage < 100:
-            n_samples = int(len(self.density_df) * data_percentage / 100)
-            self.density_df = self.density_df.sample(n=n_samples, random_state=42).reset_index(drop=True)
+            sample_size = int(len(self.df) * data_percentage / 100)
+            self.df = self.df.sample(n=sample_size, random_state=42).reset_index(drop=True)
         
-        print(f"   Dataset size: {len(self.density_df)} samples ({data_percentage}% of full dataset)")
+        print(f"   Dataset size: {len(self.df)} samples ({data_percentage}% of full dataset)")
     
     def __len__(self):
-        return len(self.density_df)
+        return len(self.df)
     
     def __getitem__(self, idx):
         from PIL import Image
         import os
         
-        row = self.density_df.iloc[idx]
+        # Get filename - SAME LOGIC AS COMPREHENSIVE SCRIPT
+        img_name = self.df.iloc[idx]['filename']
+        if not img_name.endswith(('.jpg', '.jpeg', '.png', '.tif', '.tiff')):
+            img_name = img_name + '.png'
         
-        # Load image
-        image_path = os.path.join(self.image_dir, row['filename'])
-        image = Image.open(image_path).convert('RGB')
+        img_path = os.path.join(self.image_dir, img_name)
+        
+        try:
+            # Convert to RGB as specified in transforms
+            image = Image.open(img_path).convert('RGB')
+        except Exception as e:
+            print(f"Error loading {img_path}: {e}")
+            # Create a placeholder image if loading fails
+            image = Image.new('RGB', (512, 512), (0, 0, 0))
         
         if self.transform:
             image = self.transform(image)
         
         # Get density target
-        density = float(row['density'])
+        density = float(self.df.iloc[idx]['density'])
         
-        return image, torch.tensor(density, dtype=torch.float32), row['filename']
+        return image, torch.tensor(density, dtype=torch.float32), img_name
 
 print("✅ Required functions defined locally")
 print("🚫 Avoiding import from train_comprehensive_architecture_study to prevent argument parsing conflicts")

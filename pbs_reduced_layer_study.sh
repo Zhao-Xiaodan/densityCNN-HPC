@@ -55,7 +55,7 @@ singularity exec --nv "$image" python3 train_reduced_layer_study.py \
   --patience 12 \
   --learning_rate 3e-4 \
   --base_batch_size 128 \
-  --base_num_workers 18 \
+  --base_num_workers 4 \
   --data_percentage 50 \
   --mixed_precision \
   --seed 42
