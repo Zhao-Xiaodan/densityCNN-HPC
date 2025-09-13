@@ -102,36 +102,33 @@ parser.add_argument('--conservative_mode', action='store_true', default=True,
 parser.add_argument('--cleanup_frequency', type=int, default=5,
                     help='Memory cleanup frequency (every N batches)')
 
-args = parser.parse_args()
+# NOTE: Arguments will be parsed in main() function to avoid module-level execution
 
-# Verify all required arguments are available
-required_args = ['base_batch_size', 'base_num_workers', 'cleanup_frequency', 'conservative_mode', 'memory_efficient']
-for arg in required_args:
-    if not hasattr(args, arg):
-        print(f"❌ Missing required argument: {arg}")
-        print("   This indicates the patch script didn't apply correctly.")
-        exit(1)
+def parse_arguments():
+    """Parse command line arguments - called from main() to avoid module-level execution"""
+    parsed_args = parser.parse_args()
+    
+    # Verify all required arguments are available
+    required_args = ['base_batch_size', 'base_num_workers', 'cleanup_frequency', 'conservative_mode', 'memory_efficient']
+    for arg in required_args:
+        if not hasattr(parsed_args, arg):
+            print(f"❌ Missing required argument: {arg}")
+            print("   This indicates the patch script didn't apply correctly.")
+            exit(1)
+    
+    return parsed_args
 
-# Set seeds for reproducibility
-torch.manual_seed(args.seed)
-np.random.seed(args.seed)
-if torch.cuda.is_available():
-    torch.cuda.manual_seed_all(args.seed)
-    torch.backends.cudnn.benchmark = True
+# Seeds and configuration will be set in main() function after argument parsing
+torch.backends.cudnn.benchmark = True
 
-print(f"🔬 COMPREHENSIVE CNN ARCHITECTURE STUDY")
-print(f"=" * 80)
-print(f"🎯 Objective: Complete comparison of ALL CNN architectures")
-print(f"📊 Dataset: {args.data_percentage}% of {args.input_dir}")
-print(f"🧪 Architectures: Baseline + ResNet + UNet + DenseNet variants")
-print(f"=" * 80)
+# Module-level prints and args references moved to main() to avoid import conflicts
 
 
 # ============================================================================
 # ADAPTIVE RESOURCE MANAGEMENT
 # ============================================================================
 
-def get_architecture_config(model):
+def get_architecture_config(model, args):
     """Get architecture-specific configuration for optimal performance"""
     arch_type = getattr(model, 'architecture_type', 'Unknown')
     param_count = sum(p.numel() for p in model.parameters()) if hasattr(model, 'parameters') else 0
@@ -1548,12 +1545,25 @@ def verify_hpc_environment():
     return True
 
 def main():
+    # Parse arguments first (moved from module level to avoid import conflicts)
+    args = parse_arguments()
+    
+    # Set seeds for reproducibility
+    torch.manual_seed(args.seed)
+    np.random.seed(args.seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(args.seed)
+    
     # Verify HPC environment first
     if not verify_hpc_environment():
         print("❌ Environment verification failed")
         exit(1)
         
     print(f"🔬 COMPREHENSIVE CNN ARCHITECTURE STUDY")
+    print("=" * 80)
+    print(f"🎯 Objective: Complete comparison of ALL CNN architectures")
+    print(f"📊 Dataset: {args.data_percentage}% of {args.input_dir}")
+    print(f"🧪 Architectures: Baseline + ResNet + UNet + DenseNet variants")
     print("=" * 80)
     
     # Setup paths

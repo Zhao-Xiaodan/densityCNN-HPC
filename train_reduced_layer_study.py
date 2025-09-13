@@ -27,10 +27,11 @@ warnings.filterwarnings('ignore')
 from reduced_layer_study_architectures import get_reduced_layer_architectures
 
 def setup_reduced_layer_arguments():
-    """Setup argument parser specifically for reduced-layer study"""
+    """Setup argument parser specifically for reduced-layer study - CONSISTENT WITH COMPREHENSIVE STUDY"""
     print("🔧 Setting up argument parser for REDUCED-LAYER study...")
     local_parser = argparse.ArgumentParser(description='Reduced-Layer CNN Architecture Study')
     
+    # Use SAME argument names as comprehensive study for consistency
     local_parser.add_argument('--input_dir', type=str, default='../../dataset/dataset_preprocessed',
                              help='Path to preprocessed dataset')
     local_parser.add_argument('--output_dir', type=str, default='reduced_layer_study',
@@ -40,13 +41,13 @@ def setup_reduced_layer_arguments():
     local_parser.add_argument('--patience', type=int, default=12,
                              help='Early stopping patience')
     local_parser.add_argument('--learning_rate', type=float, default=3e-4,
-                             help='Learning rate')
-    local_parser.add_argument('--batch_size', type=int, default=128,
-                             help='Batch size')
+                             help='Learning rate for optimizer')
+    local_parser.add_argument('--base_batch_size', type=int, default=128,
+                             help='Base batch size (consistent with comprehensive study)')
     local_parser.add_argument('--seed', type=int, default=42,
-                             help='Random seed')
-    local_parser.add_argument('--num_workers', type=int, default=8,
-                             help='Number of data loader workers')
+                             help='Random seed for reproducibility')
+    local_parser.add_argument('--base_num_workers', type=int, default=8,
+                             help='Base number of data loading workers')
     local_parser.add_argument('--data_percentage', type=int, default=50,
                              help='Percentage of dataset to use')
     local_parser.add_argument('--mixed_precision', action='store_true', default=True,
@@ -61,20 +62,90 @@ args = setup_reduced_layer_arguments()
 
 # Debug: Print available arguments
 print(f"✅ Arguments parsed successfully:")
-print(f"   batch_size: {args.batch_size}")
-print(f"   num_workers: {args.num_workers}")
+print(f"   base_batch_size: {args.base_batch_size}")
+print(f"   base_num_workers: {args.base_num_workers}")
 print(f"   input_dir: {args.input_dir}")
 print(f"   epochs: {args.epochs}")
 
-# Import your existing components AFTER argument parsing
-try:
-    from train_comprehensive_architecture_study import (
-        MicrobeadDataset, get_transforms, evaluate_model_comprehensive,
-        create_evaluation_plots, verify_hpc_environment
-    )
-    print("✅ Successfully imported from comprehensive training script")
-except ImportError:
-    print("Warning: Could not import from main training script. Some functions may need to be redefined.")
+# Define required functions directly to avoid import conflicts
+print("🔧 Defining required functions locally to avoid import conflicts...")
+
+def verify_hpc_environment():
+    """Simple HPC environment verification"""
+    import platform
+    print(f"🔍 HPC Environment Check:")
+    print(f"   Python: {platform.python_version()} ({platform.python_build()[1]})")
+    try:
+        import torch
+        print(f"   PyTorch: {torch.__version__}")
+        import matplotlib
+        matplotlib.use('Agg')  # Set non-interactive backend
+        print(f"   Matplotlib backend: {matplotlib.get_backend()}")
+        print(f"   CUDA available: {torch.cuda.is_available()}")
+        return True
+    except ImportError as e:
+        print(f"   Error: {e}")
+        return False
+
+def get_transforms():
+    """Get training and evaluation transforms"""
+    from torchvision import transforms
+    
+    train_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    
+    eval_transform = transforms.Compose([
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+    
+    return train_transform, eval_transform
+
+class MicrobeadDataset(torch.utils.data.Dataset):
+    """Minimal microbead dataset implementation"""
+    def __init__(self, image_dir, density_file, transform=None, data_percentage=100):
+        import pandas as pd
+        from PIL import Image
+        import os
+        
+        self.image_dir = image_dir
+        self.transform = transform
+        
+        # Load density data
+        self.density_df = pd.read_csv(density_file)
+        
+        # Filter by data percentage
+        if data_percentage < 100:
+            n_samples = int(len(self.density_df) * data_percentage / 100)
+            self.density_df = self.density_df.sample(n=n_samples, random_state=42).reset_index(drop=True)
+        
+        print(f"   Dataset size: {len(self.density_df)} samples ({data_percentage}% of full dataset)")
+    
+    def __len__(self):
+        return len(self.density_df)
+    
+    def __getitem__(self, idx):
+        from PIL import Image
+        import os
+        
+        row = self.density_df.iloc[idx]
+        
+        # Load image
+        image_path = os.path.join(self.image_dir, row['filename'])
+        image = Image.open(image_path).convert('RGB')
+        
+        if self.transform:
+            image = self.transform(image)
+        
+        # Get density target
+        density = float(row['density'])
+        
+        return image, torch.tensor(density, dtype=torch.float32), row['filename']
+
+print("✅ Required functions defined locally")
+print("🚫 Avoiding import from train_comprehensive_architecture_study to prevent argument parsing conflicts")
 
 class ReducedLayerExperiment:
     """Manages individual reduced-layer architecture experiments"""
@@ -307,12 +378,12 @@ def run_reduced_layer_study():
     val_sampler = SubsetRandomSampler(val_indices)
     test_sampler = SubsetRandomSampler(test_indices)
     
-    train_loader = DataLoader(full_dataset, batch_size=args.batch_size, sampler=train_sampler,
-                             num_workers=args.num_workers, pin_memory=True)
-    val_loader = DataLoader(full_dataset, batch_size=args.batch_size, sampler=val_sampler,
-                           num_workers=args.num_workers, pin_memory=True)
-    test_loader = DataLoader(test_dataset, batch_size=args.batch_size, sampler=test_sampler,
-                            num_workers=args.num_workers, pin_memory=True)
+    train_loader = DataLoader(full_dataset, batch_size=args.base_batch_size, sampler=train_sampler,
+                             num_workers=args.base_num_workers, pin_memory=True)
+    val_loader = DataLoader(full_dataset, batch_size=args.base_batch_size, sampler=val_sampler,
+                           num_workers=args.base_num_workers, pin_memory=True)
+    test_loader = DataLoader(test_dataset, batch_size=args.base_batch_size, sampler=test_sampler,
+                            num_workers=args.base_num_workers, pin_memory=True)
     
     # Get reduced-layer architectures
     print("\\n🏗️  Loading reduced-layer architectures...")

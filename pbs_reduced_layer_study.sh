@@ -47,15 +47,15 @@ echo ""
 echo "🚀 Launching reduced-layer architecture training..."
 echo ""
 
-# Run the reduced-layer study with optimized parameters for HPC
+# Run the reduced-layer study with optimized parameters for HPC - CONSISTENT ARGUMENTS
 singularity exec --nv "$image" python3 train_reduced_layer_study.py \
   --input_dir ./dataset_preprocessed \
   --output_dir reduced_layer_study \
   --epochs 40 \
   --patience 12 \
   --learning_rate 3e-4 \
-  --batch_size 128 \
-  --num_workers 18 \
+  --base_batch_size 128 \
+  --base_num_workers 18 \
   --data_percentage 50 \
   --mixed_precision \
   --seed 42
