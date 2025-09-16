@@ -1,0 +1,174 @@
+✅ Container found: /app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
+🔬 STARTING REDUCED-LAYER CNN ARCHITECTURE STUDY
+=================================================
+Job ID: 209880.stdct-mgmt-02
+Start time: Sat Sep 13 08:44:05 AM +08 2025
+Node: GN-A40-095
+Working directory: /home/svu/phyzxi/scratch/densityCNN-HPC
+CUDA device: GPU-24f77ec1-eef6-acec-2bea-d5c9d3c9dff5
+
+🎮 GPU Available: True
+🎮 GPU Device: NVIDIA A40
+
+🚀 Launching reduced-layer architecture training...
+
+🔧 STARTING REDUCED-LAYER STUDY SCRIPT
+   Script: /scratch/phyzxi/densityCNN-HPC/train_reduced_layer_study.py
+   This is the REDUCED-LAYER study script, not comprehensive study
+🔧 Setting up argument parser for REDUCED-LAYER study...
+✅ Arguments parsed successfully:
+   base_batch_size: 128
+   base_num_workers: 4
+   input_dir: ./dataset_preprocessed
+   epochs: 40
+🔧 Defining required functions locally to avoid import conflicts...
+✅ Required functions defined locally
+🚫 Avoiding import from train_comprehensive_architecture_study to prevent argument parsing conflicts
+🔍 HPC Environment Check:
+   Python: 3.10.12 (Nov 20 2023 15:14:05)
+   PyTorch: 2.4.0a0+f70bd71a48.nv24.06
+   Matplotlib backend: Agg
+   CUDA available: True
+🔬 REDUCED-LAYER CNN ARCHITECTURE STUDY
+================================================================================
+Objective: Test architectural robustness under depth constraints
+Hypothesis: Skip connections provide more graceful degradation
+🔧 Device: cuda
+🎮 GPU: NVIDIA A40
+📁 Output: reduced_layer_study_20250913_084426
+\n📂 Loading dataset...
+   CSV columns found: ['image_name', 'density'] (count: 2)
+   Applied two-column format
+   Final columns: ['filename', 'density']
+   Dataset size: 974 samples (50% of full dataset)
+   CSV columns found: ['image_name', 'density'] (count: 2)
+   Applied two-column format
+   Final columns: ['filename', 'density']
+   Dataset size: 974 samples (50% of full dataset)
+📊 Splits: 681 train, 146 val, 147 test
+\n🏗️  Loading reduced-layer architectures...
+Found 7 reduced-layer architectures:
+  1. ReducedBaseline_Shallow        | 3 layers | 1,546,497 params | 75% reduction
+  2. ReducedBaseline_Deep           | 8 layers | 1,887,041 params | 67% reduction
+  3. ReducedResNet_Shallow          | 3 layers | 1,249,217 params | 75% reduction
+  4. ReducedResNet_Deep             | 8 layers | 2,831,905 params | 67% reduction
+  5. ReducedUNet_channel_reduced_32filters | 3 layers | 1,950,209 params | 75% reduction
+  6. ReducedUNet_channel_reduced_36filters | 3 layers | 2,467,513 params | 75% reduction
+  7. ReducedDenseNet_Style          | 3 layers | 1,915,777 params | 75% reduction
+\n🚀 Starting 7 reduced-layer experiments...
+\n🚀 Training ReducedBaseline_Shallow (Experiment 1)
+   Architecture: 3 layers, Skip: False
+   Reduction: 75% of original depth
+❌ Error in experiment 1 (ReducedBaseline_Shallow): CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+\n🚀 Training ReducedBaseline_Deep (Experiment 2)
+   Architecture: 8 layers, Skip: False
+   Reduction: 67% of original depth
+   Epoch   1/40: Train=3771959, Val=4865550, Best=4865550@1, LR=3.00e-04
+   Epoch   6/40: Train=3630096, Val=3669635, Best=3388927@5, LR=2.84e-04
+   Epoch  11/40: Train=3694824, Val=3702071, Best=3343301@9, LR=2.47e-04
+   Epoch  16/40: Train=3510382, Val=2969215, Best=2870951@12, LR=1.96e-04
+   Epoch  21/40: Train=3511507, Val=4377601, Best=2847323@20, LR=1.38e-04
+   Epoch  26/40: Train=3229929, Val=2447077, Best=2447077@26, LR=8.19e-05
+   Epoch  31/40: Train=3253242, Val=2529602, Best=2447077@26, LR=3.59e-05
+   Epoch  36/40: Train=3065268, Val=2722345, Best=2447077@26, LR=7.34e-06
+   ⏹️  Early stopping at epoch 38 (patience 12)
+   ✅ Completed in 7.2 min, Best Val Loss: 2447077
+\n🚀 Training ReducedResNet_Shallow (Experiment 3)
+   Architecture: 3 layers, Skip: True
+   Reduction: 75% of original depth
+   Epoch   1/40: Train=3694414, Val=4809686, Best=4809686@1, LR=3.00e-04
+   Epoch   6/40: Train=3758832, Val=4100075, Best=3242244@3, LR=2.84e-04
+   Epoch  11/40: Train=3813220, Val=3272519, Best=3242244@3, LR=2.47e-04
+   Epoch  16/40: Train=3768953, Val=3830843, Best=3209068@14, LR=1.96e-04
+   Epoch  21/40: Train=3638173, Val=3978402, Best=3001682@20, LR=1.38e-04
+   Epoch  26/40: Train=3721239, Val=4323130, Best=3001682@20, LR=8.19e-05
+   Epoch  31/40: Train=3556944, Val=5125213, Best=3001682@20, LR=3.59e-05
+   ⏹️  Early stopping at epoch 32 (patience 12)
+   ✅ Completed in 3.1 min, Best Val Loss: 3001682
+\n🚀 Training ReducedResNet_Deep (Experiment 4)
+   Architecture: 8 layers, Skip: True
+   Reduction: 67% of original depth
+   Epoch   1/40: Train=3938065, Val=4538160, Best=4538160@1, LR=3.00e-04
+   Epoch   6/40: Train=3820295, Val=3438257, Best=3438257@6, LR=2.84e-04
+   Epoch  11/40: Train=3796367, Val=3497248, Best=3140840@9, LR=2.47e-04
+   Epoch  16/40: Train=3466176, Val=3531113, Best=3140840@9, LR=1.96e-04
+   Epoch  21/40: Train=3565611, Val=3202597, Best=3140840@9, LR=1.38e-04
+   ⏹️  Early stopping at epoch 21 (patience 12)
+   ✅ Completed in 2.2 min, Best Val Loss: 3140840
+\n🚀 Training ReducedUNet_channel_reduced_32filters (Experiment 5)
+   Architecture: 3 layers, Skip: True
+   Reduction: 75% of original depth
+❌ Error in experiment 5 (ReducedUNet_channel_reduced_32filters): CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+\n🚀 Training ReducedUNet_channel_reduced_36filters (Experiment 6)
+   Architecture: 3 layers, Skip: True
+   Reduction: 75% of original depth
+❌ Error in experiment 6 (ReducedUNet_channel_reduced_36filters): CUDA error: out of memory
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+Compile with `TORCH_USE_CUDA_DSA` to enable device-side assertions.
+
+\n🚀 Training ReducedDenseNet_Style (Experiment 7)
+   Architecture: 3 layers, Skip: True
+   Reduction: 75% of original depth
+   Epoch   1/40: Train=3762787, Val=2990795, Best=2990795@1, LR=3.00e-04
+   Epoch   6/40: Train=3728930, Val=4829160, Best=2990795@1, LR=2.84e-04
+   Epoch  11/40: Train=3916649, Val=4828804, Best=2990795@1, LR=2.47e-04
+   ⏹️  Early stopping at epoch 13 (patience 12)
+   ✅ Completed in 4.0 min, Best Val Loss: 2990795
+\n🎉 REDUCED-LAYER STUDY COMPLETE!
+   Total time: 16.8 minutes
+   Successful experiments: 4/7
+   Results saved: reduced_layer_study_20250913_084426/complete_reduced_layer_study.json
+\n📊 QUICK PERFORMANCE COMPARISON:
+------------------------------------------------------------
+Model                          Layers   Reduction  Val Loss   Time(min) 
+------------------------------------------------------------
+ReducedBaseline_Deep           8        67%        2447077    7.2       
+ReducedDenseNet_Style          3        75%        2990795    4.0       
+ReducedResNet_Shallow          3        75%        3001682    3.1       
+ReducedResNet_Deep             8        67%        3140840    2.2       
+\n📋 Detailed comparison saved: reduced_layer_study_20250913_084426/reduced_layer_comparison.csv
+\n✅ Reduced-layer study completed successfully!
+
+=================================================
+🎉 REDUCED-LAYER STUDY COMPLETED
+Exit code: 0
+End time: Sat Sep 13 09:01:22 AM +08 2025
+Job ID: 209880.stdct-mgmt-02
+
+✅ Study completed successfully!
+📊 Results should be available in the output directory
+
+🔍 Quick results summary:
+   📁 Results directory: reduced_layer_study_20250913_084426
+   📋 Top 3 performing models:
+ReducedBaseline_Deep,8,12,0.67,False,1887041,2447077.125,7.1785285154978435,26
+ReducedDenseNet_Style,3,4,0.75,True,1915777,2990795.375,4.010982728004455,1
+ReducedResNet_Shallow,3,4,0.75,True,1249217,3001682.25,3.0899478157361346,20
+
+📧 Email notification sent to xiaodan.liang@unimelb.edu.au
+=================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2025-09-13 09:01:23.015869:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 209880.stdct-mgmt-02
+	Project: personal-phyzxi
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(36), Used(36)
+	CPU Time Used: 00:26:43
+	Memory: Requested(240gb), Used(9093156kb)
+	Vmem Used: 121477768kb
+	Walltime: Requested(24:00:00), Used(00:17:19)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (GN-A40-095[0]:ncpus=36:ngpus=1:mem=251658240kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.
