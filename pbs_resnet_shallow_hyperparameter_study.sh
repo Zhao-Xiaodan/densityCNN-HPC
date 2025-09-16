@@ -1,11 +1,11 @@
 #!/bin/bash
-#PBS -N ResNet_Shallow_Hyperparameter_Study
-#PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
 #PBS -l walltime=24:00:00
 #PBS -j oe
 #PBS -k oed
-#PBS -m abe
+#PBS -N ResNet_Shallow_Hyperparameter_Study
+#PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
 #PBS -M phyzxi@nus.edu.sg
+#PBS -m abe
 
 
 # ============================================================================
@@ -45,8 +45,10 @@ cd $PBS_O_WORKDIR
 # Load environment
 echo "🔧 Loading HPC environment..."
 
-# Load container environment
+# Load required modules
 module load singularity
+
+# Load container environment
 export SINGULARITY_CACHEDIR=$PBS_O_WORKDIR/singularity_cache
 export SINGULARITY_TMPDIR=$PBS_O_WORKDIR/singularity_tmp
 mkdir -p $SINGULARITY_CACHEDIR $SINGULARITY_TMPDIR
@@ -54,10 +56,14 @@ mkdir -p $SINGULARITY_CACHEDIR $SINGULARITY_TMPDIR
 # HPC Environment Optimizations
 echo "⚙️  Setting HPC optimizations..."
 
+# Memory optimization settings - Compatible with HPC CUDA allocator
+export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:1024
+export CUDA_LAUNCH_BLOCKING=0
+export PYTHONUNBUFFERED=1
+export PYTORCH_NO_CUDA_MEMORY_CACHING=0
+
 # CUDA and PyTorch optimizations
 export CUDA_VISIBLE_DEVICES=0
-export PYTORCH_CUDA_ALLOC_CONF=max_split_size_mb:256,expandable_segments:True
-export CUDA_LAUNCH_BLOCKING=0
 export OMP_NUM_THREADS=18
 export CUDA_DEVICE_MAX_CONNECTIONS=32
 
@@ -67,7 +73,6 @@ export MALLOC_TRIM_THRESHOLD_=262144
 
 # Python optimizations
 export PYTHONPATH=$PBS_O_WORKDIR:$PYTHONPATH
-export PYTHONUNBUFFERED=1
 
 # Display environment info
 echo "🖥️  Environment Information:"
@@ -81,7 +86,7 @@ echo "🔍 GPU Information:"
 nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv,noheader,nounits
 
 # Define container and dataset paths
-CONTAINER_PATH="/opt/ohpc/pub/containers/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif"
+CONTAINER_PATH="/app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif"
 DATASET_PATH="$PBS_O_WORKDIR/../dataset_preprocessed"
 
 echo "📁 Paths:"
