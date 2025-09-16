@@ -1,17 +1,18 @@
 #!/bin/bash
 #PBS -N ResNet_Shallow_Hyperparameter_Study
-#PBS -l select=1:ncpus=36:mem=240gb:ngpus=1:gpu_model=a40
+#PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
 #PBS -l walltime=24:00:00
 #PBS -j oe
-#PBS -M xiaodan@connect.ust.hk
+#PBS -k oed
 #PBS -m abe
-#PBS -q gpu
+#PBS -M phyzxi@nus.edu.sg
+
 
 # ============================================================================
 # ResNet_Shallow Hyperparameter Bottleneck Study - HPC Execution Script
 # ============================================================================
-# 
-# Research Focus: Systematic investigation of what caused ResNet_Shallow's 
+#
+# Research Focus: Systematic investigation of what caused ResNet_Shallow's
 # dramatic performance improvement (R² = 0.983 → 0.995)
 #
 # Key Research Questions:
@@ -211,7 +212,7 @@ Configuration:
 - Seed: 42
 
 Research Focus:
-This study systematically investigates what caused ResNet_Shallow's dramatic 
+This study systematically investigates what caused ResNet_Shallow's dramatic
 performance improvement from R² = 0.983 to R² = 0.995 in recent experiments.
 
 Key Research Questions:
