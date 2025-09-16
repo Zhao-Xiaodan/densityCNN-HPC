@@ -1,5 +1,0 @@
-model_name,layers,original_layers,reduction_factor,has_skip_connections,parameters,val_loss,training_time_min,convergence_epoch
-ReducedBaseline_Deep,8,12,0.67,False,1887041,2447077.125,7.1785285154978435,26
-ReducedDenseNet_Style,3,4,0.75,True,1915777,2990795.375,4.010982728004455,1
-ReducedResNet_Shallow,3,4,0.75,True,1249217,3001682.25,3.0899478157361346,20
-ReducedResNet_Deep,8,12,0.67,True,2831905,3140840.5,2.2242180347442626,9
