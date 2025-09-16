@@ -87,7 +87,7 @@ nvidia-smi --query-gpu=index,name,memory.total,memory.free --format=csv,noheader
 
 # Define container and dataset paths
 CONTAINER_PATH="/app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif"
-DATASET_PATH="$PBS_O_WORKDIR/../dataset_preprocessed"
+DATASET_PATH="./dataset_preprocessed"
 
 echo "📁 Paths:"
 echo "   Container: $CONTAINER_PATH"
@@ -155,22 +155,18 @@ START_TIMESTAMP=$(date +%s)
 
 echo "Start Time: $START_TIME"
 
-# Execute the hyperparameter study
-singularity exec \
-    --nv \
-    --bind $PBS_O_WORKDIR:/workspace \
-    --bind $DATASET_PATH:/workspace/dataset_preprocessed \
-    --pwd /workspace \
-    $CONTAINER_PATH \
-    python train_resnet_shallow_hyperparameter_study.py \
-        --input_dir /workspace/dataset_preprocessed \
-        --output_dir $OUTPUT_DIR \
-        --epochs 50 \
-        --patience 15 \
-        --seed 42 \
-        --data_percentage 50 \
-        --mixed_precision \
-        --dilution_factors 80x 160x 320x 640x 1280x 2560x 5120x 10240x 2>&1 | tee ${OUTPUT_DIR}/study_console_output.log
+# Execute the hyperparameter study using the working configuration pattern
+# Change to working directory first (like the comprehensive study)
+cd /home/svu/phyzxi/scratch/densityCNN-HPC
+singularity exec --nv "$CONTAINER_PATH" python3 train_resnet_shallow_hyperparameter_study.py \
+    --input_dir ./dataset_preprocessed \
+    --output_dir ./$OUTPUT_DIR \
+    --epochs 50 \
+    --patience 15 \
+    --seed 42 \
+    --data_percentage 50 \
+    --mixed_precision \
+    --dilution_factors 80x 160x 320x 640x 1280x 2560x 5120x 10240x 2>&1 | tee ${OUTPUT_DIR}/study_console_output.log
 
 # Record execution status
 EXECUTION_STATUS=$?
