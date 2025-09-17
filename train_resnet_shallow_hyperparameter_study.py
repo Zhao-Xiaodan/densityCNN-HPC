@@ -180,9 +180,9 @@ class ResNetShallowCNN(nn.Module):
 # ============================================================================
 
 class MicrobeadDataset(Dataset):
-    """Dataset class for microbead density estimation"""
-    def __init__(self, images_dir, csv_file, dilution_factors=None, transform=None):
-        self.images_dir = images_dir
+    """Dataset class for microbead density estimation - Compatible with working comprehensive study"""
+    def __init__(self, image_dir, density_csv, dilution_factors=None, transform=None, data_percentage=100, use_all_dilutions=False):
+        self.image_dir = image_dir
         self.transform = transform or transforms.Compose([
             transforms.Resize((224, 224)),
             transforms.Grayscale(),
@@ -190,22 +190,40 @@ class MicrobeadDataset(Dataset):
             transforms.Normalize(mean=[0.5], std=[0.5])
         ])
 
-        # Load CSV data
-        self.data_df = pd.read_csv(csv_file)
-        if dilution_factors:
-            self.data_df = self.data_df[self.data_df['dilution_factor'].isin(dilution_factors)]
+        # Load CSV data using working comprehensive study pattern
+        self.df = pd.read_csv(density_csv)
 
-        print(f"Loaded {len(self.data_df)} samples")
-        print(f"Density range: {self.data_df['density_per_microliter'].min():.1f} - {self.data_df['density_per_microliter'].max():.1f}")
+        # Handle CSV format - ensure proper column names (from working comprehensive study)
+        if len(self.df.columns) == 1:
+            self.df = self.df.iloc[:, 0].str.split(expand=True)
+            self.df.columns = ['filename', 'density']
+        elif len(self.df.columns) == 2:
+            self.df.columns = ['filename', 'density']
+
+        self.df['density'] = self.df['density'].astype(float)
+
+        # Filter by dilution factors using filename patterns (working comprehensive study approach)
+        if not use_all_dilutions and dilution_factors:
+            pattern = '|'.join([f'^{factor}_' for factor in dilution_factors])
+            mask = self.df['filename'].str.contains(pattern, case=False, na=False)
+            self.df = self.df[mask].reset_index(drop=True)
+
+        # Apply data percentage sampling
+        if data_percentage < 100:
+            n_samples = int(len(self.df) * data_percentage / 100)
+            self.df = self.df.sample(n=n_samples, random_state=42).reset_index(drop=True)
+
+        print(f"✅ Loaded {len(self.df)} samples")
+        print(f"   Density range: {self.df['density'].min():.1f} - {self.df['density'].max():.1f}")
 
     def __len__(self):
-        return len(self.data_df)
+        return len(self.df)
 
     def __getitem__(self, idx):
-        row = self.data_df.iloc[idx]
-        
-        # Load image
-        image_path = os.path.join(self.images_dir, row['relative_image_path'])
+        row = self.df.iloc[idx]
+
+        # Load image using filename (working comprehensive study pattern)
+        image_path = os.path.join(self.image_dir, row['filename'])
         try:
             image = Image.open(image_path)
             if self.transform:
@@ -214,7 +232,7 @@ class MicrobeadDataset(Dataset):
             print(f"Error loading {image_path}: {e}")
             image = torch.zeros(1, 224, 224)
 
-        density = float(row['density_per_microliter'])
+        density = float(row['density'])
         return image, density
 
 # ============================================================================
@@ -669,14 +687,16 @@ def main():
         print(f"   GPU: {torch.cuda.get_device_name()}")
         print(f"   Memory: {torch.cuda.get_device_properties(0).total_memory / 1024**3:.1f} GB")
     
-    # Load dataset
+    # Load dataset using working comprehensive study pattern
     images_dir = os.path.join(args.input_dir, 'images')
     csv_file = os.path.join(args.input_dir, 'density.csv')
-    
+
     full_dataset = MicrobeadDataset(
-        images_dir=images_dir,
-        csv_file=csv_file,
-        dilution_factors=args.dilution_factors
+        image_dir=images_dir,
+        density_csv=csv_file,
+        dilution_factors=args.dilution_factors,
+        data_percentage=args.data_percentage,
+        use_all_dilutions=False
     )
     
     # Create data splits
