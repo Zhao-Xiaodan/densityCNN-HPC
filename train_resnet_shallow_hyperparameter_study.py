@@ -181,7 +181,7 @@ class ResNetShallowCNN(nn.Module):
 
 class MicrobeadDataset(Dataset):
     """Dataset class for microbead density estimation - Compatible with working comprehensive study"""
-    def __init__(self, image_dir, density_csv, dilution_factors=None, transform=None, data_percentage=100, use_all_dilutions=False):
+    def __init__(self, image_dir, density_csv, transform=None, data_percentage=100, dilution_factors=None, use_all_dilutions=False):
         self.image_dir = image_dir
         self.transform = transform or transforms.Compose([
             transforms.Resize((224, 224)),
@@ -220,20 +220,26 @@ class MicrobeadDataset(Dataset):
         return len(self.df)
 
     def __getitem__(self, idx):
-        row = self.df.iloc[idx]
+        img_name = self.df.iloc[idx]['filename']
 
-        # Load image using filename (working comprehensive study pattern)
-        image_path = os.path.join(self.image_dir, row['filename'])
+        # Add file extension if missing (critical fix from working comprehensive study)
+        if not img_name.endswith(('.jpg', '.jpeg', '.png', '.tif', '.tiff')):
+            img_name = img_name + '.png'
+
+        img_path = os.path.join(self.image_dir, img_name)
+
         try:
-            image = Image.open(image_path)
-            if self.transform:
-                image = self.transform(image)
+            image = Image.open(img_path).convert('L')
         except Exception as e:
-            print(f"Error loading {image_path}: {e}")
-            image = torch.zeros(1, 224, 224)
+            print(f"Error loading {img_path}: {e}")
+            image = Image.new('L', (224, 224), 0)
 
-        density = float(row['density'])
-        return image, density
+        density = self.df.iloc[idx]['density']
+
+        if self.transform:
+            image = self.transform(image)
+
+        return image, torch.tensor(density, dtype=torch.float32)
 
 # ============================================================================
 # EXPERIMENTAL CONFIGURATIONS
