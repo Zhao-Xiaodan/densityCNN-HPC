@@ -55,6 +55,8 @@ mkdir -p "$STUDY_DIR"
 cp train_fair_architecture_comparison.py "$STUDY_DIR/"
 cp pbs_fair_architecture_comparison.sh "$STUDY_DIR/"
 
+echo "✅ Training script copied (no external dependencies required)"
+
 # Dataset path (adjust as needed)
 DATASET_PATH="./dataset_preprocessed"
 

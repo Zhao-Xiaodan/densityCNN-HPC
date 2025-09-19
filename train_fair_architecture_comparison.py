@@ -36,14 +36,12 @@ from scipy import stats
 import warnings
 warnings.filterwarnings('ignore')
 
-# Optuna for hyperparameter optimization
-import optuna
-from optuna.pruners import MedianPruner
-from optuna.samplers import TPESampler
+# Built-in libraries for hyperparameter optimization (no external dependencies)
+import random
+import itertools
+from collections import defaultdict
 
-# Import existing architecture definitions
-import sys
-sys.path.append('/Users/xiaodan/densityCNN/Claude/skip_connections_study')
+# Architecture definitions are included in this script
 
 # HPC optimizations
 os.environ['PYTORCH_CUDA_ALLOC_CONF'] = 'max_split_size_mb:256,expandable_segments:True'
@@ -52,7 +50,7 @@ torch.backends.cudnn.benchmark = True
 print("🔍 Fair Comparison Environment Check:")
 print(f"   PyTorch: {torch.__version__}")
 print(f"   CUDA available: {torch.cuda.is_available()}")
-print(f"   Optuna version: {optuna.__version__}")
+print("   Using built-in hyperparameter optimization (no external dependencies)")
 
 # ============================================================================
 # DATASET CLASS (Same as existing infrastructure)
@@ -401,6 +399,9 @@ class FairArchitectureComparison:
     def _train_and_evaluate(self, architecture_class, params, max_epochs=30):
         """Train and evaluate a model with given hyperparameters"""
         try:
+            # Clear GPU memory before training
+            torch.cuda.empty_cache()
+            gc.collect()
             # Create model
             model = architecture_class().to(self.device)
 
@@ -527,84 +528,154 @@ class FairArchitectureComparison:
             return best_val_r2
 
         except Exception as e:
-            print(f"Training failed: {e}")
+            print(f"❌ Training failed: {e}")
+            # Clean up on failure
+            torch.cuda.empty_cache()
+            gc.collect()
             return -1.0
 
     def _define_search_space(self, architecture_name):
         """Define architecture-specific hyperparameter search space"""
         # Base search space
         search_space = {
-            'learning_rate': (1e-5, 1e-2),
-            'batch_size': [16, 32, 64, 128],
-            'weight_decay': (1e-6, 1e-2),
-            'optimizer': ['adam', 'adamw', 'sgd'],
-            'scheduler': ['cosine', 'step', 'none'],
-            'use_mixed_precision': [True, False]
+            'learning_rate': {
+                'type': 'log_uniform',
+                'low': 1e-5,
+                'high': 1e-2
+            },
+            'batch_size': {
+                'type': 'choice',
+                'choices': [16, 32, 64, 128]
+            },
+            'weight_decay': {
+                'type': 'log_uniform',
+                'low': 1e-6,
+                'high': 1e-2
+            },
+            'optimizer': {
+                'type': 'choice',
+                'choices': ['adam', 'adamw', 'sgd']
+            },
+            'scheduler': {
+                'type': 'choice',
+                'choices': ['cosine', 'step', 'none']
+            },
+            'use_mixed_precision': {
+                'type': 'choice',
+                'choices': [True, False]
+            }
         }
 
         # Architecture-specific modifications
         if 'ResNet' in architecture_name:
             # ResNet architectures often need different settings
-            search_space['learning_rate'] = (1e-6, 5e-3)
-            search_space['optimizer'] = ['adam', 'adamw']  # Often work better
-            search_space['batch_size'] = [16, 32, 64]  # Smaller batches can help
+            search_space['learning_rate']['low'] = 1e-6
+            search_space['learning_rate']['high'] = 5e-3
+            search_space['optimizer']['choices'] = ['adam', 'adamw']  # Often work better
+            search_space['batch_size']['choices'] = [16, 32, 64]  # Smaller batches can help
 
         elif 'Deep' in architecture_name:
             # Deeper networks benefit from smaller learning rates
-            search_space['learning_rate'] = (1e-6, 1e-3)
-            search_space['weight_decay'] = (1e-5, 1e-3)  # More regularization
+            search_space['learning_rate']['low'] = 1e-6
+            search_space['learning_rate']['high'] = 1e-3
+            search_space['weight_decay']['low'] = 1e-5
+            search_space['weight_decay']['high'] = 1e-3  # More regularization
 
         return search_space
 
+    def _sample_hyperparameters(self, search_space, trial_number=None):
+        """Sample hyperparameters from search space using built-in random sampling"""
+        params = {}
+
+        # Set seed for reproducibility if trial number provided
+        if trial_number is not None:
+            random.seed(42 + trial_number)
+            np.random.seed(42 + trial_number)
+
+        for param_name, param_config in search_space.items():
+            if param_config['type'] == 'log_uniform':
+                # Log-uniform sampling
+                log_low = np.log(param_config['low'])
+                log_high = np.log(param_config['high'])
+                log_value = np.random.uniform(log_low, log_high)
+                params[param_name] = np.exp(log_value)
+
+            elif param_config['type'] == 'uniform':
+                # Uniform sampling
+                params[param_name] = np.random.uniform(param_config['low'], param_config['high'])
+
+            elif param_config['type'] == 'choice':
+                # Random choice
+                params[param_name] = random.choice(param_config['choices'])
+
+            elif param_config['type'] == 'int_uniform':
+                # Integer uniform sampling
+                params[param_name] = np.random.randint(param_config['low'], param_config['high'] + 1)
+
+        return params
+
     def optimize_architecture(self, architecture_class):
-        """Perform hyperparameter optimization for an architecture"""
+        """Perform hyperparameter optimization for an architecture using random search"""
         arch_name = architecture_class().name
         print(f"🔍 Optimizing hyperparameters for {arch_name}")
 
         search_space = self._define_search_space(arch_name)
 
-        def objective(trial):
+        # Track all trials
+        trial_results = []
+        best_score = -np.inf
+        best_params = None
+
+        print(f"   Running {self.optimization_trials} random search trials...")
+
+        for trial_num in range(self.optimization_trials):
             # Sample hyperparameters
-            params = {}
-            params['learning_rate'] = trial.suggest_float(
-                'learning_rate', search_space['learning_rate'][0],
-                search_space['learning_rate'][1], log=True)
-            params['batch_size'] = trial.suggest_categorical('batch_size', search_space['batch_size'])
-            params['weight_decay'] = trial.suggest_float(
-                'weight_decay', search_space['weight_decay'][0],
-                search_space['weight_decay'][1], log=True)
-            params['optimizer'] = trial.suggest_categorical('optimizer', search_space['optimizer'])
-            params['scheduler'] = trial.suggest_categorical('scheduler', search_space['scheduler'])
-            params['use_mixed_precision'] = trial.suggest_categorical(
-                'use_mixed_precision', search_space['use_mixed_precision'])
+            params = self._sample_hyperparameters(search_space, trial_num)
 
             # Train and evaluate
             r2_score = self._train_and_evaluate(architecture_class, params)
 
-            return r2_score
+            # Store result
+            trial_results.append({
+                'trial': trial_num,
+                'params': params.copy(),
+                'score': r2_score
+            })
 
-        # Create and run study
-        study = optuna.create_study(
-            direction='maximize',
-            sampler=TPESampler(seed=42),
-            pruner=MedianPruner(n_startup_trials=5, n_warmup_steps=3)
-        )
+            # Update best if needed
+            if r2_score > best_score:
+                best_score = r2_score
+                best_params = params.copy()
+                print(f"   🎯 New best at trial {trial_num}: R² = {r2_score:.4f}")
 
-        study.optimize(objective, n_trials=self.optimization_trials, timeout=3600)  # 1 hour max
+            # Progress update every 10 trials
+            if (trial_num + 1) % 10 == 0:
+                print(f"   Progress: {trial_num + 1}/{self.optimization_trials} trials, "
+                      f"current best R² = {best_score:.4f}")
 
         # Store results
         self.optimization_results[arch_name] = {
-            'best_params': study.best_params,
-            'best_score': study.best_value,
-            'n_trials': len(study.trials),
-            'study': study  # For later analysis
+            'best_params': best_params,
+            'best_score': best_score,
+            'n_trials': len(trial_results),
+            'all_trials': trial_results,
+            'optimization_history': [(t['trial'], t['score']) for t in trial_results]
         }
 
         print(f"✅ Optimization complete for {arch_name}")
-        print(f"   Best R²: {study.best_value:.4f}")
-        print(f"   Best params: {study.best_params}")
+        print(f"   Best R²: {best_score:.4f}")
+        print(f"   Best params: {best_params}")
 
-        return study.best_params, study.best_value
+        # Print top 3 configurations for insight
+        sorted_trials = sorted(trial_results, key=lambda x: x['score'], reverse=True)[:3]
+        print(f"   📊 Top 3 configurations:")
+        for i, trial in enumerate(sorted_trials):
+            print(f"      {i+1}. R² = {trial['score']:.4f}, "
+                  f"LR = {trial['params']['learning_rate']:.2e}, "
+                  f"BS = {trial['params']['batch_size']}, "
+                  f"Opt = {trial['params']['optimizer']}")
+
+        return best_params, best_score
 
     def evaluate_with_optimal_params(self, architecture_class):
         """Evaluate architecture with optimal hyperparameters"""
