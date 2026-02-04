@@ -1,0 +1,200 @@
+=== EXPERIMENT C03: Enhanced ===
+Python: Python 3.10.12
+PyTorch: 2.4.0a0+f70bd71a48.nv24.06
+CUDA available: True
+  File "<string>", line 1
+    import torch; print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else \"None\")
+                                                                                         ^
+SyntaxError: unexpected character after line continuation character
+GPU: 
+Dataset: ./dataset_20260201_beads calibration_S16-Basler camera
+Output: ./calibration_experimental_study_20260204_150508/experiment_C03_Enhanced
+===============================
+Starting Enhanced experiment...
+🚀 Starting HPC-Optimized Density CNN Training
+============================================================
+📁 Input directory: /scratch/phyzxi/densityCNN-HPC/./dataset_20260201_beads calibration_S16-Basler camera
+🖼️  Images directory: /scratch/phyzxi/densityCNN-HPC/./dataset_20260201_beads calibration_S16-Basler camera/images
+📊 Density file: /scratch/phyzxi/densityCNN-HPC/./dataset_20260201_beads calibration_S16-Basler camera/density.csv
+🔧 Using device: cuda
+🎮 GPU: NVIDIA A40
+💾 GPU Memory: 44.4 GB
+
+📂 Creating datasets...
+Final dataset size: 384 image-density pairs
+Final dataset size: 384 image-density pairs
+📊 Dataset split: 268 train, 57 val, 59 test
+
+🧪 Starting experiments with 1 batch sizes and 1 filter configs
+
+================================================================================
+🔬 EXPERIMENT: Batch=128, Filters=[64, 128, 256]
+================================================================================
+🔧 Using Standard CNN
+📊 Model parameters: 387,073
+
+🚂 Starting training...
+Epoch 1/50, Train Loss: 6243437.5000, Val Loss: 7847682.5000, LR: 0.000293
+✅ New best model saved with validation loss: 7847682.5000
+Epoch 2/50, Train Loss: 6920372.6667, Val Loss: 7847688.5000, LR: 0.000271
+Epoch 3/50, Train Loss: 5587925.0000, Val Loss: 7847680.5000, LR: 0.000238
+✅ New best model saved with validation loss: 7847680.5000
+Epoch 4/50, Train Loss: 7759690.6667, Val Loss: 7847667.5000, LR: 0.000196
+✅ New best model saved with validation loss: 7847667.5000
+Epoch 5/50, Train Loss: 6254240.7500, Val Loss: 7847565.0000, LR: 0.000150
+✅ New best model saved with validation loss: 7847565.0000
+Epoch 6/50, Train Loss: 5880497.8333, Val Loss: 7847505.0000, LR: 0.000104
+✅ New best model saved with validation loss: 7847505.0000
+Epoch 7/50, Train Loss: 7430480.3333, Val Loss: 7847542.5000, LR: 0.000062
+Epoch 8/50, Train Loss: 6921036.6667, Val Loss: 7847610.5000, LR: 0.000029
+Epoch 9/50, Train Loss: 9190463.0000, Val Loss: 7847758.5000, LR: 0.000007
+Epoch 10/50, Train Loss: 6266380.7500, Val Loss: 7847827.5000, LR: 0.000300
+Epoch 11/50, Train Loss: 5343789.7708, Val Loss: 7846747.5000, LR: 0.000298
+✅ New best model saved with validation loss: 7846747.5000
+Epoch 12/50, Train Loss: 7185190.5000, Val Loss: 7845240.0000, LR: 0.000293
+✅ New best model saved with validation loss: 7845240.0000
+Epoch 13/50, Train Loss: 7056019.3333, Val Loss: 7842948.5000, LR: 0.000284
+✅ New best model saved with validation loss: 7842948.5000
+Epoch 14/50, Train Loss: 7171943.1667, Val Loss: 7840286.5000, LR: 0.000271
+✅ New best model saved with validation loss: 7840286.5000
+Epoch 15/50, Train Loss: 6121670.6667, Val Loss: 7837173.5000, LR: 0.000256
+✅ New best model saved with validation loss: 7837173.5000
+Epoch 16/50, Train Loss: 5614222.5833, Val Loss: 7834778.0000, LR: 0.000238
+✅ New best model saved with validation loss: 7834778.0000
+Epoch 17/50, Train Loss: 7471888.3333, Val Loss: 7833309.5000, LR: 0.000218
+✅ New best model saved with validation loss: 7833309.5000
+Epoch 18/50, Train Loss: 6932096.0000, Val Loss: 7830846.5000, LR: 0.000196
+✅ New best model saved with validation loss: 7830846.5000
+Epoch 19/50, Train Loss: 9385385.5000, Val Loss: 7830125.0000, LR: 0.000173
+✅ New best model saved with validation loss: 7830125.0000
+Epoch 20/50, Train Loss: 8725215.8333, Val Loss: 7828325.0000, LR: 0.000150
+✅ New best model saved with validation loss: 7828325.0000
+Epoch 21/50, Train Loss: 7280902.3333, Val Loss: 7826306.5000, LR: 0.000127
+✅ New best model saved with validation loss: 7826306.5000
+Epoch 22/50, Train Loss: 5642439.2500, Val Loss: 7823402.5000, LR: 0.000104
+✅ New best model saved with validation loss: 7823402.5000
+Epoch 23/50, Train Loss: 9055649.6667, Val Loss: 7823367.0000, LR: 0.000082
+✅ New best model saved with validation loss: 7823367.0000
+Epoch 24/50, Train Loss: 10639443.5000, Val Loss: 7822177.0000, LR: 0.000062
+✅ New best model saved with validation loss: 7822177.0000
+Epoch 25/50, Train Loss: 6060237.8333, Val Loss: 7820117.0000, LR: 0.000044
+✅ New best model saved with validation loss: 7820117.0000
+Epoch 26/50, Train Loss: 5658302.0000, Val Loss: 7819171.0000, LR: 0.000029
+✅ New best model saved with validation loss: 7819171.0000
+Epoch 27/50, Train Loss: 5762499.6250, Val Loss: 7819110.0000, LR: 0.000016
+✅ New best model saved with validation loss: 7819110.0000
+Epoch 28/50, Train Loss: 7408482.8333, Val Loss: 7819210.0000, LR: 0.000007
+Epoch 29/50, Train Loss: 8078815.1667, Val Loss: 7819340.0000, LR: 0.000002
+Epoch 30/50, Train Loss: 9006781.8333, Val Loss: 7819262.5000, LR: 0.000300
+Epoch 31/50, Train Loss: 8585590.6667, Val Loss: 7818272.5000, LR: 0.000300
+✅ New best model saved with validation loss: 7818272.5000
+Epoch 32/50, Train Loss: 7506906.1667, Val Loss: 7811580.5000, LR: 0.000298
+✅ New best model saved with validation loss: 7811580.5000
+Epoch 33/50, Train Loss: 5781042.2500, Val Loss: 7815798.5000, LR: 0.000296
+Epoch 34/50, Train Loss: 11862646.3333, Val Loss: 7802078.5000, LR: 0.000293
+✅ New best model saved with validation loss: 7802078.5000
+Epoch 35/50, Train Loss: 5953063.4167, Val Loss: 7784734.5000, LR: 0.000289
+✅ New best model saved with validation loss: 7784734.5000
+Epoch 36/50, Train Loss: 6868764.0000, Val Loss: 7790689.0000, LR: 0.000284
+Epoch 37/50, Train Loss: 5853727.7500, Val Loss: 7786959.0000, LR: 0.000278
+Epoch 38/50, Train Loss: 9371080.0000, Val Loss: 7793028.0000, LR: 0.000271
+Epoch 39/50, Train Loss: 6372313.6667, Val Loss: 7799558.0000, LR: 0.000264
+Epoch 40/50, Train Loss: 7523060.6667, Val Loss: 7780033.0000, LR: 0.000256
+✅ New best model saved with validation loss: 7780033.0000
+Epoch 41/50, Train Loss: 8646848.5000, Val Loss: 7769629.5000, LR: 0.000247
+✅ New best model saved with validation loss: 7769629.5000
+Epoch 42/50, Train Loss: 5685167.9167, Val Loss: 7769841.0000, LR: 0.000238
+Epoch 43/50, Train Loss: 6021041.4167, Val Loss: 7775817.5000, LR: 0.000228
+Epoch 44/50, Train Loss: 8995025.3333, Val Loss: 7748557.5000, LR: 0.000218
+✅ New best model saved with validation loss: 7748557.5000
+Epoch 45/50, Train Loss: 9161346.1667, Val Loss: 7760572.5000, LR: 0.000207
+Epoch 46/50, Train Loss: 7027563.6667, Val Loss: 7752022.0000, LR: 0.000196
+Epoch 47/50, Train Loss: 8497683.8333, Val Loss: 7735216.0000, LR: 0.000185
+✅ New best model saved with validation loss: 7735216.0000
+Epoch 48/50, Train Loss: 7579340.8333, Val Loss: 7747524.0000, LR: 0.000173
+Epoch 49/50, Train Loss: 5499022.3333, Val Loss: 7736990.5000, LR: 0.000162
+Epoch 50/50, Train Loss: 5807471.9583, Val Loss: 7740864.0000, LR: 0.000150
+Training completed in 1.43 minutes
+Best validation loss: 7735216.0000
+
+📈 Evaluating model...
+📊 Enhanced Evaluation Metrics:
+   MSE: 5415783.0000
+   MAE: 1235.9426
+   RMSE: 2327.1836
+   R²: -0.2799
+   MAPE: 94.10%
+   Max Error: 7630.7500
+✅ Experiment completed in 1.46 minutes
+
+📋 Saving comprehensive results...
+
+================================================================================
+🏆 BEST CONFIGURATION RESULTS:
+================================================================================
+📊 Configuration:
+   Batch Size: 128
+   Filters: 64-128-256
+   Data: 100%
+   Enhanced Model: False
+   Mixed Precision: True
+
+📈 Performance Metrics:
+   R² Score: -0.2799
+   MSE: 5415783.0000
+   MAE: 1235.9426
+   RMSE: 2327.1836
+   MAPE: 94.10%
+
+⏱️  Training Info:
+   Epochs: 50
+   Training Time: 1.43 min
+   Total Time: 1.46 min
+   Peak GPU Memory: 5.704905033111572
+================================================================================
+
+🎉 HPC DENSITY CNN TRAINING COMPLETED
+============================================================
+
+📊 EXPERIMENT SUMMARY:
+   Total Experiments: 1
+   Successful: 1
+   Data Used: 100% of dataset
+   Dilution Factors: 50x, 100x, 200x, 400x, 800x, 1600x, 3200x, 6400x, 12800x, 25600x, 51200x
+
+🔧 CONFIGURATION USED:
+   Enhanced Model: False
+   Enhanced Loss: False
+   Enhanced Preprocessing: False
+   Mixed Precision: True
+   Dataset Caching: False
+
+📁 OUTPUT LOCATION: ./calibration_experimental_study_20260204_150508/experiment_C03_Enhanced/run_20260204_151905
+
+📋 KEY FILES GENERATED:
+   📊 experiment_comparison.csv - Detailed comparison table
+   📈 performance_summary.png - Visual performance analysis
+   🏆 best_model_*.pth - Trained model weights
+   📄 all_experiment_results.json - Complete results
+   ⚙️  config_summary.json - Configuration record
+
+🚀 PERFORMANCE OPTIMIZATIONS APPLIED:
+   ✅ GPU memory optimization
+   ✅ Mixed precision training (if enabled)
+   ✅ Optimized data loading with 18 workers
+   ✅ Enhanced CNN architecture (if enabled)
+   ✅ Efficient preprocessing for 512x512 images
+   ✅ Memory pinning and persistent workers
+   ✅ Gradient scaling and learning rate scheduling
+
+
+✨ Training completed successfully!
+📁 All results saved to: ./calibration_experimental_study_20260204_150508/experiment_C03_Enhanced/run_20260204_151905
+
+🎮 Final GPU Memory Usage:
+   Allocated: 0.02 GB
+   Cached: 0.41 GB
+Enhanced experiment completed on Wed Feb  4 15:25:04 +08 2026
+=== GPU MEMORY USAGE AFTER Enhanced ===
+0, 46068, 20
+=======================================

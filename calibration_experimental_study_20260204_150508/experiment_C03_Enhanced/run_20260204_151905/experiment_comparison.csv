@@ -1,0 +1,2 @@
+Batch_Size,Filter_Config,Data_Percentage,Enhanced_Model,Mixed_Precision,Best_Val_Loss,MSE,MAE,RMSE,R2_Score,MAPE,Max_Error,Epochs_Completed,Training_Time_Min,Total_Experiment_Time_Min,Peak_Memory_GB
+128,64-128-256,100,False,True,7735216.0,5415783.0,1235.942626953125,2327.18359375,-0.2798677682876587,94.09589171409607,7630.75,50,1.4333531459172566,1.4612788200378417,5.704905033111572

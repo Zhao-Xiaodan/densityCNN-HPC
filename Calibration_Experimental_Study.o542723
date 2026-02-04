@@ -1,0 +1,133 @@
+=======================================================================
+CALIBRATION DATASET EXPERIMENTAL STUDY
+=======================================================================
+Job started on Wed Feb  4 03:05:08 PM +08 2026
+Running on node: GN-A40-025
+Job ID: 542723.stdct-mgmt-02
+Dataset: 20260201 Beads Calibration (50x-51200x, 384 images)
+=======================================================================
+=== CALIBRATION EXPERIMENTAL STUDY CONFIGURATION ===
+GPU: NVIDIA A40 (44GB memory)
+Dataset: ./dataset_20260201_beads calibration_S16-Basler camera
+Data Percentage: 100% (all calibration images)
+Learning Rate: 3e-4
+Max Epochs: 50
+Workers: 18
+Dilution Factors: 50x 100x 200x 400x 800x 1600x 3200x 6400x 12800x 25600x 51200x
+Total Experiments: 4 key configurations
+=======================================================
+
+🚀 Starting Calibration Experimental Study: 4 Architecture Variants
+
+📊 ARCHITECTURE VARIANTS (Calibration Dataset)
+
+####################################################################
+STARTING EXPERIMENT C01: Minimal
+####################################################################
+Configuration: Batch=256, Filters=16,32,64
+Started at: Wed Feb  4 03:05:08 PM +08 2026
+Experiment C01 (Minimal) finished at: Wed Feb  4 03:12:15 PM +08 2026
+Exit code: 0
+✅ Best model copied: best_model_C01_Minimal.pth
+✅ Experiment C01 (Minimal) completed successfully
+📊 Quick Performance Summary:
+   R² Score: 7835186.5
+   MSE: 5833284.5
+   MAE: 1278.9705810546875
+   Training Time: 7933.078125 min
+####################################################################
+COMPLETED EXPERIMENT C01: Minimal
+####################################################################
+
+
+####################################################################
+STARTING EXPERIMENT C02: Standard
+####################################################################
+Configuration: Batch=192, Filters=32,64,128
+Started at: Wed Feb  4 03:12:23 PM +08 2026
+Experiment C02 (Standard) finished at: Wed Feb  4 03:18:49 PM +08 2026
+Exit code: 0
+✅ Best model copied: best_model_C02_Standard.pth
+✅ Experiment C02 (Standard) completed successfully
+📊 Quick Performance Summary:
+   R² Score: 7817497.0
+   MSE: 5737335.0
+   MAE: 1269.2774658203125
+   Training Time: 7864.125 min
+####################################################################
+COMPLETED EXPERIMENT C02: Standard
+####################################################################
+
+
+####################################################################
+STARTING EXPERIMENT C03: Enhanced
+####################################################################
+Configuration: Batch=128, Filters=64,128,256
+Started at: Wed Feb  4 03:18:57 PM +08 2026
+Experiment C03 (Enhanced) finished at: Wed Feb  4 03:25:04 PM +08 2026
+Exit code: 0
+✅ Best model copied: best_model_C03_Enhanced.pth
+✅ Experiment C03 (Enhanced) completed successfully
+📊 Quick Performance Summary:
+   R² Score: 7735216.0
+   MSE: 5415783.0
+   MAE: 1235.942626953125
+   Training Time: 7630.75 min
+####################################################################
+COMPLETED EXPERIMENT C03: Enhanced
+####################################################################
+
+
+####################################################################
+STARTING EXPERIMENT C04: Deep
+####################################################################
+Configuration: Batch=96, Filters=128,256,512
+Started at: Wed Feb  4 03:25:13 PM +08 2026
+Experiment C04 (Deep) finished at: Wed Feb  4 03:31:18 PM +08 2026
+Exit code: 0
+✅ Best model copied: best_model_C04_Deep.pth
+✅ Experiment C04 (Deep) completed successfully
+📊 Quick Performance Summary:
+   R² Score: 7656273.0
+   MSE: 5220583.0
+   MAE: 1214.7393798828125
+   Training Time: 7491.75 min
+####################################################################
+COMPLETED EXPERIMENT C04: Deep
+####################################################################
+
+
+=======================================================================
+CALIBRATION EXPERIMENTAL STUDY COMPLETED - 4 EXPERIMENTS
+=======================================================================
+Job finished on Wed Feb  4 03:31:27 PM +08 2026
+Total execution time: 26 minutes
+Successful experiments: 4/4
+Main output directory: ./calibration_experimental_study_20260204_150508
+📋 Experimental analysis report saved: ./calibration_experimental_study_20260204_150508/calibration_experimental_report.txt
+
+🎉 CALIBRATION EXPERIMENTAL STUDY COMPLETED!
+============================================
+📁 Main Results Directory: ./calibration_experimental_study_20260204_150508
+📋 Experimental Report: ./calibration_experimental_study_20260204_150508/calibration_experimental_report.txt
+📊 Successful Experiments: 4/4
+⏱️ Total Execution Time: 26 minutes
+
+✅ Ready for analysis and model selection for calibration dataset
+============================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2026-02-04 15:31:28.279688:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 542723.stdct-mgmt-02
+	Project: personal-phyzxi
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(36), Used(36)
+	CPU Time Used: 00:11:26
+	Memory: Requested(240gb), Used(3282332kb)
+	Vmem Used: 1182980748kb
+	Walltime: Requested(48:00:00), Used(00:26:21)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (GN-A40-025[0]:ncpus=36:ngpus=1:mem=251658240kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.

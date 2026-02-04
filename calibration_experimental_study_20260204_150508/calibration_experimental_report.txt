@@ -1,0 +1,64 @@
+CALIBRATION DATASET EXPERIMENTAL STUDY REPORT
+==============================================
+Generated: Wed Feb  4 03:31:27 PM +08 2026
+Job ID: 542723.stdct-mgmt-02
+Node: GN-A40-025
+Total Execution Time: 26 minutes
+Successful Experiments: 4/4
+
+DATASET INFORMATION:
+====================
+Dataset: ./dataset_20260201_beads calibration_S16-Basler camera
+Images: 384 (512x512 cropped)
+Dilution Series: 50x - 51200x (11 factors, double dilution)
+Density Method: Blob DoG + 50x extrapolated (R²=0.9956)
+Data Percentage: 100%
+
+EXPERIMENTAL CONFIGURATIONS:
+============================
+C01: Minimal Architecture  - Filters: [16,32,64]   - Batch: 256
+C02: Standard Architecture - Filters: [32,64,128]  - Batch: 192
+C03: Enhanced Architecture - Filters: [64,128,256] - Batch: 128
+C04: Deep Architecture     - Filters: [128,256,512] - Batch: 96
+
+EXPERIMENT EXECUTION SUMMARY:
+============================
+
+C01 (Minimal): ✅ SUCCESS
+  Execution Time: 7 minutes
+  Performance Metrics:
+    R² Score: 7835186.5
+    MSE: 5833284.5
+    MAE: 1278.9705810546875
+    Training Time: 7933.078125 min
+
+C02 (Standard): ✅ SUCCESS
+  Execution Time: 6 minutes
+  Performance Metrics:
+    R² Score: 7817497.0
+    MSE: 5737335.0
+    MAE: 1269.2774658203125
+    Training Time: 7864.125 min
+
+C03 (Enhanced): ✅ SUCCESS
+  Execution Time: 6 minutes
+  Performance Metrics:
+    R² Score: 7735216.0
+    MSE: 5415783.0
+    MAE: 1235.942626953125
+    Training Time: 7630.75 min
+
+C04 (Deep): ✅ SUCCESS
+  Execution Time: 6 minutes
+  Performance Metrics:
+    R² Score: 7656273.0
+    MSE: 5220583.0
+    MAE: 1214.7393798828125
+    Training Time: 7491.75 min
+
+RESEARCH QUESTIONS:
+===================
+1. Which architecture handles calibration density range (50x-51200x) best?
+2. How does model capacity affect extrapolated 50x density prediction?
+3. Trade-off between model complexity and training time for 384 images?
+4. Which configuration balances accuracy and efficiency?

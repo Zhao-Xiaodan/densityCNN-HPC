@@ -1,0 +1,45 @@
+{
+    "script_args": {
+        "input_dir": "./dataset_20260201_beads calibration_S16-Basler camera",
+        "output_dir": "./calibration_experimental_study_20260204_150508/experiment_C01_Minimal",
+        "batch_sizes": [
+            256
+        ],
+        "filter_configs": [
+            "16,32,64"
+        ],
+        "epochs": 50,
+        "patience": 15,
+        "learning_rate": 0.0003,
+        "seed": 42,
+        "num_workers": 18,
+        "mixed_precision": true,
+        "cache_dataset": false,
+        "use_enhanced_model": false,
+        "use_enhanced_loss": false,
+        "enhanced_preprocessing": false,
+        "data_percentage": 100,
+        "dilution_factors": [
+            "50x",
+            "100x",
+            "200x",
+            "400x",
+            "800x",
+            "1600x",
+            "3200x",
+            "6400x",
+            "12800x",
+            "25600x",
+            "51200x"
+        ],
+        "use_all_dilutions": true
+    },
+    "timestamp": "20260204_150526",
+    "enhanced_features": {
+        "mixed_precision": true,
+        "enhanced_model": false,
+        "enhanced_loss": false,
+        "enhanced_preprocessing": false,
+        "cache_dataset": false
+    }
+}
