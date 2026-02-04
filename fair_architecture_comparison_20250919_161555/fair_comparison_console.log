@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_161555/train_fair_architecture_comparison.py", line 40, in <module>
+    import optuna
+ModuleNotFoundError: No module named 'optuna'

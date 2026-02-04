@@ -1,0 +1,53 @@
+=======================================================================
+FAIR ARCHITECTURE COMPARISON STUDY
+=======================================================================
+Study: Systematic CNN architecture comparison with individual optimization
+Job started on Fri Sep 19 04:15:55 PM +08 2025
+Running on node: GN-A40-096
+Job ID: 215460.stdct-mgmt-02
+Available GPUs: GPU-c13793ea-f349-cc0b-4360-22214f14f0c6
+Memory: 503Gi, CPUs: 36
+=======================================================================
+
+✅ Container found: /app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
+Working directory: /home/svu/phyzxi/scratch/densityCNN-HPC
+Creating study directory: ./fair_architecture_comparison_20250919_161555
+=== FAIR COMPARISON STUDY CONFIGURATION ===
+Dataset: ./dataset_preprocessed
+Study Directory: ./fair_architecture_comparison_20250919_161555
+Optimization Trials: 75 per architecture
+Evaluation Runs: 5 per architecture
+Container: /app1/common/singularity-img/hopper/pytorch/pytorch_2.4.0a0-cuda_12.5.0_ngc_24.06.sif
+==============================================
+
+=======================================================================
+STARTING FAIR ARCHITECTURE COMPARISON
+=======================================================================
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_161555/train_fair_architecture_comparison.py", line 40, in <module>
+    import optuna
+ModuleNotFoundError: No module named 'optuna'
+=======================================================================
+FAIR ARCHITECTURE COMPARISON COMPLETE
+Exit code: 1
+End time: Fri Sep 19 04:16:40 PM +08 2025
+=======================================================================
+❌ Study failed with exit code: 1
+📝 Check the log file for details: ./fair_architecture_comparison_20250919_161555/fair_comparison_console.log
+Study directory: ./fair_architecture_comparison_20250919_161555
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2025-09-19 16:16:41.734344:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 215460.stdct-mgmt-02
+	Project: personal-phyzxi
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(36), Used(36)
+	CPU Time Used: 00:00:32
+	Memory: Requested(240gb), Used(1300636kb)
+	Vmem Used: 8827496kb
+	Walltime: Requested(24:00:00), Used(00:00:47)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (GN-A40-096[1]:ncpus=36:ngpus=1:mem=251658240kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.

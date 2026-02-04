@@ -1,0 +1,32 @@
+🔍 Fair Comparison Environment Check:
+   PyTorch: 2.4.0a0+f70bd71a48.nv24.06
+   CUDA available: True
+   Using built-in hyperparameter optimization (no external dependencies)
+🔧 Using device: cuda
+Traceback (most recent call last):
+  File "/home/svu/phyzxi/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3653, in get_loc
+    return self._engine.get_loc(casted_key)
+  File "pandas/_libs/index.pyx", line 147, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/index.pyx", line 176, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'Dilution_Factor'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_162856/train_fair_architecture_comparison.py", line 847, in <module>
+    main()
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_162856/train_fair_architecture_comparison.py", line 833, in main
+    comparison = FairArchitectureComparison(
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_162856/train_fair_architecture_comparison.py", line 325, in __init__
+    self._prepare_dataset()
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_162856/train_fair_architecture_comparison.py", line 349, in _prepare_dataset
+    self.full_dataset = MicrobeadDataset(
+  File "/scratch/phyzxi/densityCNN-HPC/./fair_architecture_comparison_20250919_162856/train_fair_architecture_comparison.py", line 72, in __init__
+    self.data = self.data[self.data['Dilution_Factor'].isin(dilution_factors)]
+  File "/home/svu/phyzxi/.local/lib/python3.10/site-packages/pandas/core/frame.py", line 3761, in __getitem__
+    indexer = self.columns.get_loc(key)
+  File "/home/svu/phyzxi/.local/lib/python3.10/site-packages/pandas/core/indexes/base.py", line 3655, in get_loc
+    raise KeyError(key) from err
+KeyError: 'Dilution_Factor'

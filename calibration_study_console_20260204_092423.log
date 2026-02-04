@@ -1,0 +1,188 @@
+🔍 HPC Environment Check:
+   Python: 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0]
+   PyTorch: 2.4.0a0+f70bd71a48.nv24.06
+   Matplotlib backend: Agg
+   CUDA available: True
+🔍 Verifying HPC environment...
+✅ All dependencies available
+✅ CUDA available: NVIDIA A40
+✅ GPU Memory: 44.4 GB
+✅ Matplotlib backend: Agg
+🔬 CALIBRATION DATASET CNN ARCHITECTURE STUDY
+================================================================================
+🎯 Objective: Complete comparison of ALL CNN architectures
+📊 Dataset: 100% of ./20260201_beads calibration_S16-Basler camera
+🧬 Dilution Series: 50x-51200x (11 factors, 384 images)
+🧪 Architectures: Baseline + ResNet + UNet + DenseNet variants
+================================================================================
+📁 Output directory: ./calibration_architecture_study_20260204_092423/calibration_architecture_study_20260204_092446
+🔧 Using device: cuda
+🎮 GPU: NVIDIA A40
+💾 GPU Memory: 44.4 GB
+
+📂 Creating datasets...
+Dataset size: 0 samples
+Dataset size: 0 samples
+📊 Dataset splits: 0 train, 0 val, 0 test
+
+🧪 Testing 10 architectural configurations
+
+================================================================================
+🔬 EXPERIMENT 1/10: Baseline_Shallow
+   Architecture Type: Baseline
+   Depth: 4 layers
+   Skip Connections: False
+   Parameters: 2,025,793
+================================================================================
+❌ Experiment 1 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 2/10: Baseline_Deep
+   Architecture Type: Baseline
+   Depth: 12 layers
+   Skip Connections: False
+   Parameters: 2,551,585
+================================================================================
+❌ Experiment 2 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 3/10: ResNet_Shallow
+   Architecture Type: ResNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,263,489
+================================================================================
+❌ Experiment 3 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 4/10: ResNet_Deep
+   Architecture Type: ResNet
+   Depth: 12 layers
+   Skip Connections: True
+   Parameters: 2,997,153
+================================================================================
+❌ Experiment 4 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 5/10: UNet_channel_reduced_32filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 883,297
+================================================================================
+❌ Experiment 5 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 6/10: UNet_channel_reduced_36filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,046,917
+================================================================================
+❌ Experiment 6 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 7/10: UNet_full_concat_32filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 820,513
+================================================================================
+❌ Experiment 7 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 8/10: UNet_full_concat_36filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,119,277
+================================================================================
+❌ Experiment 8 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 9/10: UNet_channel_reduced_40filters
+   Architecture Type: UNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 1,300,265
+================================================================================
+❌ Experiment 9 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+================================================================================
+🔬 EXPERIMENT 10/10: DenseNet_Style
+   Architecture Type: DenseNet
+   Depth: 4 layers
+   Skip Connections: True
+   Parameters: 177,889
+================================================================================
+❌ Experiment 10 failed: get_architecture_config() missing 1 required positional argument: 'args'
+Traceback (most recent call last):
+  File "/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py", line 1717, in main
+    arch_config = get_architecture_config(model)
+TypeError: get_architecture_config() missing 1 required positional argument: 'args'
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+🎉 COMPREHENSIVE ARCHITECTURE STUDY COMPLETED!
+⏱️  Total execution time: 0.04 minutes
+✅ Successful experiments: 0/10
+
+⚠️ Insufficient successful experiments (0/10) for statistical analysis
+🧹 Performing aggressive memory cleanup...
+💾 GPU Memory - Allocated: 0.000 GB, Reserved: 0.000 GB
+
+🔬 Comprehensive CNN Architecture Study Complete!
