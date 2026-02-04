@@ -40,9 +40,9 @@ echo ""
 # =======================================================================
 
 echo "=== CALIBRATION STUDY CONFIGURATION ==="
-echo "Dataset: ./20260201_beads calibration_S16-Basler camera"
-echo "Images Folder: ./20260201_beads calibration_S16-Basler camera/images"
-echo "Density CSV: ./20260201_beads calibration_S16-Basler camera/density.csv"
+echo "Dataset: ./dataset_20260201_beads calibration_S16-Basler camera"
+echo "Images Folder: ./dataset_20260201_beads calibration_S16-Basler camera/images"
+echo "Density CSV: ./dataset_20260201_beads calibration_S16-Basler camera/density.csv"
 echo "Data Percentage: 100% (all 384 images)"
 echo "Learning Rate: 3e-4"
 echo "Max Epochs: 50 (with early stopping)"
@@ -122,7 +122,7 @@ echo ""
 # Execute the comprehensive study with calibration dataset parameters
 cd /home/svu/phyzxi/scratch/densityCNN-HPC
 singularity exec --nv "$image" python3 train_calibration_architecture_study.py \
-    --input_dir "./20260201_beads calibration_S16-Basler camera" \
+    --input_dir "./dataset_20260201_beads calibration_S16-Basler camera" \
     --output_dir ./$OUTPUT_DIR \
     --epochs 50 \
     --patience 15 \

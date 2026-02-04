@@ -65,7 +65,7 @@ print(f"   CUDA available: {torch.cuda.is_available()}")
 # ============================================================================
 
 parser = argparse.ArgumentParser(description='Calibration Dataset CNN Architecture Study')
-parser.add_argument('--input_dir', type=str, default='20260201_beads calibration_S16-Basler camera',
+parser.add_argument('--input_dir', type=str, default='dataset_20260201_beads calibration_S16-Basler camera',
                     help='Input directory containing images/ and density.csv')
 parser.add_argument('--output_dir', type=str, default='calibration_architecture_study',
                     help='Directory to save results')

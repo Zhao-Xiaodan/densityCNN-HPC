@@ -2,11 +2,11 @@
 
 ## Dataset Information
 
-**Dataset**: `20260201_beads calibration_S16-Basler camera`
-- **Location on HPC**: `~/scratch/densityCNN-HPC/20260201_beads calibration_S16-Basler camera/`
+**Dataset**: `dataset_20260201_beads calibration_S16-Basler camera`
+- **Location on HPC**: `~/scratch/densityCNN-HPC/dataset_20260201_beads calibration_S16-Basler camera/`
 - **Structure**:
   ```
-  20260201_beads calibration_S16-Basler camera/
+  dataset_20260201_beads calibration_S16-Basler camera/
   ├── images/              # 384 cropped 512x512 images
   └── density.csv          # Density labels (filename, density)
   ```
@@ -73,15 +73,15 @@ ssh phyzxi@vanda.svucluster.sydney.edu.au
 cd ~/scratch/densityCNN-HPC
 
 # Check dataset structure
-ls -la "20260201_beads calibration_S16-Basler camera/"
+ls -la "dataset_20260201_beads calibration_S16-Basler camera/"
 # Should show: density.csv  images/
 
 # Check images count
-ls "20260201_beads calibration_S16-Basler camera/images/" | wc -l
+ls "dataset_20260201_beads calibration_S16-Basler camera/images/" | wc -l
 # Should show: 384
 
 # Check density.csv format
-head "20260201_beads calibration_S16-Basler camera/density.csv"
+head "dataset_20260201_beads calibration_S16-Basler camera/density.csv"
 # Should show: image_name,density format
 ```
 
@@ -185,19 +185,19 @@ Actual time may vary based on GPU availability and early stopping.
 ### Issue: "Input directory does not exist"
 ```bash
 # Check path (note the space in folder name)
-ls "20260201_beads calibration_S16-Basler camera/"
+ls "dataset_20260201_beads calibration_S16-Basler camera/"
 ```
 
 ### Issue: "Density file does not exist"
 ```bash
 # Verify density.csv is in the correct location
-ls "20260201_beads calibration_S16-Basler camera/density.csv"
+ls "dataset_20260201_beads calibration_S16-Basler camera/density.csv"
 ```
 
 ### Issue: "No images found"
 ```bash
 # Check images folder
-ls "20260201_beads calibration_S16-Basler camera/images/" | head
+ls "dataset_20260201_beads calibration_S16-Basler camera/images/" | head
 ```
 
 ### Issue: Job fails with memory error
