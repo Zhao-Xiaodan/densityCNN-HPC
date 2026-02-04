@@ -1,0 +1,16 @@
+{
+    "baseline_vs_resnet": {
+        "t_statistic": 1.2955975012656855,
+        "p_value": 0.3244921207620435,
+        "baseline_mean": 0.990248623304069,
+        "resnet_mean": 0.9389178501442075,
+        "effect_size": 0.051330773159861565
+    },
+    "baseline_vs_unet": {
+        "t_statistic": 1.312012144959365,
+        "p_value": 0.24651992003257608,
+        "baseline_mean": 0.990248623304069,
+        "unet_mean": 0.3359800919890404,
+        "effect_size": 0.6542685313150287
+    }
+}
