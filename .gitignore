@@ -1,0 +1,371 @@
+# =============================================================================
+# densityCNN-HPC .gitignore
+# =============================================================================
+# For CNN training on HPC - excludes large datasets, models, and results
+# =============================================================================
+
+# =============================================================================
+# DATASETS AND PREPROCESSED DATA
+# =============================================================================
+# Large datasets and preprocessed data
+dataset_preprocessed/
+**/dataset*/
+**/data/
+**/images/
+**/cropped_images/
+**/original_images/
+
+# Calibration datasets
+*beads*calibration*/
+20260201*/
+
+# =============================================================================
+# ARCHIVE FOLDERS
+# =============================================================================
+[99]Archive/
+**/Archive/
+**/*archive*/
+**/*Archive*/
+
+# =============================================================================
+# MODEL OUTPUTS AND RESULTS
+# =============================================================================
+# Model checkpoints and weights
+**/checkpoints/
+**/results/
+**/models/
+**/weights/
+*.pth
+*.pt
+*.h5
+*.hdf5
+*.ckpt
+*.safetensors
+*.bin
+
+# Model exports
+*.onnx
+*.pb
+
+# Study results directories
+*_study_*/
+*_results_*/
+*_comparison_*/
+*_analysis_*/
+calibration_architecture_study_*/
+comprehensive_architecture_study_*/
+fair_architecture_comparison_*/
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.venv/
+
+# Conda environments
+conda-meta/
+.conda/
+
+# =============================================================================
+# JUPYTER NOTEBOOKS
+# =============================================================================
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Jupyter Notebook outputs (keep notebooks but ignore outputs)
+# Uncomment if you want to track notebooks but not their outputs
+# *.ipynb
+
+# =============================================================================
+# LOGS AND OUTPUT FILES
+# =============================================================================
+# Training logs
+*.log
+*.out
+*.err
+logs/
+**/logs/
+
+# PBS/SLURM output files
+*.o[0-9]*
+*.e[0-9]*
+*_console_*.log
+
+# Tensorboard logs
+runs/
+**/runs/
+events.out.tfevents.*
+
+# =============================================================================
+# IMAGES AND MEDIA
+# =============================================================================
+# Image files (large datasets)
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.svg
+*.ico
+
+# Allow specific documentation images
+!**/doc/**/*.png
+!**/docs/**/*.png
+!**/readme_images/**/*.png
+!**/assets/**/*.png
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.wmv
+*.flv
+*.webm
+
+# =============================================================================
+# DATA FILES
+# =============================================================================
+# CSV/Excel files from results (too large)
+**/results/**/*.csv
+**/output/**/*.csv
+
+# Keep small CSV files (allow tracking of metadata)
+!density.csv
+!predicted_densities.csv
+!*_config.csv
+!*_summary.csv
+
+# Large data formats
+*.npy
+*.npz
+*.pickle
+*.pkl
+*.hdf5
+*.h5
+
+# =============================================================================
+# JSON RESULTS
+# =============================================================================
+# Large experiment JSON files
+**/results/**/*.json
+complete_*.json
+experiment_*_results.json
+
+# Allow configuration JSONs
+!*config*.json
+!*_config.json
+
+# =============================================================================
+# SYSTEM FILES
+# =============================================================================
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# =============================================================================
+# IDE AND EDITOR
+# =============================================================================
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+auto-save-list
+tramp
+
+# =============================================================================
+# DOCUMENTATION BUILD
+# =============================================================================
+# Sphinx documentation
+docs/_build/
+docs/.doctrees/
+.buildinfo
+
+# MkDocs
+site/
+
+# =============================================================================
+# TESTING
+# =============================================================================
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+.tox/
+
+# =============================================================================
+# TEMPORARY FILES
+# =============================================================================
+# General temporary files
+*.tmp
+*.temp
+*.bak
+*.backup
+*~.nib
+local_settings.py
+
+# Temporary directories
+tmp/
+temp/
+cache/
+.cache/
+
+# =============================================================================
+# ENVIRONMENT AND SECRETS
+# =============================================================================
+.env
+.env.local
+.env.*.local
+secrets.yaml
+credentials.json
+*.pem
+*.key
+
+# =============================================================================
+# GPU/CUDA
+# =============================================================================
+# CUDA cache
+**/.nv/
+.cuda/
+
+# =============================================================================
+# PROJECT SPECIFIC
+# =============================================================================
+# Singularity/Apptainer
+*.sif
+*.simg
+
+# Specific large output directories
+blob_dog_results/
+blob_dog_grid_results/
+dynamic_blob_dog_results/
+prediction_results/
+grid_images/
+circle_labeled_images/
+radius_histograms/
+
+# HPC scratch temporary files
+scratch/
+
+# Old/deprecated files
+*_old.*
+*_OLD.*
+*_deprecated.*
+*.old
+*.OLD
+
+# =============================================================================
+# ALLOW IMPORTANT FILES
+# =============================================================================
+# Explicitly allow certain files that might be caught by wildcards
+!README*.md
+!readme*.md
+!LICENSE*
+!GUIDE*.md
+!*METHODOLOGY*.md
+!.gitignore
+!requirements.txt
+!environment.yml
+
+# Allow PBS scripts
+!pbs_*.sh
+!*.pbs
+
+# Allow training scripts
+!train_*.py
+
+# Allow analysis scripts
+!analyze_*.py
+!*_analysis.py
+
+# Allow small visualization examples
+!example_*.png
+!legend*.png
+!architecture_diagram*.png
