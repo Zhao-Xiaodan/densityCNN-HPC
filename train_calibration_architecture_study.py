@@ -826,7 +826,8 @@ class MicrobeadDataset(Dataset):
         self.df['density'] = self.df['density'].astype(float)
 
         if not use_all_dilutions and dilution_factors:
-            pattern = '|'.join([f'^{factor}_' for factor in dilution_factors])
+            # Updated pattern to match "dilution_50x_", "dilution_100x_", etc.
+            pattern = '|'.join([f'dilution_{factor}_' for factor in dilution_factors])
             mask = self.df['filename'].str.contains(pattern, case=False, na=False)
             self.df = self.df[mask].reset_index(drop=True)
 
@@ -1714,7 +1715,7 @@ def main():
         
         try:
             # Get architecture-specific configuration
-            arch_config = get_architecture_config(model)
+            arch_config = get_architecture_config(model, args)
             
             # Create adaptive data loaders for this specific architecture
             adaptive_train_loader = DataLoader(
