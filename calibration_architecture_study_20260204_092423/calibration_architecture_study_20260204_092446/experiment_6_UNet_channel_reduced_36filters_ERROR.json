@@ -1,6 +1,0 @@
-{
-    "experiment_number": 6,
-    "model_name": "UNet_channel_reduced_36filters",
-    "error": "get_architecture_config() missing 1 required positional argument: 'args'",
-    "traceback": "Traceback (most recent call last):\n  File \"/scratch/phyzxi/densityCNN-HPC/train_calibration_architecture_study.py\", line 1717, in main\n    arch_config = get_architecture_config(model)\nTypeError: get_architecture_config() missing 1 required positional argument: 'args'\n"
-}
