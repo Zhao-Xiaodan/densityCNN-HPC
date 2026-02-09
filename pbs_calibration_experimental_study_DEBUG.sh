@@ -58,7 +58,7 @@ DATA_PERCENTAGE=100
 # Calibration dilution factors
 DILUTION_FACTORS="50x 100x 200x 400x 800x 1600x 3200x 6400x 12800x 25600x 51200x"
 
-echo "=== CALIBRATION EXPERIMENTAL STUDY CONFIGURATION ===\"
+echo "=== CALIBRATION EXPERIMENTAL STUDY CONFIGURATION ==="
 echo "GPU: NVIDIA A40 (44GB memory)"
 echo "Dataset: $INPUT_DIR"
 echo "Data Percentage: $DATA_PERCENTAGE% (all calibration images)"
@@ -129,7 +129,7 @@ echo "Starting $EXP_NAME experiment..."
 python -u train_densityCNN_HPC_DEBUG.py $PYTHON_ARGS
 
 echo "$EXP_NAME experiment completed on \$(date)"
-echo "=== GPU MEMORY USAGE AFTER $EXP_NAME ===\"
+echo "=== GPU MEMORY USAGE AFTER $EXP_NAME ==="
 nvidia-smi --query-gpu=memory.used,memory.total,utilization.gpu --format=csv,noheader,nounits
 echo "======================================="
 

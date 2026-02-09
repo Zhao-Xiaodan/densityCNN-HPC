@@ -1,0 +1,111 @@
+===============================================================================
+QUICK RESUBMIT INSTRUCTIONS - Debug Job (After Syntax Fix)
+===============================================================================
+
+ISSUE: Job 555205 failed with syntax error (escaped quote on line 61)
+FIX: Removed escaped quotes - script now passes syntax check
+STATUS: Ready for resubmission
+
+===============================================================================
+COMMANDS TO RUN
+===============================================================================
+
+# 1. SSH to HPC
+ssh phyzxi@vanda.svucluster.sydney.edu.au
+
+# 2. Navigate to directory
+cd ~/scratch/densityCNN-HPC
+
+# 3. (Optional) Verify syntax locally if you edited the file
+bash -n pbs_calibration_experimental_study_DEBUG.sh
+# Expected: No output = success
+
+# 4. Resubmit job
+qsub pbs_calibration_experimental_study_DEBUG.sh
+
+# 5. Check job status
+qstat -u phyzxi
+
+# 6. Monitor output in real-time
+tail -f Calibration_Experimental_Study_DEBUG.o*
+
+# 7. (Optional) Check specific experiment logs
+tail -f calibration_experimental_study_DEBUG_*/experiment_C01_Minimal/experiment_console.log
+
+===============================================================================
+WHAT TO EXPECT
+===============================================================================
+
+✅ Job should START successfully (no syntax errors)
+✅ Training should run for ~30-40 minutes total (all 4 experiments)
+✅ Each experiment: ~5-10 minutes
+✅ Expected R² scores:
+   - C01 (Minimal): 0.85-0.92
+   - C02 (Standard): 0.92-0.96
+   - C03 (Enhanced): 0.96-0.98
+   - C04 (Deep): 0.97-0.99
+
+❌ OLD FAILED STUDY had R² = -0.38 to -0.23 (all negative!)
+
+===============================================================================
+SUCCESS INDICATORS IN LOGS
+===============================================================================
+
+Look for these messages:
+
+1. Startup (should appear immediately):
+   "=== CALIBRATION EXPERIMENTAL STUDY CONFIGURATION ==="
+   "GPU: NVIDIA A40 (44GB memory)"
+
+2. Dataset loading:
+   "✅ Dataset loaded: 384 samples"
+   "   Density range: [15.00, 7964.00] beads/mm²"
+
+3. Epoch 0 diagnostics:
+   "🐛 EPOCH 0 DIAGNOSTICS:"
+   "   Prediction range: [-250.12, 3845.67]"  ← WIDE RANGE = GOOD!
+
+4. Epoch 10 checkpoint:
+   "🐛 EPOCH 10 R² CHECK: 0.8234"  ← POSITIVE = GOOD!
+
+5. Final evaluation:
+   "🐛 EVALUATION DIAGNOSTICS:"
+   "   R² Score: 0.9712"  ← HIGH R² = EXCELLENT!
+
+===============================================================================
+FAILURE INDICATORS (If Still Failing)
+===============================================================================
+
+❌ Syntax error again → Check file upload
+❌ Prediction range: [0.00, 500.00] → Preprocessing issue
+❌ R² negative at epoch 10 → Training failure
+❌ Validation loss stays at ~7,848,000 → Model not learning
+
+===============================================================================
+QUICK COMPARISON
+===============================================================================
+
+Job 555205 (Syntax Error):
+  Exit Status: 2
+  Duration: 2 seconds
+  Cause: Escaped quote in echo statement
+  Fix: Removed backslash before closing quotes
+
+Expected New Run:
+  Exit Status: 0
+  Duration: 30-40 minutes
+  Result: R² > 0.9 (vs original R² < 0)
+
+===============================================================================
+CONTACT / QUESTIONS
+===============================================================================
+
+If job fails again, check:
+1. DEBUG_RUN_UPDATE.md (detailed analysis)
+2. Experiment logs in calibration_experimental_study_DEBUG_*/
+3. PBS output file: Calibration_Experimental_Study_DEBUG.oXXXXXX
+
+Email: phyzxi@nus.edu.sg
+Date: February 9, 2026
+
+===============================================================================
