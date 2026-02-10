@@ -125,8 +125,8 @@ mkdir -p \$TORCH_HOME
 
 echo "Starting $EXP_NAME experiment..."
 
-# ✅ FIXED: Run the DEBUG training script
-python -u train_densityCNN_HPC_DEBUG.py $PYTHON_ARGS
+# ✅ FIXED: Run the COMPLETE DEBUG training script
+python -u train_densityCNN_HPC_DEBUG_COMPLETE.py $PYTHON_ARGS
 
 echo "$EXP_NAME experiment completed on \$(date)"
 echo "=== GPU MEMORY USAGE AFTER $EXP_NAME ==="
