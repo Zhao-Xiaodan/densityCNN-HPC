@@ -1,0 +1,116 @@
+=======================================================================
+CALIBRATION DATASET EXPERIMENTAL STUDY - 🐛 DEBUG VERSION
+=======================================================================
+Job started on Mon Feb  9 03:49:26 PM +08 2026
+Running on node: GN-A40-012
+Job ID: 555208.stdct-mgmt-02
+Dataset: 20260201 Beads Calibration (50x-51200x, 384 images)
+
+🐛 DEBUG FIXES APPLIED:
+  ✅ Force enhanced_preprocessing (keep 512x512, no resize)
+  ✅ Force use_enhanced_model (better architecture)
+  ✅ Fixed dilution factor pattern matching
+  ✅ Added prediction range diagnostics
+  ✅ Early termination if R² < 0 after 10 epochs
+=======================================================================
+=== CALIBRATION EXPERIMENTAL STUDY CONFIGURATION ===
+GPU: NVIDIA A40 (44GB memory)
+Dataset: ./dataset_20260201_beads calibration_S16-Basler camera
+Data Percentage: 100% (all calibration images)
+Learning Rate: 3e-4
+Max Epochs: 50
+Workers: 18
+Dilution Factors: 50x 100x 200x 400x 800x 1600x 3200x 6400x 12800x 25600x 51200x
+Total Experiments: 4 key configurations
+=======================================================
+
+🚀 Starting Calibration Experimental Study (DEBUG): 4 Architecture Variants
+
+📊 ARCHITECTURE VARIANTS (Calibration Dataset - DEBUG MODE)
+
+####################################################################
+STARTING EXPERIMENT C01: Minimal (DEBUG MODE)
+####################################################################
+Configuration: Batch=256, Filters=16,32,64
+Started at: Mon Feb  9 03:49:26 PM +08 2026
+Experiment C01 (Minimal) finished at: Mon Feb  9 03:50:03 PM +08 2026
+Exit code: 0
+✅ Experiment C01 (Minimal) completed successfully
+####################################################################
+COMPLETED EXPERIMENT C01: Minimal
+####################################################################
+
+
+####################################################################
+STARTING EXPERIMENT C02: Standard (DEBUG MODE)
+####################################################################
+Configuration: Batch=192, Filters=32,64,128
+Started at: Mon Feb  9 03:50:20 PM +08 2026
+Experiment C02 (Standard) finished at: Mon Feb  9 03:50:44 PM +08 2026
+Exit code: 0
+✅ Experiment C02 (Standard) completed successfully
+####################################################################
+COMPLETED EXPERIMENT C02: Standard
+####################################################################
+
+
+####################################################################
+STARTING EXPERIMENT C03: Enhanced (DEBUG MODE)
+####################################################################
+Configuration: Batch=128, Filters=64,128,256
+Started at: Mon Feb  9 03:51:00 PM +08 2026
+Experiment C03 (Enhanced) finished at: Mon Feb  9 03:51:26 PM +08 2026
+Exit code: 0
+✅ Experiment C03 (Enhanced) completed successfully
+####################################################################
+COMPLETED EXPERIMENT C03: Enhanced
+####################################################################
+
+
+####################################################################
+STARTING EXPERIMENT C04: Deep (DEBUG MODE)
+####################################################################
+Configuration: Batch=96, Filters=128,256,512
+Started at: Mon Feb  9 03:51:42 PM +08 2026
+Experiment C04 (Deep) finished at: Mon Feb  9 03:52:08 PM +08 2026
+Exit code: 0
+✅ Experiment C04 (Deep) completed successfully
+####################################################################
+COMPLETED EXPERIMENT C04: Deep
+####################################################################
+
+
+=======================================================================
+CALIBRATION EXPERIMENTAL STUDY (DEBUG) COMPLETED - 4 EXPERIMENTS
+=======================================================================
+Job finished on Mon Feb  9 03:52:25 PM +08 2026
+Total execution time: 2 minutes
+Successful experiments: 4/4
+Main output directory: ./calibration_experimental_study_DEBUG_20260209_154926
+📋 Experimental analysis report saved: ./calibration_experimental_study_DEBUG_20260209_154926/calibration_experimental_report_DEBUG.txt
+
+🎉 CALIBRATION EXPERIMENTAL STUDY (DEBUG) COMPLETED!
+============================================
+📁 Main Results Directory: ./calibration_experimental_study_DEBUG_20260209_154926
+📋 Experimental Report: ./calibration_experimental_study_DEBUG_20260209_154926/calibration_experimental_report_DEBUG.txt
+📊 Successful Experiments: 4/4
+⏱️ Total Execution Time: 2 minutes
+
+✅ Debug fixes applied - compare results with original failed study
+============================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+			Resource Usage on 2026-02-09 15:52:26.191528:
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	JobId: 555208.stdct-mgmt-02
+	Project: personal-phyzxi
+	Exit Status: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	NCPUs: Requested(36), Used(36)
+	CPU Time Used: 00:02:58
+	Memory: Requested(240gb), Used(1128484kb)
+	Vmem Used: 11450952kb
+	Walltime: Requested(48:00:00), Used(00:03:01)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Execution Nodes Used: (GN-A40-012[1]:ncpus=36:ngpus=1:mem=251658240kb)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	No GPU-related information available for this job.
