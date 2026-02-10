@@ -6,6 +6,7 @@
 #PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
 #PBS -M phyzxi@nus.edu.sg
 #PBS -m abe
+#PBS -q gpu
 
 cd $PBS_O_WORKDIR
 
