@@ -6,6 +6,7 @@
 #PBS -l select=1:ncpus=36:mpiprocs=1:ompthreads=36:ngpus=1:mem=240gb
 #PBS -M phyzxi@nus.edu.sg
 #PBS -m abe
+#PBS -q batch_gpu
 
 cd $PBS_O_WORKDIR
 
@@ -93,6 +94,8 @@ run_experiment() {
   --use_all_dilutions \
   --num_workers $NUM_WORKERS \
   --mixed_precision \
+  --use_enhanced_model \
+  --enhanced_preprocessing \
   --seed 42"
 
     # Run experiment inside singularity container

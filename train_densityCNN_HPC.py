@@ -199,8 +199,8 @@ class OptimizedMicrobeadDataset(Dataset):
 
         if not use_all_dilutions and dilution_factors:
             print(f"Filtering data for dilution factors: {dilution_factors}")
-            # Create pattern to match dilution factors at the beginning of filename
-            pattern = '|'.join([f'^{factor}_' for factor in dilution_factors])
+            # Match calibration dataset filename format: dilution_50x_...
+            pattern = '|'.join([f'dilution_{factor}_' for factor in dilution_factors])
             mask = self.df['filename'].str.contains(pattern, case=False, na=False)
             self.df = self.df[mask].reset_index(drop=True)
             print(f"After dilution filtering: {len(self.df)} samples")
